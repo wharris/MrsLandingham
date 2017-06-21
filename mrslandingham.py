@@ -1,4 +1,31 @@
+def hope(string,x):
+    print string
 
+def test_function_dic():
+    def hello():
+        print "hello"
+    def bye():
+        print "bye"
+    fundic={}
+    fundic['hello']= lambda: do("say hello")
+    fundic['bye']= bye
+    x=user_choose_function(fundic)
+
+
+def user_choose_function(fundic):
+    counter =0
+    for key in sorted(fundic.iterkeys()):
+        print "{} - {}".format(counter,key)
+        counter=counter+1
+    while True:
+        try:
+            ans = int(raw_input("choose..."))
+            options=[[str(x) for x in range(counter)]]
+            options=range(counter)
+            fundic[sorted(fundic.iterkeys())[ans]]()
+            return
+        except:
+            print "Invalid input!"
 
 def do(task):
     print ""
@@ -6,16 +33,12 @@ def do(task):
     print ""
     while ask("Is this complete?") is False:
        print "Why not?"
-       print "1. I feel resistance to doing it"
-       print "2. The algorithm is incomplete"
-       print "3. The algorithm is complete, but there are special circumstances"
-       ans = raw_input("choose...")
-       if ans == '1':
-          do("Write the smallest action to start this in your notes file")
-       if ans == '2':
-         do("rewrite scarface for this function")
-       if ans == '3':
-         do("Post to social media about the special circumstances and act as if it's been done.")
+       answers={}
+       answers["I feel resistance to doing it"]=lambda:do("Write the smallest action to start this in your notes file")
+       answers["The algorithm is incomplete"]=lambda:do("rewrite scarface for this function")
+       answers["The algorithm is complete, but there are special circumstances"]=lambda:do("Post to social media about the special circumstances and act as if it's been done.")
+       answers["I have made progress against this task and I want to replace it with a continuing task"]=lambda:do("Keep working on it. Write the smallest action down again")
+       user_choose_function(answers)
        print task
 
 
@@ -39,8 +62,25 @@ def ask(prompt):
         if ans == 'n' or ans == 'N':
             return False
 
+
+###############################################################################
+#Now the actual instructions.
+
 def process_email():
-    do("rewrite scarface for this function")
+    print "Trigage Email starting"
+#    while ask("are there more unread emails"):
+#     each email in inbox it will be one of these:
+#    from a human directly to me: read #leave replying for the next pass
+#    it is an automated email that can be unsubscribed from: unsubscribe
+#    it is a calendar event:
+#    If the event is to remind you to send an email, then leave for the next pass
+#    if the event is to remind you to do a task that needs email, then do it if it's less than 2 minutes, otherwise pass
+#    if the event is for transfer to the next action list, then transfer it now.
+#    second page: reply to each email in order.
+#    Send all emails from calendar events
+#    Do all calendar tasks.
+#    If inbox isn't empty, rewrite this task.
+
 
 def project_work():
     do("rewrite scarface for this function")
@@ -63,8 +103,6 @@ def jurgen_normal_form():
     do("Go thought all tasks and adjust the deadline for an urgent ones")
 
 
-
-
 def work_on_next_actions():
 ## Working on the next actions list
 
@@ -74,7 +112,6 @@ def work_on_next_actions():
 
     while True:
         do("Complete the action at the top of the list?")
-    print "here"
 
 def startwork():
     print "Laptop Working"
@@ -82,6 +119,9 @@ def startwork():
     d = datetime.datetime.today()
     if d.hour > 12:
         if not ask("Have you processed your email?"):
+                do("Open personal email")
+                process_email()
+                do("Open processional email")
                 process_email()
         do(project_work())
     work_on_next_actions()
