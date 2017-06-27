@@ -1,5 +1,18 @@
-def hope(string,x):
-    print string
+import pytz
+import os
+import datetime
+import sys
+
+
+LOG_LOC = os.path.dirname(os.path.abspath(__file__))+'/ml_log.md'
+
+
+def write_to_file(toprint):
+    __TIME_FORMAT = "%d/%m/%y %H:%M"
+    with open(LOG_LOC, 'a') as actions_file:
+	actions_file.write(datetime.datetime.now(pytz.timezone("Europe/London")).strftime("###### "+__TIME_FORMAT))
+        actions_file.write('\n'+toprint+'\n\n')
+
 
 def test_function_dic():
     def hello():
@@ -24,10 +37,23 @@ def user_choose_function(fundic):
             options=range(counter)
             fundic[sorted(fundic.iterkeys())[ans]]()
             return
-        except:
+        except KeyboardInterrupt:
+            sys.exit()
             print "Invalid input!"
 
+
+def jump():
+    write_to_file("JUMP") #we log when started
+    answers={}
+    answers["process_email"]=process_email
+    answers["project_work"]=project_work
+    answers["jurgen_normal_form"]=jurgen_normal_form
+    answers["work_on_next_actions"]=work_on_next_actions
+    answers["startwork"]=startwork
+    user_choose_function(answers)
+
 def do(task):
+    write_to_file(task) #we log when started
     print ""
     print "       "+ task
     print ""
@@ -35,11 +61,15 @@ def do(task):
        print "Why not?"
        answers={}
        answers["I feel resistance to doing it"]=lambda:do("Write the smallest action to start this in your notes file")
-       answers["The algorithm is incomplete"]=lambda:do("rewrite scarface for this function")
+       answers["The algorithm is incomplete"]=lambda:do("rewrite Mrs Landingham for this function")
        answers["The algorithm is complete, but there are special circumstances"]=lambda:do("Post to social media about the special circumstances and act as if it's been done.")
+       answers["This task is would be better done at the same time as another appointment today"]=lambda:do("Post to social media about the special circumstances and act as if it's been done.")
        answers["I have made progress against this task and I want to replace it with a continuing task"]=lambda:do("Keep working on it. Write the smallest action down again")
+       answers["I want to jump to another function"]=jump
+       answers["Exit"]=sys.exit
        user_choose_function(answers)
        print task
+
 
 
 def read(task):
@@ -66,24 +96,55 @@ def ask(prompt):
 ###############################################################################
 #Now the actual instructions.
 
+
+
 def process_email():
-    print "Trigage Email starting"
-#    while ask("are there more unread emails"):
-#     each email in inbox it will be one of these:
-#    from a human directly to me: read #leave replying for the next pass
-#    it is an automated email that can be unsubscribed from: unsubscribe
-#    it is a calendar event:
-#    If the event is to remind you to send an email, then leave for the next pass
-#    if the event is to remind you to do a task that needs email, then do it if it's less than 2 minutes, otherwise pass
-#    if the event is for transfer to the next action list, then transfer it now.
-#    second page: reply to each email in order.
-#    Send all emails from calendar events
-#    Do all calendar tasks.
-#    If inbox isn't empty, rewrite this task.
+    def deal_with_calendar_email():
+        do("rewrite Mrs Landingham for this function")
+        #If the event is to remind you to send an email, then leave for the next pass
+        #if the event is to remind you to do a task that needs email, then do it if it's less than 2 minutes, otherwise pass
+        #if the event is for transfer to the next action list, then transfer it now.
+    print "Triage Email starting"
+    while ask("are there more unread emails"):
+        print "Is the top email...."
+        answers={}
+        answers["...from a human, directly to me"]=lambda:do("read and leave for next pass")
+        answers["...an automated email that can be unsubscribed from"]=lambda:do("Unsubscribe")
+        answers["a calendar event"]=lambda:deal_with_calendar_email()
+        user_choose_function(answers)
+    print "You are now doing the second pass"
+    do("second page: reply to each email in order.")
 
 
 def project_work():
-    do("rewrite scarface for this function")
+    do("Check and respond to project notifications.")
+    do("Make sure EQT Projects is in normal form.")
+    do("Check that all cards are in columns")
+    do("Close issues")
+    do("Remove closed issues.")
+    do("Check that every card is assigned")
+    do("Make sure Jarvis Projects is in normal form.")
+    do("Check that all cards are in columns")
+    do("Close issues")
+    do("Remove closed issues.")
+    do("Check that every card is assigned")
+    do("Choose the leftmost project with the soonest deadline //leftmost is highest priority on the chart")
+    do("Open the file and add a datestamp to the comment")
+    do("If project needs mapping.")
+    do("Map project")
+    do("If the project is finnished:")
+    do("Close project")
+    do("Write blog post about project")
+    do("Laptop working")
+    do("If the project does not have an obvious next action:")
+    do("Write a next action.")
+    do("Do the next action.")
+    do("Make a note of any filenames or commands you used")
+    do("Write a short note saying what you did")
+    do("If you are now waiting for someone else to get back to you:")
+    do("Laptop working")
+    do("Goto 6")
+
 
 def jurgen_normal_form():
     print(chr(27) + "[2J")
@@ -121,12 +182,13 @@ def startwork():
         if not ask("Have you processed your email?"):
                 do("Open personal email")
                 process_email()
-                do("Open processional email")
+                do("Open professional email")
                 process_email()
-        do(project_work())
+        project_work()
     work_on_next_actions()
 
-#work_on_next_actions()
+#process_email()
+
 if __name__ == "__main__":
     print(chr(27) + "[2J")
     print """Good morning Joe.
