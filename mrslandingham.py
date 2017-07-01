@@ -4,7 +4,7 @@ import datetime
 import sys
 from time import sleep
 import sys
-
+import dialogs
 
 LOG_LOC = os.path.dirname(os.path.abspath(__file__))+'/ml_log.md'
 
@@ -59,6 +59,9 @@ def tell(statement):
 
 def do(task):
     write_to_file(task) #we log when started
+    cmddo(task)
+    
+def cmddo(task):
     print ""
     tell("       "+ task)
     print ""
@@ -84,6 +87,10 @@ def morning():
 
 
 def ask(prompt):
+	phoneui.ask(prompt)
+	
+
+def cmdask(prompt):
     #from http://code.activestate.com/recipes/541096-prompt-the-user-for-confirmation/
     if prompt is None:
         prompt = 'Confirm'
@@ -221,16 +228,37 @@ def planday():
 
 import ui
 
-def button_tapped(sender):
-	print "called"
-	print sender.title
-
-v= ui.load_view('do')
-v.present('sheet')
-v['top'].text="yo indid it. "
+#import dialogs
+#esponse=dialogs.list_dialog("is it done? and bear in mind this is a long long old job... ", ["yes","no"])
 
 
+class phoneui():
+	def __init__(self):
+			self.v=None
+			
+	def ask(self, question):
+		self.v= ui.load_view('do')
+		self.v.present('sheet')
+		self.v['top'].text=question
+		self.v.wait_modal()
+		if self.response =="Yes":
+			return True
+		else:
+			return False
+			
 
+	def button_tapped(self,sender):
+		print "called"
+		
+		self.response=sender.title
+		print "xxx"+self.response
+		self.v.close()
+
+phoneui=phoneui()
+
+
+
+phoneui.ask("why?")
 if __name__ == "__main__":
     clear()
     tell("Good morning Joe.")
