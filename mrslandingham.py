@@ -219,6 +219,16 @@ def planday():
     do("Have Guaranteed Food.  (by watch reminder)")
     do("Check what the night time temperature will be")
 
+import ui
+
+def button_tapped(sender):
+	print "called"
+	print sender.title
+
+v= ui.load_view('do')
+v.present('sheet')
+v['top'].text="yo indid it. "
+
 
 
 if __name__ == "__main__":
