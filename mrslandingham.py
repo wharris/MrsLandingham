@@ -16,16 +16,6 @@ def write_to_file(toprint):
         actions_file.write('\n'+toprint+'\n\n')
 
 
-def test_function_dic():
-    def hello():
-        print "hello"
-    def bye():
-        print "bye"
-    fundic={}
-    fundic['hello']= lambda: do("say hello")
-    fundic['bye']= bye
-    x=user_choose_function(fundic)
-
 
 def user_choose_function(fundic):
     counter =0
