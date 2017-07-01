@@ -86,6 +86,13 @@ def do(task):
        tell(task)
 
 
+def morning():
+    do("switch of all internet on phone")
+    do("instant water")
+    do("shower, teeth, floss")
+
+
+
 def ask(prompt):
     #from http://code.activestate.com/recipes/541096-prompt-the-user-for-confirmation/
     if prompt is None:
