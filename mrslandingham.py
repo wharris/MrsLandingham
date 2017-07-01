@@ -51,6 +51,9 @@ def clear():
     print(chr(27) + "[2J")
 
 def tell(statement):
+	phoneui.tell(statement)
+	
+def cmdtell(statment):
     for char in statement:
         sleep(0.02)
         sys.stdout.write(char)
@@ -59,7 +62,8 @@ def tell(statement):
 
 def do(task):
     write_to_file(task) #we log when started
-    cmddo(task)
+    phoneui.do(task)
+    #cmddo(task)
     
 def cmddo(task):
     print ""
@@ -238,7 +242,7 @@ class phoneui():
 			
 	def ask(self, question):
 		self.v= ui.load_view('do')
-		self.v.present('sheet')
+		self.v.present('fullscreen')
 		self.v['top'].text=question
 		self.v.wait_modal()
 		if self.response =="Yes":
@@ -246,6 +250,18 @@ class phoneui():
 		else:
 			return False
 			
+	def do(self, task):
+		self.ask(task+"\nIs this complete?")
+		
+	def tell(self, text):
+		self.v= ui.load_view('tell')
+		self.v.present('fullscreen')
+		self.v['mess'].text=text
+		self.v.wait_modal()
+		
+	def okay(self,sender):
+		self.v.close()
+		
 
 	def button_tapped(self,sender):
 		print "called"

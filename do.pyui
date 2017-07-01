@@ -1,12 +1,12 @@
 [
   {
     "selected" : false,
-    "frame" : "{{0, 0}, {271, 286}}",
+    "frame" : "{{0, 0}, {414, 579}}",
     "class" : "View",
     "nodes" : [
       {
-        "selected" : true,
-        "frame" : "{{33, 190}, {80, 56}}",
+        "selected" : false,
+        "frame" : "{{29, 393}, {170, 180}}",
         "class" : "Button",
         "nodes" : [
 
@@ -18,12 +18,12 @@
           "uuid" : "FF2B31DD-3D93-4F86-A20B-2CA25A0E0A96",
           "class" : "Button",
           "name" : "button1",
-          "font_size" : 15
+          "font_size" : 40
         }
       },
       {
         "selected" : false,
-        "frame" : "{{156, 190}, {80, 54}}",
+        "frame" : "{{207, 393}, {183, 180}}",
         "class" : "Button",
         "nodes" : [
 
@@ -35,35 +35,35 @@
           "uuid" : "8964DC82-35C8-45E5-9B48-9FE6AC7F6BDF",
           "class" : "Button",
           "name" : "no",
-          "font_size" : 15
+          "font_size" : 40
         }
       },
       {
-        "selected" : false,
-        "frame" : "{{33, 29}, {203, 67}}",
+        "selected" : true,
+        "frame" : "{{55, 34}, {299, 315}}",
         "class" : "Label",
         "nodes" : [
 
         ],
         "attributes" : {
-          "font_name" : "<System>",
+          "name" : "top",
           "frame" : "{{60, 122}, {150, 32}}",
           "uuid" : "9B22E575-D6F6-475D-B88A-01B32E949BA9",
           "class" : "Label",
           "alignment" : "center",
           "text" : "Label",
           "font_size" : 25,
-          "name" : "top"
+          "font_name" : "<System>"
         }
       }
     ],
     "attributes" : {
-      "flex" : "",
+      "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)",
       "enabled" : true,
       "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
-      "name" : "do form",
       "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
-      "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)"
+      "name" : "do form",
+      "flex" : ""
     }
   }
 ]
