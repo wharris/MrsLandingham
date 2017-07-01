@@ -49,6 +49,7 @@ def jump():
     answers={}
     answers["process_email"]=process_email
     answers["project_work"]=project_work
+    answers["work_on_a_project"]=work_on_a_project
     answers["jurgen_normal_form"]=jurgen_normal_form
     answers["work_on_next_actions"]=work_on_next_actions
     answers["startwork"]=startwork
@@ -126,34 +127,36 @@ def process_email():
     do("second page: reply to each email in order.")
 
 
+def project_normal_form():
+    do("Check that all cards are in columns")
+    do("Close issues")
+    do("Remove closed issues.")
+    do("Check that every card is assigned")
+
 def project_work():
+    tell("Project work!")
     do("Check and respond to project notifications.")
-    do("Make sure EQT Projects is in normal form.")
-    do("Check that all cards are in columns")
-    do("Close issues")
-    do("Remove closed issues.")
-    do("Check that every card is assigned")
-    do("Make sure Jarvis Projects is in normal form.")
-    do("Check that all cards are in columns")
-    do("Close issues")
-    do("Remove closed issues.")
-    do("Check that every card is assigned")
+    do("Open EQT projects file")
+    project_normal_form()
+    do("Open Jarvis projects file")
+    project_normal_form()
     do("Choose the leftmost project with the soonest deadline //leftmost is highest priority on the chart")
-    do("Open the file and add a datestamp to the comment")
-    do("If project needs mapping.")
-    do("Map project")
-    do("If the project is finnished:")
-    do("Close project")
-    do("Write blog post about project")
-    do("Laptop working")
-    do("If the project does not have an obvious next action:")
-    do("Write a next action.")
-    do("Do the next action.")
-    do("Make a note of any filenames or commands you used")
-    do("Write a short note saying what you did")
-    do("If you are now waiting for someone else to get back to you:")
-    do("Laptop working")
-    do("Goto 6")
+    work_on_a_project()
+
+def work_on_a_project():
+    do("Open the file and add a datestamp to the comment (before mapping, you map later)")
+    if(ask("Does the project need mapping?")):
+        do("Map project")
+    while (True):
+        if(ask("Is the project finnished")):
+            do("Close project")
+            do("Write blog post about project")
+        else:
+            if(not ask("Does the project have an obvious next action")):
+                do("Write a next action.")
+            do("Do the next action.")
+            do("Make a note of any filenames or commands you used")
+            do("Write a short note saying what you did")
 
 
 def jurgen_normal_form():
@@ -197,12 +200,13 @@ def startwork():
     import datetime
     d = datetime.datetime.today()
     if d.hour > 12:
-        if not ask("Have you processed your email?"):
-                do("Open personal email")
-                process_email()
-                do("Open professional email")
-                process_email()
-        project_work()
+       if d.isoweekday() in range(1, 6):
+            if not ask("Have you processed your email?"):
+                    do("Open personal email")
+                    process_email()
+                    do("Open professional email")
+                    process_email()
+       project_work()
     work_on_next_actions()
 
 #process_email()
@@ -223,7 +227,8 @@ def planday():
 if __name__ == "__main__":
     clear()
     tell("Good morning Joe.")
-    ask("Are you ready for an awesome day?")
+    if not ask("Are you ready for an awesome day?"):
+        do("Change")
     statement= """
 
     This is the plan written by the version of you that wasn't afraid. You put your faith in the system and you will be okay.
@@ -246,7 +251,7 @@ I want the world to change.
 
 I have been disciplined for a decade.  For five years I have bettered myself. I have become more effective; I have caused change in the world.
 
-Everything I are proud of, everything, has come out of me.
+Everything I am proud of, everything, has come out of me.
 
 I will continue to better myself, continue to become more.  Change the world much more.
 
