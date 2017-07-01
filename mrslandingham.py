@@ -19,6 +19,12 @@ def do(task):
        print task
 
 
+def morning(): 
+    do("switch of all internet on phone")
+    do("instant water")
+    do("shower, teeth, floss")
+    
+
 def read(task):
     print task
 
