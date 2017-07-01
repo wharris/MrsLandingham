@@ -2,6 +2,8 @@ import pytz
 import os
 import datetime
 import sys
+from time import sleep
+import sys
 
 
 LOG_LOC = os.path.dirname(os.path.abspath(__file__))+'/ml_log.md'
@@ -50,15 +52,27 @@ def jump():
     answers["jurgen_normal_form"]=jurgen_normal_form
     answers["work_on_next_actions"]=work_on_next_actions
     answers["startwork"]=startwork
+    answers["planday"]=planday
     user_choose_function(answers)
+
+
+def clear():
+    print(chr(27) + "[2J")
+
+def tell(statement):
+    for char in statement:
+        sleep(0.02)
+        sys.stdout.write(char)
+        sys.stdout.flush()
+    print "\n"
 
 def do(task):
     write_to_file(task) #we log when started
     print ""
-    print "       "+ task
+    tell("       "+ task)
     print ""
     while ask("Is this complete?") is False:
-       print "Why not?"
+       tell("Why not?")
        answers={}
        answers["I feel resistance to doing it"]=lambda:do("Write the smallest action to start this in your notes file")
        answers["The algorithm is incomplete"]=lambda:do("rewrite Mrs Landingham for this function")
@@ -68,12 +82,7 @@ def do(task):
        answers["I want to jump to another function"]=jump
        answers["Exit"]=sys.exit
        user_choose_function(answers)
-       print task
-
-
-
-def read(task):
-    print task
+       tell(task)
 
 
 def ask(prompt):
@@ -85,7 +94,7 @@ def ask(prompt):
     while True:
         ans = raw_input(prompt)
         if ans not in ['y', 'Y', 'n', 'N']:
-            print 'please enter y or n.'
+            tell('please enter y or n.')
             continue
         if ans == 'y' or ans == 'Y':
             return True
@@ -104,7 +113,8 @@ def process_email():
         #If the event is to remind you to send an email, then leave for the next pass
         #if the event is to remind you to do a task that needs email, then do it if it's less than 2 minutes, otherwise pass
         #if the event is for transfer to the next action list, then transfer it now.
-    print "Triage Email starting"
+    clear()
+    tell("Triage Email starting")
     while ask("are there more unread emails"):
         print "Is the top email...."
         answers={}
@@ -147,12 +157,12 @@ def project_work():
 
 
 def jurgen_normal_form():
-    print(chr(27) + "[2J")
-    print "## Put next actions in normal form"
-    print "First we make sure that the Next Actions List is complete, clear, consistent and public."
-    print "This makes everything in the list easier to do."
+    clear()
+    tell("## Put next actions in normal form")
+    tell("First we make sure that the Next Actions List is complete, clear, consistent and public.")
+    tell("This makes everything in the list easier to do.")
 
-    print "Capture section:"
+    tell("Capture section:")
     do("Add tasks from reminders")
     do("Add tasks from phone screenshots.")
     do("Check Voicemail and add any messages to Tasks.")
@@ -160,6 +170,7 @@ def jurgen_normal_form():
     do("Sort the next actions file alphabetically, this will put the least defined tasks at the top.")
     do("Fill in the priority, context, and time,")
     do("Do any tasks that take less than five minutes (morning power hour!)")
+    do("Check if some tasks have already been done")
     do("Rewrite tasks thinking about how public they are")
     do("Go thought all tasks and adjust the deadline for an urgent ones")
 
@@ -174,8 +185,15 @@ def work_on_next_actions():
     while True:
         do("Complete the action at the top of the list?")
 
+def limitedinternet():
+    do("pull next actions from github to work on locally")
+
+def offlineworking():
+    pass
+
 def startwork():
-    print "Laptop Working"
+    clear()
+    tell("Laptop Working")
     import datetime
     d = datetime.datetime.today()
     if d.hour > 12:
@@ -189,26 +207,73 @@ def startwork():
 
 #process_email()
 
-if __name__ == "__main__":
-    print(chr(27) + "[2J")
-    print """Good morning Joe.
-
-    This is the plan written by the version of you that wasn't afraid. You put your faith in the system and you will be okay."""
-
-    do("read your mission statement to keep the right reasons in the front of your mind.")
-    do("Go to the Doghouse - you set it up to be your perfect working area")
-    do("Go and get full Water Bottle. Put in arm's reach")
-    do("Setup Laptop and open Jurgen. // because you are going to gather tasks.")
-    do("Write what you had for breakfast in diet file and plan foods you will eat today (times of food is later)")
-    do("Put Phone on charge with mobile interent and wifi off.")
-
-
-    print "# Initialise Workday!"
-    read("//Being late is awful and disrespectful, if you can, find the nearby Starbucks first.")
-    read("1. Calendar first - you need to know all your commitments and have planned them.")
+def planday():
+    clear()
+    tell("Open your calendar first - you need to know all your commitments and have planned them.")
+    tell("Being late is awful and disrespectful, if you can, find the nearby Starbucks first.")
     while ask("do you have any unprocessed appointments?"):
         do("Write down any tasks you need to make about the outside appointment ('pack bag' for example).")
         do("Work out what time you need to leave/be ready for a call. And set an alarm. If it involves travel, then put the place into Google Maps (and save as a favourite)")
     do("Have guaranteed exercise (by watch reminder)")
     do("Have Guaranteed Food.  (by watch reminder)")
+    do("Check what the night time temperature will be")
+
+
+
+if __name__ == "__main__":
+    clear()
+    tell("Good morning Joe.")
+    ask("Are you ready for an awesome day?")
+    statement= """
+
+    This is the plan written by the version of you that wasn't afraid. You put your faith in the system and you will be okay.
+
+I solve problems.
+
+I do my work early so that I keep my time free and flexible.
+
+The people I care about sometimes need someone. I keep my time free and flexible so I can be the right person in the right place at the right time to help.
+
+I am a brother, I am a son, and I am a friend.
+
+
+I accept no dogma. I do things because I believe they are right, or best, or natural, not because it is what is 'normally' done.
+
+I believe love does not require, or even particularly benefit from, sex.
+
+
+I want the world to change.
+
+I have been disciplined for a decade.  For five years I have bettered myself. I have become more effective; I have caused change in the world.
+
+Everything I are proud of, everything, has come out of me.
+
+I will continue to better myself, continue to become more.  Change the world much more.
+
+I have the perfect reason to fail, with no blame on me.
+
+When I am tired, bored, angry, or sleepy, I validate that reason to fail.
+
+Consuming accepts the world, creating will change it.
+
+"""
+
+    tell(statement)
+    ask("Do you accept the mission statement")
+    if ask("Are you at home?"):
+        do("Go to the Doghouse - you set it up to be your perfect working area")
+        do("Go and get full Water Bottle. Put in arm's reach")
+        do("Put Phone on charge with mobile interent and wifi off.")
+    else:
+        tell("Where are you?")
+        answers={}
+        answers["Remote location with limited internet"]=offlineworking
+        answers["Train"]=offlineworking
+        answers["Coffee Shop"]=limitedinternet
+        user_choose_function(answers)
+
+    do("Setup Laptop and open Jurgen. // because you are going to gather tasks.")
+    do("Write what you had for breakfast in diet file and plan foods you will eat today (times of food is later)")
+
+    planday()
     startwork()
