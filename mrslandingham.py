@@ -2,9 +2,7 @@ import pytz
 import os
 import datetime
 import sys
-from time import sleep
 import sys
-import dialogs
 
 LOG_LOC = os.path.dirname(os.path.abspath(__file__))+'/ml_log.md'
 
@@ -18,51 +16,17 @@ def write_to_file(toprint):
 
 
 def user_choose_function(prompt,fundic):
-	phoneui.choose(prompt,fundic)
-	
-def cmduser_choose_function():
-    tell(prompt)
-    counter =0
-    for key in sorted(fundic.iterkeys()):
-        print "{} - {}".format(counter,key)
-        counter=counter+1
-    while True:
-        try:
-            ans = int(raw_input("choose..."))
-            options=[[str(x) for x in range(counter)]]
-            options=range(counter)
-            fundic[sorted(fundic.iterkeys())[ans]]()
-            return
-        except KeyboardInterrupt:
-            sys.exit()
-            print "Invalid input!"
+	ui.choose(prompt,fundic)
 
-
-def jump():
-    write_to_file("JUMP") #we log when started
-    answers={}
-    answers["process_email"]=process_email
-    answers["project_work"]=project_work
-    answers["work_on_a_project"]=work_on_a_project
-    answers["jurgen_normal_form"]=jurgen_normal_form
-    answers["work_on_next_actions"]=work_on_next_actions
-    answers["startwork"]=startwork
-    answers["planday"]=planday
-    user_choose_function(answers)
 
 
 def clear():
     print(chr(27) + "[2J")
 
 def tell(statement):
-	phoneui.tell(statement)
-	
-def cmdtell(statment):
-    for char in statement:
-        sleep(0.02)
-        sys.stdout.write(char)
-        sys.stdout.flush()
-    print "\n"
+	ui.tell(statement)
+
+
 
 def do(task):
     write_to_file(task) #we log when started
@@ -76,7 +40,7 @@ def do(task):
        answers["I have made progress against this task and I want to replace it with a continuing task"]=lambda:do("Keep working on it. Write the smallest action down again")
        answers["I want to jump to another function"]=jump
        answers["Exit"]=sys.exit
-       user_choose_function(answers)
+       user_choose_function("Why not?",answers)
        tell(task)
 
 
@@ -87,29 +51,25 @@ def morning():
 
 
 def ask(prompt):
-	phoneui.ask(prompt)
-	
+    return	ui.ask(prompt)
 
-def cmdask(prompt):
-    #from http://code.activestate.com/recipes/541096-prompt-the-user-for-confirmation/
-    if prompt is None:
-        prompt = 'Confirm'
-    prompt = '%s %s|%s: ' % (prompt, 'n', 'y')
-
-    while True:
-        ans = raw_input(prompt)
-        if ans not in ['y', 'Y', 'n', 'N']:
-            tell('please enter y or n.')
-            continue
-        if ans == 'y' or ans == 'Y':
-            return True
-        if ans == 'n' or ans == 'N':
-            return False
 
 
 ###############################################################################
 #Now the actual instructions.
 
+
+def jump():
+    write_to_file("JUMP") #we log when started
+    answers={}
+    answers["process_email"]=process_email
+    answers["project_work"]=project_work
+    answers["work_on_a_project"]=work_on_a_project
+    answers["jurgen_normal_form"]=jurgen_normal_form
+    answers["work_on_next_actions"]=work_on_next_actions
+    answers["startwork"]=startwork
+    answers["planday"]=planday
+    user_choose_function(answers)
 
 
 def process_email():
@@ -226,54 +186,14 @@ def planday():
     do("Have Guaranteed Food.  (by watch reminder)")
     do("Check what the night time temperature will be")
 
-import ui
-
-#import dialogs
-#esponse=dialogs.list_dialog("is it done? and bear in mind this is a long long old job... ", ["yes","no"])
-
-
-class phoneui():
-	def __init__(self):
-			self.v=None
-			
-	def ask(self, question):
-		self.v= ui.load_view('do')
-		self.v.present('fullscreen')
-		self.v['top'].text=question
-		self.v.wait_modal()
-		if self.response =="Yes":
-			return True
-		else:
-			return False
-			
-	def do(self, task):
-		self.ask(task+"\nIs this complete?")
-		
-	def tell(self, text):
-		self.v= ui.load_view('tell')
-		self.v.present('fullscreen')
-		self.v['mess'].text=text
-		self.v.wait_modal()
-		
-	def okay(self,sender):
-		self.v.close()
-		
-
-	def button_tapped(self,sender):
-		print "called"
-		
-		self.response=sender.title
-		print "xxx"+self.response
-		self.v.close()
-
-	def choose(self,prompt,fundic):
-		ans=dialogs.list_dialog(prompt,fundic.keys())
-		fundic[ans]()
-#options=range(counter)
-#          fundic[sorted(fundic.
-phoneui=phoneui()
-
-
+phone=False
+ui=None
+if phone:
+    import ios_ui
+    ui=ios_ui.Ios_ui()
+else:
+    import cmd_ui
+    ui=cmd_ui.Cmd_ui()
 
 if __name__ == "__main__":
     clear()
@@ -323,7 +243,6 @@ Consuming accepts the world, creating will change it.
         answers["Remote location with limited internet"]=offlineworking
         answers["Train"]=offlineworking
         answers["Coffee Shop"]=limitedinternet
-        #dialogs.list_dialog("where are you?",answers)
         user_choose_function("Where are you?", answers)
 
     do("Setup Laptop and open Jurgen. // because you are going to gather tasks.")
@@ -331,9 +250,9 @@ Consuming accepts the world, creating will change it.
 
     planday()
     startwork()
-    
-    
+
+
     #todo
     #exit button
-    #choose from list 
-    
+    #choose from list
+
