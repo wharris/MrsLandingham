@@ -4,13 +4,15 @@ import sys
 
 class Ios_ui():
 	def __init__(self):
-			self.v=None
+			self.v=ui.NavigationView(ui.View())
+			self.v.present('fullscreen')
 
 	def ask(self, question):
-		self.v= ui.load_view('do')
-		self.v.present('fullscreen')
-		self.v['top'].text=question
-		self.v.wait_modal()
+		self.questionview=ui.load_view('do')
+		self.v.push_view(self.questionview)
+		
+		self.questionview['top'].text=question
+		self.questionview.wait_modal()
 		if self.response =="Yes":
 			return True
 		else:
@@ -20,21 +22,20 @@ class Ios_ui():
 		self.ask(task+"\nIs this complete?")
 
 	def tell(self, text):
-		self.v= ui.load_view('tell')
-		self.v.present('fullscreen')
-		self.v['mess'].text=text
-		self.v.wait_modal()
+		self.tellview=ui.load_view('tell')
+		self.v.push_view(self.tellview)
+		self.tellview['mess'].text=text
+		self.tellview.wait_modal()
 
 	def okay(self,sender):
-		self.v.close()
-
+		self.v.pop_view()
 
 	def button_tapped(self,sender):
 		print "called"
 
 		self.response=sender.title
 		print "xxx"+self.response
-		self.v.close()
+		self.v.pop_view()
 		
 	def exit(self,sender):
 		self.v.close()
