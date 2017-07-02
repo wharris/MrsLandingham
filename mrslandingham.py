@@ -17,7 +17,11 @@ def write_to_file(toprint):
 
 
 
-def user_choose_function(fundic):
+def user_choose_function(prompt,fundic):
+	phoneui.choose(prompt,fundic)
+	
+def cmduser_choose_function():
+    tell(prompt)
     counter =0
     for key in sorted(fundic.iterkeys()):
         print "{} - {}".format(counter,key)
@@ -62,14 +66,7 @@ def cmdtell(statment):
 
 def do(task):
     write_to_file(task) #we log when started
-    phoneui.do(task)
-    #cmddo(task)
-    
-def cmddo(task):
-    print ""
-    tell("       "+ task)
-    print ""
-    while ask("Is this complete?") is False:
+    while ask(task+"\nIs this complete?") is False:
        tell("Why not?")
        answers={}
        answers["I feel resistance to doing it"]=lambda:do("Write the smallest action to start this in your notes file")
@@ -87,7 +84,6 @@ def morning():
     do("switch of all internet on phone")
     do("instant water")
     do("shower, teeth, floss")
-
 
 
 def ask(prompt):
@@ -270,16 +266,18 @@ class phoneui():
 		print "xxx"+self.response
 		self.v.close()
 
+	def choose(self,prompt,fundic):
+		ans=dialogs.list_dialog(prompt,fundic.keys())
+		fundic[ans]()
+#options=range(counter)
+#          fundic[sorted(fundic.
 phoneui=phoneui()
 
 
 
-phoneui.ask("why?")
 if __name__ == "__main__":
     clear()
-    tell("Good morning Joe.")
-    if not ask("Are you ready for an awesome day?"):
-        do("Change")
+    ask("Are you ready for an awesome day?")
     statement= """
 
     This is the plan written by the version of you that wasn't afraid. You put your faith in the system and you will be okay.
@@ -321,15 +319,21 @@ Consuming accepts the world, creating will change it.
         do("Go and get full Water Bottle. Put in arm's reach")
         do("Put Phone on charge with mobile interent and wifi off.")
     else:
-        tell("Where are you?")
         answers={}
         answers["Remote location with limited internet"]=offlineworking
         answers["Train"]=offlineworking
         answers["Coffee Shop"]=limitedinternet
-        user_choose_function(answers)
+        #dialogs.list_dialog("where are you?",answers)
+        user_choose_function("Where are you?", answers)
 
     do("Setup Laptop and open Jurgen. // because you are going to gather tasks.")
     do("Write what you had for breakfast in diet file and plan foods you will eat today (times of food is later)")
 
     planday()
     startwork()
+    
+    
+    #todo
+    #exit button
+    #choose from list 
+    
