@@ -9,7 +9,7 @@ class Ios_ui():
 
 	def ask(self, question):
 		self.questionview=ui.load_view('do')
-		self.v.push_view(self.questionview)
+		self.v.push_view(self.questionview, False)
 		
 		self.questionview['top'].text=question
 		self.questionview.wait_modal()
@@ -23,19 +23,19 @@ class Ios_ui():
 
 	def tell(self, text):
 		self.tellview=ui.load_view('tell')
-		self.v.push_view(self.tellview)
+		self.v.push_view(self.tellview,False)
 		self.tellview['mess'].text=text
 		self.tellview.wait_modal()
 
 	def okay(self,sender):
-		self.v.pop_view()
+		self.v.pop_view(False)
 
 	def button_tapped(self,sender):
 		print "called"
 
 		self.response=sender.title
 		print "xxx"+self.response
-		self.v.pop_view()
+		self.v.pop_view(False)
 		
 	def exit(self,sender):
 		self.v.close()

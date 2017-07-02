@@ -38,7 +38,6 @@ def do(task):
        answers["I want to jump to another function"]=jump
        answers["Exit"]=sys.exit
        user_choose_function("Why not?",answers)
-       tell(task)
 
 
 def morning():
