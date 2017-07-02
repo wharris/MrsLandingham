@@ -186,7 +186,7 @@ def planday():
     do("Have Guaranteed Food.  (by watch reminder)")
     do("Check what the night time temperature will be")
 
-phone=False
+phone=True
 ui=None
 if phone:
     import ios_ui

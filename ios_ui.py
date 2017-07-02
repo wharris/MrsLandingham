@@ -1,7 +1,8 @@
 import ui
 import dialogs
+import sys
 
-class ios_ui():
+class Ios_ui():
 	def __init__(self):
 			self.v=None
 
@@ -34,6 +35,10 @@ class ios_ui():
 		self.response=sender.title
 		print "xxx"+self.response
 		self.v.close()
+		
+	def exit(self,sender):
+		self.v.close()
+		sys.exit()
 
 	def choose(self,prompt,fundic):
 		ans=dialogs.list_dialog(prompt,fundic.keys())

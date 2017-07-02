@@ -1,7 +1,7 @@
 [
   {
     "selected" : false,
-    "frame" : "{{0, 0}, {414, 579}}",
+    "frame" : "{{0, 0}, {414, 640}}",
     "class" : "View",
     "nodes" : [
       {
@@ -12,7 +12,7 @@
 
         ],
         "attributes" : {
-          "action" : "phoneui.button_tapped",
+          "action" : "self.button_tapped",
           "frame" : "{{95, 122}, {80, 32}}",
           "title" : "Yes",
           "uuid" : "FF2B31DD-3D93-4F86-A20B-2CA25A0E0A96",
@@ -29,7 +29,7 @@
 
         ],
         "attributes" : {
-          "action" : "phoneui.button_tapped",
+          "action" : "self.button_tapped",
           "frame" : "{{95, 122}, {80, 32}}",
           "title" : "No",
           "uuid" : "8964DC82-35C8-45E5-9B48-9FE6AC7F6BDF",
@@ -39,21 +39,38 @@
         }
       },
       {
-        "selected" : true,
+        "selected" : false,
         "frame" : "{{55, 34}, {299, 315}}",
         "class" : "Label",
         "nodes" : [
 
         ],
         "attributes" : {
-          "name" : "top",
+          "font_size" : 25,
           "frame" : "{{60, 122}, {150, 32}}",
           "uuid" : "9B22E575-D6F6-475D-B88A-01B32E949BA9",
           "class" : "Label",
           "alignment" : "center",
           "text" : "Label",
-          "font_size" : 25,
+          "name" : "top",
           "font_name" : "<System>"
+        }
+      },
+      {
+        "selected" : true,
+        "frame" : "{{165, 595}, {80, 32}}",
+        "class" : "Button",
+        "nodes" : [
+
+        ],
+        "attributes" : {
+          "action" : "self.exit",
+          "frame" : "{{167, 304}, {80, 32}}",
+          "title" : "Exit",
+          "uuid" : "FB1F2CA5-597D-40F8-A593-D51BB4C19D87",
+          "class" : "Button",
+          "name" : "button2",
+          "font_size" : 15
         }
       }
     ],
