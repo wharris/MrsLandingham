@@ -18,8 +18,6 @@ def write_to_file(toprint):
 def user_choose_function(prompt,fundic):
 	ui.choose(prompt,fundic)
 
-
-
 def clear():
     print(chr(27) + "[2J")
 
@@ -31,7 +29,6 @@ def tell(statement):
 def do(task):
     write_to_file(task) #we log when started
     while ask(task+"\nIs this complete?") is False:
-       tell("Why not?")
        answers={}
        answers["I feel resistance to doing it"]=lambda:do("Write the smallest action to start this in your notes file")
        answers["The algorithm is incomplete"]=lambda:do("rewrite Mrs Landingham for this function")
@@ -41,7 +38,6 @@ def do(task):
        answers["I want to jump to another function"]=jump
        answers["Exit"]=sys.exit
        user_choose_function("Why not?",answers)
-       tell(task)
 
 
 def morning():
@@ -186,7 +182,7 @@ def planday():
     do("Have guaranteed exercise (by watch reminder)")
     do("Have Guaranteed Food.  (by watch reminder)")
 
-phone=False
+phone=True
 ui=None
 if phone:
     import ios_ui
