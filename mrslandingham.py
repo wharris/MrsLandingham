@@ -161,6 +161,7 @@ def offlineworking():
 def startwork():
     clear()
     tell("Laptop Working")
+    do("Put the thing you are most worried about into your todo list")
     import datetime
     d = datetime.datetime.today()
     if d.hour > 12:
@@ -184,7 +185,6 @@ def planday():
         do("Work out what time you need to leave/be ready for a call. And set an alarm. If it involves travel, then put the place into Google Maps (and save as a favourite)")
     do("Have guaranteed exercise (by watch reminder)")
     do("Have Guaranteed Food.  (by watch reminder)")
-    do("Check what the night time temperature will be")
 
 phone=False
 ui=None
