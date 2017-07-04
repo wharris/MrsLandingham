@@ -83,7 +83,6 @@ def process_email():
         #If the event is to remind you to send an email, then leave for the next pass
         #if the event is to remind you to do a task that needs email, then do it if it's less than 2 minutes, otherwise pass
         #if the event is for transfer to the next action list, then transfer it now.
-    clear()
     tell("Triage Email starting")
     while ask("are there more unread emails"):
         print "Is the top email...."
@@ -129,7 +128,6 @@ def work_on_a_project():
 
 
 def jurgen_normal_form():
-    clear()
     tell("## Put next actions in normal form")
     tell("First we make sure that the Next Actions List is complete, clear, consistent and public.")
     tell("This makes everything in the list easier to do.")
@@ -164,7 +162,6 @@ def offlineworking():
     pass
 
 def startwork():
-    clear()
     tell("Laptop Working")
     do("Put the thing you are most worried about into your todo list")
     import datetime
@@ -176,16 +173,16 @@ def startwork():
                     process_email()
                     do("Open professional email")
                     process_email()
-       project_work()
-    work_on_next_actions()
+       do("Work on projects",project_work)
+    do("Work on next actions",work_on_next_actions)
 
 #process_email()
 
 def planday():
-    clear()
-    tell("Open your calendar first - you need to know all your commitments and have planned them.")
-    tell("Being late is awful and disrespectful, if you can, find the nearby Starbucks first.")
-    while ask("do you have any unprocessed appointments?"):
+  #  tell("Open your calendar first - you need to know all your commitments and have planned them.")
+  #  tell("Being late is awful and disrespectful, if you can, find the nearby Starbucks first.")
+    do("Write what you had for breakfast in diet file and plan foods you will eat today (times of food is later)")
+    while ask("Do you have any unprocessed appointments?"):
         do("Write down any tasks you need to make about the outside appointment ('pack bag' for example).")
         do("Work out what time you need to leave/be ready for a call. And set an alarm. If it involves travel, then put the place into Google Maps (and save as a favourite)")
     do("Have guaranteed exercise (by watch reminder)")
@@ -252,17 +249,19 @@ else:
     ui=cmd_ui.Cmd_ui()
 
 
-
+def setup_doghouse():
+    do("Go and get full Water Bottle. Put in arm's reach")
+    do("Put Phone on charge with mobile interent and wifi off.")
 
 if __name__ == "__main__":
     do("Get mentally ready to work for several hours",state_of_mind)
     do("Go to the Doghouse - you set it up to be your perfect working area")
-    do("Go and get full Water Bottle. Put in arm's reach")
-    do("Put Phone on charge with mobile interent and wifi off.")
+    do("Setup Doghouse", setup_doghouse)
     do("Setup Laptop and open Jurgen. // because you are going to gather tasks.")
-    do("Write what you had for breakfast in diet file and plan foods you will eat today (times of food is later)")
-
-    planday()
+    import datetime
+    d = datetime.datetime.today()
+    if d.hour < 15:
+        planday()
     startwork()
 
 
