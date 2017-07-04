@@ -22,22 +22,6 @@ class Cmd_ui():
                     return False
                 sleep(0.01)
 
-            if prompt is None:
-                prompt = 'Confirm'
-            prompt = '%s %s|%s: ' % (prompt, 'n', 'y')
-
-            while True:
-                ans = raw_input(prompt)
-                if ans not in ['y', 'Y', 'n', 'N']:
-                    self.tell('please enter y or n.')
-                    continue
-                if ans == 'y' or ans == 'Y':
-                    return True
-                if ans == 'n' or ans == 'N':
-                    return False
-
-
-
 
 	def do(self, task,detail_method):
             self.win.clear()
@@ -47,6 +31,7 @@ class Cmd_ui():
             self.win.addstr(12, 5,task[100:])
             self.win.refresh()
             results=[ord('d'),ord('p')]
+            print results
             if detail_method==None:
                 self.win.addstr(15, 5,"[D]one, [P]roblem?")
             else:
@@ -66,22 +51,28 @@ class Cmd_ui():
                 sys.stdout.flush()
             print "\n"
 
-	def choose(self,prompt,fundic):
-            self.tell(prompt)
+
+
+	def choose(self, prompt,fundic):
+            self.win.clear()
+            self.win.border(0)
+            self.win.addstr(10, 3,prompt)
             counter =0
+            results=[]
             for key in sorted(fundic.iterkeys()):
-                print "{} - {}".format(counter,key)
+                self.win.addstr(8+counter,3, "{} - {}".format(counter,key))
+                results.append(ord("{}".format(counter)))
                 counter=counter+1
+            self.win.refresh()
             while True:
-                try:
-                    ans = int(raw_input("choose..."))
-                    options=[[str(x) for x in range(counter)]]
-                    options=range(counter)
-                    fundic[sorted(fundic.iterkeys())[ans]]()
+                key = self.win.getch()
+                if key in  results:
+                    curses.endwin()
+                    fundic[sorted(fundic.iterkeys())[int(chr(key))]]()
                     return
-                except KeyboardInterrupt:
-                    sys.exit()
-                    print "Invalid input!"
+
+                sleep(0.01)
+
 
 
 

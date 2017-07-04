@@ -74,7 +74,7 @@ def jump():
     answers["work_on_next_actions"]=work_on_next_actions
     answers["startwork"]=startwork
     answers["planday"]=planday
-    user_choose_function(answers)
+    user_choose_function("Where to go?",answers)
 
 
 def process_email():
@@ -128,15 +128,16 @@ def work_on_a_project():
 
 
 def jurgen_normal_form():
-    tell("## Put next actions in normal form")
-    tell("First we make sure that the Next Actions List is complete, clear, consistent and public.")
-    tell("This makes everything in the list easier to do.")
+#    tell("First we make sure that the Next Actions List is complete, clear, consistent and public.")
+ #   tell("This makes everything in the list easier to do.")
+    def capture():
+        do("Add tasks from reminders")
+        do("Add tasks from phone screenshots.")
+        do("Check Voicemail and add any messages to Tasks.")
+        do("Go thought Osprey bag - everything that isn't meant to be there is a task.")
 
-    tell("Capture section:")
-    do("Add tasks from reminders")
-    do("Add tasks from phone screenshots.")
-    do("Check Voicemail and add any messages to Tasks.")
-    do("Go thought Osprey bag - everything that isn't meant to be there is a task.")
+
+    do("Capture actions from all inboxes:", capture)
     do("Sort the next actions file alphabetically, this will put the least defined tasks at the top.")
     do("Fill in the priority, context, and time,")
     do("Do any tasks that take less than five minutes (morning power hour!)")
@@ -150,7 +151,7 @@ def work_on_next_actions():
 
     do("Start a relevant notes file")
     if ask("Are there any zeros in the next actions list?"):
-        jurgen_normal_form()
+        do("Put Jurgen in Normal form",jurgen_normal_form)
 
     while True:
         do("Complete the action at the top of the list?")
