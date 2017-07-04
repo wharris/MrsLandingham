@@ -9,6 +9,19 @@ class Cmd_ui():
             self.win.nodelay(True)
 
 	def ask(self, prompt):
+            self.win.clear()
+            self.win.border(0)
+            self.win.addstr(10, 5,prompt)
+            self.win.addstr(15, 5,"[y]es, [n]o?")
+            self.win.refresh()
+            while True:
+                key = self.win.getch()
+                if key == ord('y'):
+                    return True
+                if key == ord('n'):
+                    return False
+                sleep(0.01)
+
             if prompt is None:
                 prompt = 'Confirm'
             prompt = '%s %s|%s: ' % (prompt, 'n', 'y')
@@ -23,14 +36,15 @@ class Cmd_ui():
                 if ans == 'n' or ans == 'N':
                     return False
 
-        def clear(self):
-            print(chr(27) + "[2J")
 
 
 
 	def do(self, task):
+            self.win.clear()
             self.win.border(0)
-            self.win.addstr(10, 5,task)
+            self.win.addstr(10, 5,task[0:50])
+            self.win.addstr(11, 5,task[50:100])
+            self.win.addstr(12, 5,task[100:])
             self.win.addstr(15, 5,"[D]one, [E]xpand, [P]roblem?")
             self.win.refresh()
             while True:

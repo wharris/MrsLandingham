@@ -194,7 +194,6 @@ def planday():
 
 
 def state_of_mind():
-    clear()
     ask("Are you ready for an awesome day?")
     statement= """
 
@@ -234,6 +233,14 @@ Consuming accepts the world, creating will change it.
     ask("Do you accept the mission statement")
 
 
+def away():
+        answers={}
+        answers["Remote location with limited internet"]=offlineworking
+        answers["Train"]=offlineworking
+        answers["Coffee Shop"]=limitedinternet
+        user_choose_function("Where are you?", answers)
+
+
 
 phone=False
 ui=None
@@ -249,17 +256,9 @@ else:
 
 if __name__ == "__main__":
     do("Get mentally ready to work for several hours",state_of_mind)
-    if ask("Are you at home?"):
-        do("Go to the Doghouse - you set it up to be your perfect working area")
-        do("Go and get full Water Bottle. Put in arm's reach")
-        do("Put Phone on charge with mobile interent and wifi off.")
-    else:
-        answers={}
-        answers["Remote location with limited internet"]=offlineworking
-        answers["Train"]=offlineworking
-        answers["Coffee Shop"]=limitedinternet
-        user_choose_function("Where are you?", answers)
-
+    do("Go to the Doghouse - you set it up to be your perfect working area")
+    do("Go and get full Water Bottle. Put in arm's reach")
+    do("Put Phone on charge with mobile interent and wifi off.")
     do("Setup Laptop and open Jurgen. // because you are going to gather tasks.")
     do("Write what you had for breakfast in diet file and plan foods you will eat today (times of food is later)")
 
