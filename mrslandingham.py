@@ -26,7 +26,7 @@ def tell(statement):
 
 def do(task,detail_method=None):
     while True:
-        response=ui.do(task)
+        response=ui.do(task,detail_method)
         if response == ord("e"):
             detail_method()
             return

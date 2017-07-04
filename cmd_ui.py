@@ -39,17 +39,22 @@ class Cmd_ui():
 
 
 
-	def do(self, task):
+	def do(self, task,detail_method):
             self.win.clear()
             self.win.border(0)
             self.win.addstr(10, 5,task[0:50])
             self.win.addstr(11, 5,task[50:100])
             self.win.addstr(12, 5,task[100:])
-            self.win.addstr(15, 5,"[D]one, [E]xpand, [P]roblem?")
             self.win.refresh()
+            results=[ord('d'),ord('p')]
+            if detail_method==None:
+                self.win.addstr(15, 5,"[D]one, [P]roblem?")
+            else:
+                results.append(ord('e'))
+                self.win.addstr(15, 5,"[D]one, [E]xpand, [P]roblem?")
             while True:
                 key = self.win.getch()
-                if key in  [ord('d'),ord('e'),ord('p')] :
+                if key in  results:
                     curses.endwin()
                     return key
                 sleep(0.01)
