@@ -18,17 +18,26 @@ def write_to_file(toprint):
 def user_choose_function(prompt,fundic):
 	ui.choose(prompt,fundic)
 
-def clear():
-    print(chr(27) + "[2J")
 
 def tell(statement):
 	ui.tell(statement)
 
 
 
-def do(task):
-    write_to_file(task) #we log when started
-    while ask(task+"\nIs this complete?") is False:
+def do(task,detail_method=None):
+    while True:
+        response=ui.do(task)
+        if response == ord("e"):
+            detail_method()
+            return
+        if response == ord('p'):
+           problem()
+        if response == ord("d"):
+            return
+
+
+
+def problem():
        answers={}
        answers["I feel resistance to doing it"]=lambda:do("Write the smallest action to start this in your notes file")
        answers["The algorithm is incomplete"]=lambda:do("rewrite Mrs Landingham for this function")
@@ -182,16 +191,9 @@ def planday():
     do("Have guaranteed exercise (by watch reminder)")
     do("Have Guaranteed Food.  (by watch reminder)")
 
-phone=True
-ui=None
-if phone:
-    import ios_ui
-    ui=ios_ui.Ios_ui()
-else:
-    import cmd_ui
-    ui=cmd_ui.Cmd_ui()
 
-if __name__ == "__main__":
+
+def state_of_mind():
     clear()
     ask("Are you ready for an awesome day?")
     statement= """
@@ -230,6 +232,23 @@ Consuming accepts the world, creating will change it.
 
     tell(statement)
     ask("Do you accept the mission statement")
+
+
+
+phone=False
+ui=None
+if phone:
+    import ios_ui
+    ui=ios_ui.Ios_ui()
+else:
+    import cmd_ui
+    ui=cmd_ui.Cmd_ui()
+
+
+
+
+if __name__ == "__main__":
+    do("Get mentally ready to work for several hours",state_of_mind)
     if ask("Are you at home?"):
         do("Go to the Doghouse - you set it up to be your perfect working area")
         do("Go and get full Water Bottle. Put in arm's reach")

@@ -1,10 +1,12 @@
 import sys
 from time import sleep
+import curses
 
 class Cmd_ui():
 	def __init__(self):
-            self.i=1
-            pass
+            self.win = curses.initscr()
+            curses.cbreak()
+            self.win.nodelay(True)
 
 	def ask(self, prompt):
             if prompt is None:
@@ -21,9 +23,22 @@ class Cmd_ui():
                 if ans == 'n' or ans == 'N':
                     return False
 
+        def clear(self):
+            print(chr(27) + "[2J")
+
+
 
 	def do(self, task):
-            pass
+            self.win.border(0)
+            self.win.addstr(10, 5,task)
+            self.win.addstr(15, 5,"[D]one, [E]xpand, [P]roblem?")
+            self.win.refresh()
+            while True:
+                key = self.win.getch()
+                if key in  [ord('d'),ord('e'),ord('p')] :
+                    curses.endwin()
+                    return key
+                sleep(0.01)
 
 	def tell(self, statement):
             for char in statement:
