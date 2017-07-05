@@ -31,7 +31,6 @@ class Cmd_ui():
             self.win.addstr(12, 5,task[100:])
             self.win.refresh()
             results=[ord('d'),ord('p')]
-            print results
             if detail_method==None:
                 self.win.addstr(15, 5,"[D]one, [P]roblem?")
             else:

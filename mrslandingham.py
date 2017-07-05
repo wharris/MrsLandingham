@@ -2,7 +2,9 @@ import pytz
 import os
 import datetime
 import sys
-import sys
+
+
+# To add: food prep
 
 LOG_LOC = os.path.dirname(os.path.abspath(__file__))+'/ml_log.md'
 
@@ -45,14 +47,24 @@ def problem():
        answers["This task is would be better done at the same time as another appointment today"]=lambda:do("Post to social media about the special circumstances and act as if it's been done.")
        answers["I have made progress against this task and I want to replace it with a continuing task"]=lambda:do("Keep working on it. Write the smallest action down again")
        answers["I want to jump to another function"]=jump
+       answers["Interruption"]=interruption
        answers["Exit"]=sys.exit
        user_choose_function("Why not?",answers)
+
+
+
+def interruption():
+       answers={}
+       answers["Phone Call"]=phonecall
+       answers["Food"]=lambda:do("rewrite Mrs Landingham for this function")
+       user_choose_function("What happened",answers)
 
 
 def morning():
     do("switch of all internet on phone")
     do("instant water")
     do("shower, teeth, floss")
+    do("make tea for Kat")
 
 
 def ask(prompt):
@@ -67,9 +79,8 @@ def ask(prompt):
 def jump():
     write_to_file("JUMP") #we log when started
     answers={}
-    answers["process_email"]=process_email
-    answers["project_work"]=project_work
-    answers["work_on_a_project"]=work_on_a_project
+    answers["process email"]=process_email
+    answers["project sprint"]=project_sprint
     answers["jurgen_normal_form"]=jurgen_normal_form
     answers["work_on_next_actions"]=work_on_next_actions
     answers["startwork"]=startwork
@@ -83,35 +94,33 @@ def process_email():
         #If the event is to remind you to send an email, then leave for the next pass
         #if the event is to remind you to do a task that needs email, then do it if it's less than 2 minutes, otherwise pass
         #if the event is for transfer to the next action list, then transfer it now.
-    tell("Triage Email starting")
-    while ask("are there more unread emails"):
-        print "Is the top email...."
-        answers={}
-        answers["...from a human, directly to me"]=lambda:do("read and leave for next pass")
-        answers["...an automated email that can be unsubscribed from"]=lambda:do("Unsubscribe")
-        answers["a calendar event"]=lambda:deal_with_calendar_email()
-        user_choose_function(answers)
-    print "You are now doing the second pass"
-    do("second page: reply to each email in order.")
+
+    def triage():
+        while ask("are there more unread emails"):
+            answers={}
+            answers["...from a human, directly to me"]=lambda:do("read and leave for next pass")
+            answers["...an automated email that can be unsubscribed from"]=lambda:do("Unsubscribe")
+            answers["a calendar event"]=lambda:deal_with_calendar_email()
+            user_choose_function("Is the top email...", answers)
+    do("Triage Email",triage)
+    do("second page: reply to the top email until there are NO emails.")
 
 
-def project_normal_form():
-    do("Check that all cards are in columns")
-    do("Close issues")
-    do("Remove closed issues.")
-    do("Check that every card is assigned")
 
-def project_work():
-    tell("Project work!")
+def review_projects():
+    def project_normal_form():
+        do("Open the project board")
+        do("Check that all cards are in columns")
+        do("Close issues")
+        do("Remove closed issues.")
+        do("Check that every card is assigned")
+
     do("Check and respond to project notifications.")
-    do("Open EQT projects file")
-    project_normal_form()
-    do("Open Jarvis projects file")
-    project_normal_form()
-    do("Choose the leftmost project with the soonest deadline //leftmost is highest priority on the chart")
-    work_on_a_project()
+    do("Review EQT projects board",project_normal_form)
+    do("Review Jarvis projects board",project_normal_form)
 
-def work_on_a_project():
+def project_sprint():
+    do("Create an issue if necessary")
     do("Open the file and add a datestamp to the comment (before mapping, you map later)")
     if(ask("Does the project need mapping?")):
         do("Map project")
@@ -149,12 +158,22 @@ def jurgen_normal_form():
 def work_on_next_actions():
 ## Working on the next actions list
 
+    def single_action():
+            answers={}
+            answers["A sprint - an action taking 40 minutes or more"]=project_sprint
+            answers["An action dependant on something else"]=do("rewrite ML for this 2039424")
+            answers["A project review"]=review_projects
+            user_choose_function("What sort of action is this", answers)
+
     do("Start a relevant notes file")
     if ask("Are there any zeros in the next actions list?"):
         do("Put Jurgen in Normal form",jurgen_normal_form)
 
     while True:
-        do("Complete the action at the top of the list?")
+        do("Complete the action at the top of the list?", single_action)
+
+
+
 
 def limitedinternet():
     do("pull next actions from github to work on locally")
@@ -163,8 +182,7 @@ def offlineworking():
     pass
 
 def startwork():
-    tell("Laptop Working")
-    do("Put the thing you are most worried about into your todo list")
+    do("Put the thing you are most worried about into your todo or project list")
     import datetime
     d = datetime.datetime.today()
     if d.hour > 12:
@@ -174,10 +192,9 @@ def startwork():
                     process_email()
                     do("Open professional email")
                     process_email()
-       do("Work on projects",project_work)
+       #do("Work on projects",project_work)
     do("Work on next actions",work_on_next_actions)
 
-#process_email()
 
 def planday():
   #  tell("Open your calendar first - you need to know all your commitments and have planned them.")
@@ -187,7 +204,7 @@ def planday():
         do("Write down any tasks you need to make about the outside appointment ('pack bag' for example).")
         do("Work out what time you need to leave/be ready for a call. And set an alarm. If it involves travel, then put the place into Google Maps (and save as a favourite)")
     do("Have guaranteed exercise (by watch reminder)")
-    do("Have Guaranteed Food.  (by watch reminder)")
+ #   do("Have Guaranteed Food.  (by watch reminder)")
 
 
 
@@ -253,6 +270,11 @@ else:
 def setup_doghouse():
     do("Go and get full Water Bottle. Put in arm's reach")
     do("Put Phone on charge with mobile interent and wifi off.")
+    do("Put everything lose into the crate")
+
+
+def shutdown_doghouse():
+    pass
 
 if __name__ == "__main__":
     do("Get mentally ready to work for several hours",state_of_mind)
