@@ -6,7 +6,7 @@
     "nodes" : [
       {
         "selected" : false,
-        "frame" : "{{21, 393}, {178, 173}}",
+        "frame" : "{{21, 393}, {106, 106}}",
         "class" : "Button",
         "nodes" : [
 
@@ -18,12 +18,12 @@
           "uuid" : "FF2B31DD-3D93-4F86-A20B-2CA25A0E0A96",
           "class" : "Button",
           "name" : "button1",
-          "font_size" : 40
+          "font_size" : 25
         }
       },
       {
         "selected" : false,
-        "frame" : "{{207, 393}, {183, 173}}",
+        "frame" : "{{148, 393}, {110, 106}}",
         "class" : "Button",
         "nodes" : [
 
@@ -35,7 +35,7 @@
           "uuid" : "8964DC82-35C8-45E5-9B48-9FE6AC7F6BDF",
           "class" : "Button",
           "name" : "no",
-          "font_size" : 40
+          "font_size" : 25
         }
       },
       {
@@ -46,14 +46,14 @@
 
         ],
         "attributes" : {
-          "font_name" : "<System>",
+          "font_size" : 25,
           "frame" : "{{60, 122}, {150, 32}}",
           "uuid" : "9B22E575-D6F6-475D-B88A-01B32E949BA9",
           "class" : "Label",
           "alignment" : "center",
           "text" : "Label",
           "name" : "top",
-          "font_size" : 25
+          "font_name" : "<System>"
         }
       },
       {
@@ -72,15 +72,32 @@
           "name" : "button2",
           "font_size" : 15
         }
+      },
+      {
+        "selected" : false,
+        "frame" : "{{266, 393}, {113, 106}}",
+        "class" : "Button",
+        "nodes" : [
+
+        ],
+        "attributes" : {
+          "action" : "self.button_tapped",
+          "frame" : "{{167, 304}, {80, 32}}",
+          "title" : "Expand",
+          "class" : "Button",
+          "uuid" : "DE06812C-D471-4EEB-B015-5F678B77B495",
+          "font_size" : 25,
+          "name" : "button3"
+        }
       }
     ],
     "attributes" : {
-      "flex" : "",
+      "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
       "enabled" : true,
       "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)",
-      "name" : "do form",
       "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
-      "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)"
+      "name" : "do form",
+      "flex" : ""
     }
   }
 ]

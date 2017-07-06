@@ -1,0 +1,6 @@
+do("write down the thing that happened. ")
+do("rememeber the complete lack of disasters in the past")
+do("decide to play the hand you are dealt that to send that social signal") 
+do("brainstorm")
+do("remember that a man is judged by his enermies. the problems he overcomes.")
+do("meditate")
