@@ -276,10 +276,7 @@ def setup_doghouse():
 def shutdown_doghouse():
     pass
 
-if __name__ == "__main__":
-    do("Get mentally ready to work for several hours",state_of_mind)
-    do("Go to the Doghouse - you set it up to be your perfect working area")
-    do("Setup Doghouse", setup_doghouse)
+def onlaptop():
     do("Setup Laptop and open Jurgen. // because you are going to gather tasks.")
     import datetime
     d = datetime.datetime.today()
@@ -287,6 +284,20 @@ if __name__ == "__main__":
         planday()
     startwork()
 
+
+def hotel_room():
+    do("put everything you can on charge")#Working remotely is normally a sign that you will be away from power for a little while
+    do("Take shoes off")
+    do("Get drink")
+    do("Pull next actions from server")#You might want it later
+    onlaptop()
+
+
+if __name__ == "__main__":
+    do("Get mentally ready to work for several hours",state_of_mind)
+    do("Go to the Doghouse - you set it up to be your perfect working area")
+    do("Setup Doghouse", setup_doghouse)
+    onlaptop()
 
     #todo
     #exit button
