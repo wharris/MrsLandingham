@@ -75,3 +75,6 @@ class Cmd_ui():
 
 
 
+if __name__ == "__main__":
+    import workflow
+    main(Cmd_ui)

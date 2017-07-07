@@ -295,7 +295,9 @@ def hotel_room():
     onlaptop()
 
 
-if __name__ == "__main__":
+
+def main(ui_in)
+    ui=_in
     do("Get mentally ready to work for several hours",state_of_mind)
     do("Go to the Doghouse - you set it up to be your perfect working area")
     do("Setup Doghouse", setup_doghouse)
