@@ -8,7 +8,7 @@ class Ios_ui():
 			self.v.present('fullscreen')
 
 	def ask(self, question):
-		self.questionview=ui.load_view('do')
+		self.questionview=ui.load_view('ask')
 		self.v.push_view(self.questionview, False)
 		
 		self.questionview['top'].text=question
@@ -18,8 +18,23 @@ class Ios_ui():
 		else:
 			return False
 
-	def do(self, task):
-		self.ask(task+"\nIs this complete?")
+	def do(self, task,  detail_method):
+		if detail_method==None:
+			self.questionview=ui.load_view('do')
+		else:
+			self.questionview=ui.load_view('doex')
+		self.v.push_view(self.questionview, False)
+		self.questionview['top'].text=task+"\nIs this complete?"
+		self.questionview.wait_modal()
+		if self.response =="Done":
+			return 'd'
+		elif self.response=="Problem":
+			return "p"
+		elif self.response=="Expand":
+			print "hellosndjf"
+			return 'e'
+		
+
 
 	def tell(self, text):
 		self.tellview=ui.load_view('tell')

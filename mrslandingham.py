@@ -3,6 +3,7 @@ import os
 import datetime
 import sys
 
+phone=True
 
 # To add: food prep
 
@@ -29,12 +30,13 @@ def tell(statement):
 def do(task,detail_method=None):
     while True:
         response=ui.do(task,detail_method)
-        if response == ord("e"):
+        if response == "e":
+            print "here"
             detail_method()
             return
-        if response == ord('p'):
+        if response == ('p'):
            problem()
-        if response == ord("d"):
+        if response == ("d"):
             return
 
 
@@ -257,7 +259,7 @@ def away():
 
 
 
-phone=False
+
 ui=None
 if phone:
     import ios_ui
