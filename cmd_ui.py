@@ -1,6 +1,7 @@
 import sys
 from time import sleep
 import curses
+import os
 
 class Cmd_ui():
 	def __init__(self):
@@ -40,7 +41,7 @@ class Cmd_ui():
                 key = self.win.getch()
                 if key in  results:
                     curses.endwin()
-                    return key
+                    return chr(key)
                 sleep(0.01)
 
 	def tell(self, statement):
@@ -77,4 +78,7 @@ class Cmd_ui():
 
 if __name__ == "__main__":
     import workflow
-    main(Cmd_ui)
+    ui=Cmd_ui()
+    location = os.path.dirname(os.path.abspath(__file__))+'/log_files/ml_log_desktop.md'
+    print location
+    workflow.main(ui,location)

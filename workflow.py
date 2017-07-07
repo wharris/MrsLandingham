@@ -3,11 +3,9 @@ import os
 import datetime
 import sys
 
-phone=True
-
 # To add: food prep
 
-LOG_LOC = os.path.dirname(os.path.abspath(__file__))+'/ml_log.md'
+LOG_LOC = os.path.dirname(os.path.abspath(__file__))+'/log_files/ml_log.md'
 
 
 def write_to_file(toprint):
@@ -29,6 +27,7 @@ def tell(statement):
 
 def do(task,detail_method=None):
     while True:
+        print "here"
         response=ui.do(task,detail_method)
         if response == "e":
             print "here"
@@ -37,6 +36,7 @@ def do(task,detail_method=None):
         if response == ('p'):
            problem()
         if response == ("d"):
+            write_to_file("Did: "+task)
             return
 
 
@@ -260,14 +260,6 @@ def away():
 
 
 
-ui=None
-if phone:
-    import ios_ui
-    ui=ios_ui.Ios_ui()
-else:
-    import cmd_ui
-    ui=cmd_ui.Cmd_ui()
-
 
 def setup_doghouse():
     do("Go and get full Water Bottle. Put in arm's reach")
@@ -294,10 +286,13 @@ def hotel_room():
     do("Pull next actions from server")#You might want it later
     onlaptop()
 
+ui=None
 
-
-def main(ui_in)
-    ui=_in
+def main(ui_in,log):
+    global ui
+    ui=ui_in
+    LOG_LOC = log
+    print "here"
     do("Get mentally ready to work for several hours",state_of_mind)
     do("Go to the Doghouse - you set it up to be your perfect working area")
     do("Setup Doghouse", setup_doghouse)
