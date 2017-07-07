@@ -1,6 +1,7 @@
 import ui
 import dialogs
 import sys
+import os
 
 class Ios_ui():
 	def __init__(self):
@@ -66,6 +67,6 @@ class Ios_ui():
 
 if __name__ == "__main__":
     import workflow
-    ui=Ios_ui()
+    gui=Ios_ui()
     location = os.path.dirname(os.path.abspath(__file__))+'/log_files/ml_log_phone.md'
-    workflow.main(ui,location)
+    workflow.main(gui,location)
