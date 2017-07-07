@@ -10,7 +10,7 @@ class Ios_ui():
 	def ask(self, question):
 		self.questionview=ui.load_view('ask')
 		self.v.push_view(self.questionview, False)
-		
+
 		self.questionview['top'].text=question
 		self.questionview.wait_modal()
 		if self.response =="Yes":
@@ -33,7 +33,7 @@ class Ios_ui():
 		elif self.response=="Expand":
 			print "hellosndjf"
 			return 'e'
-		
+
 
 
 	def tell(self, text):
@@ -51,7 +51,7 @@ class Ios_ui():
 		self.response=sender.title
 		print "xxx"+self.response
 		self.v.pop_view(False)
-		
+
 	def exit(self,sender):
 		self.v.close()
 		sys.exit()
@@ -60,3 +60,12 @@ class Ios_ui():
 		ans=dialogs.list_dialog(prompt,fundic.keys())
 		fundic[ans]()
 
+
+
+
+
+if __name__ == "__main__":
+    import workflow
+    ui=Ios_ui()
+    location = os.path.dirname(os.path.abspath(__file__))+'/log_files/ml_log_phone.md'
+    workflow.main(ui,location)
