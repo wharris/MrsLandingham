@@ -88,6 +88,7 @@ def jump():
     answers["jurgen_normal_form"]=jurgen_normal_form
     answers["work_on_next_actions"]=work_on_next_actions
     answers["startwork"]=startwork
+    answers["hotel room"]=hotel_room
     answers["planday"]=planday
     user_choose_function("Where to go?",answers)
 
@@ -207,8 +208,11 @@ def planday():
     while ask("Do you have any unprocessed appointments?"):
         do("Write down any tasks you need to make about the outside appointment ('pack bag' for example).")
         do("Work out what time you need to leave/be ready for a call. And set an alarm. If it involves travel, then put the place into Google Maps (and save as a favourite)")
+    if  not ask("Did you make your last exercise reminder?"):
+        do("Set of pullups")
+        do("Set of pushup")
+
     do("Have guaranteed exercise (by watch reminder)")
- #   do("Have Guaranteed Food.  (by watch reminder)")
 
 
 
