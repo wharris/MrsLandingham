@@ -64,9 +64,11 @@ def interruption():
 
 def morning():
     do("switch of all internet on phone")
-    do("instant water")
+    do("bathroom")
+    do("weigh self")
+    do("immediate water")
+    do("make tea")#will be cool after shower
     do("shower, teeth, floss")
-    do("make tea for Kat")
 
 
 def ask(prompt):
@@ -292,7 +294,7 @@ def main(ui_in,log):
     global ui
     ui=ui_in
     LOG_LOC = log
-    print "here"
+    morning()
     do("Get mentally ready to work for several hours",state_of_mind)
     do("Go to the Doghouse - you set it up to be your perfect working area")
     do("Setup Doghouse", setup_doghouse)
