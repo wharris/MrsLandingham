@@ -39,6 +39,15 @@ def do(task,detail_method=None):
             write_to_file("Did: "+task)
             return
 
+def meeting():
+# Design a meeting process that is most effective for both you and the other
+# person.
+#Start either with the list, or by creating a list with the other person.
+# Aggree a finnish time.
+# Start the one-mintue minutes document
+# For each item work out who is responsibility and what will happen (and by
+# when, you forget that a lot
+    pass
 
 
 def problem():
@@ -48,7 +57,9 @@ def problem():
        answers["The algorithm is complete, but there are special circumstances"]=lambda:do("Post to social media about the special circumstances and act as if it's been done.")
        answers["This task is would be better done at the same time as another appointment today"]=lambda:do("Post to social media about the special circumstances and act as if it's been done.")
        answers["I have made progress against this task and I want to replace it with a continuing task"]=lambda:do("Keep working on it. Write the smallest action down again")
+       answers["This is a cron and I've run out of resource"]=lambda:do("Order it online, Tesco or Amazon")
        answers["I want to jump to another function"]=jump
+       answers["There are two of the same task in a row"]=lambda:do("Extend Mrs Landingham for this")
        answers["Interruption"]=interruption
        answers["Exit"]=sys.exit
        user_choose_function("Why not?",answers)
@@ -62,13 +73,36 @@ def interruption():
        user_choose_function("What happened",answers)
 
 
+def phonecall():
+    do("fix the ML for phonecalls")
+
+def timed_task():
+    do("Timed task")
+
 def morning():
-    do("switch of all internet on phone")
+    do("switch off all internet on phone")
+    do("Take photo of the clock")
     do("bathroom")
     do("weigh self")
     do("immediate water")
-    do("make tea")#will be cool after shower
-    do("shower, teeth, floss")
+    do("make tea (get washing)")#will be cool after shower
+    do("Take vitamin tablet")
+    do("put wash on")
+    do("Set alarm for putting washing out")
+    do("shower, teeth, floss,dress")
+    do("food prep")
+
+
+def evening():
+    do("glasses")
+    do("switch off all internet on phone")
+    do("Set out tea, tablets and water glass")
+    do("Pack Osprey bag")
+    do("Unpack shed bag")
+
+def nosell():
+    #Should be able to 'no sell' things
+    pass
 
 
 def ask(prompt):
@@ -87,6 +121,7 @@ def jump():
     answers["project sprint"]=project_sprint
     answers["jurgen_normal_form"]=jurgen_normal_form
     answers["work_on_next_actions"]=work_on_next_actions
+    answers["osprey"]=osprey
     answers["startwork"]=startwork
     answers["hotel room"]=hotel_room
     answers["planday"]=planday
@@ -111,6 +146,14 @@ def process_email():
     do("second page: reply to the top email until there are NO emails.")
 
 
+def osprey():
+    do("check doors are all locked")
+    do("Clothes for tomorrow are laid out")
+    do("Osprey check: Laptop, Keys, Glasses, Food, Pens, notebook")
+    do("Osprey check2: Battery (with charger), MacBook charger, plug")
+    do("headphones on charge")
+    do("todays clothes are in the wash")
+    do("phone away")
 
 def review_projects():
     def project_normal_form():
@@ -166,7 +209,7 @@ def work_on_next_actions():
     def single_action():
             answers={}
             answers["A sprint - an action taking 40 minutes or more"]=project_sprint
-            answers["An action dependant on something else"]=do("rewrite ML for this 2039424")
+            answers["An action dependant on something else"]=lambda:do("rewrite ML for this 2039424")
             answers["A project review"]=review_projects
             user_choose_function("What sort of action is this", answers)
 
@@ -204,8 +247,10 @@ def startwork():
 def planday():
   #  tell("Open your calendar first - you need to know all your commitments and have planned them.")
   #  tell("Being late is awful and disrespectful, if you can, find the nearby Starbucks first.")
-    do("Write what you had for breakfast in diet file and plan foods you will eat today (times of food is later)")
+ #   do("Write what you had for breakfast in diet file and plan foods you will eat today (times of food is later)")
     while ask("Do you have any unprocessed appointments?"):
+        if ask("Can this apointment be changed into a Skype call?"):
+            do("message about changing it")
         do("Write down any tasks you need to make about the outside appointment ('pack bag' for example).")
         do("Work out what time you need to leave/be ready for a call. And set an alarm. If it involves travel, then put the place into Google Maps (and save as a favourite)")
     if  not ask("Did you make your last exercise reminder?"):
@@ -264,17 +309,15 @@ def away():
         user_choose_function("Where are you?", answers)
 
 
-
-
-
 def setup_doghouse():
     do("Go and get full Water Bottle. Put in arm's reach")
     do("Put Phone on charge with mobile interent and wifi off.")
-    do("Put everything lose into the crate")
+    do("Put everything lose into the bag")
 
 
 def shutdown_doghouse():
     pass
+
 
 def onlaptop():
     do("Setup Laptop and open Jurgen. // because you are going to gather tasks.")
@@ -298,7 +341,7 @@ def main(ui_in,log):
     global ui
     ui=ui_in
     LOG_LOC = log
-    morning()
+    do("Morning Routine",morning)
     do("Get mentally ready to work for several hours",state_of_mind)
     do("Go to the Doghouse - you set it up to be your perfect working area")
     do("Setup Doghouse", setup_doghouse)
