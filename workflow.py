@@ -5,7 +5,7 @@ import sys
 
 # To add: food prep
 
-LOG_LOC = os.path.dirname(os.path.abspath(__file__))+'/log_files/ml_log.md'
+#LOG_LOC = os.path.dirname(os.path.abspath(__file__))+'/log_files/ml_log.md'
 
 
 def write_to_file(toprint):
@@ -340,6 +340,7 @@ ui=None
 def main(ui_in,log):
     global ui
     ui=ui_in
+    global LOG_LOC
     LOG_LOC = log
     do("Morning Routine",morning)
     do("Get mentally ready to work for several hours",state_of_mind)
