@@ -1,6 +1,7 @@
 import sys
 from time import sleep
 import curses
+import pygame
 import os
 
 class Cmd_ui():
@@ -25,8 +26,12 @@ class Cmd_ui():
 
 
 	def do(self, task,detail_method):
+            pygame.init()
+            pygame.mixer.init()
+            self.count=6000
             self.win.clear()
             self.win.border(0)
+            self.win.addstr(5, 5,str(self.count/10))
             self.win.addstr(10, 5,task[0:50])
             self.win.addstr(11, 5,task[50:100])
             self.win.addstr(12, 5,task[100:])
@@ -42,7 +47,17 @@ class Cmd_ui():
                 if key in  results:
                     curses.endwin()
                     return chr(key)
-                sleep(0.01)
+                if key is ord('l'):
+                    self.count=6000
+                    pygame.mixer.music.stop()
+                self.count=self.count-1
+                if self.count==120:
+#                    x=pygame.mixer.Sound("effects/done.wav")
+#                    x.play()
+                    pygame.mixer.music.load('effects/countdown.mp3')
+                    pygame.mixer.music.play()
+                self.win.addstr(5, 5,str(self.count/10))
+                sleep(0.10)
 
 	def tell(self, statement):
             for char in statement:
