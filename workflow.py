@@ -27,10 +27,8 @@ def tell(statement):
 
 def do(task,detail_method=None):
     while True:
-        print "here"
         response=ui.do(task,detail_method)
         if response == "e":
-            print "here"
             detail_method()
             return
         if response == ('p'):
@@ -89,6 +87,9 @@ def morning():
     do("Take vitamin tablet")
     do("put wash on")
     do("Set alarm for putting washing out")
+    if  not ask("Did you make your last exercise reminder?"):
+        do("Set of pullups")
+        do("Set of pushup")
     do("shower, teeth, floss,dress")
     do("food prep")
 
@@ -167,15 +168,25 @@ def review_projects():
     do("Review EQT projects board",project_normal_form)
     do("Review Jarvis projects board",project_normal_form)
 
+
+def map_project():
+    do("Make sure that the project has a SMART goal")
+    do("Write down why you are going to do it")
+    do("Work out roughtly how long it will take")
+    do("Can you think of cool things that you can do to make the project awesome")
+    do("Write down the list of ten things to do (not in order, things to do)")
+    do("Write down the next action")
+
 def project_sprint():
     do("Create an issue if necessary")
     do("Open the file and add a datestamp to the comment (before mapping, you map later)")
     if(ask("Does the project need mapping?")):
-        do("Map project")
+        do("Map project",map_project)
     while (True):
         if(ask("Is the project finnished")):
             do("Close project")
             do("Write blog post about project")
+            return
         else:
             if(not ask("Does the project have an obvious next action")):
                 do("Write a next action.")
@@ -194,18 +205,21 @@ def jurgen_normal_form():
         do("Go thought Osprey bag - everything that isn't meant to be there is a task.")
 
 
-    do("Capture actions from all inboxes:", capture)
-    do("Sort the next actions file alphabetically, this will put the least defined tasks at the top.")
-    do("Fill in the priority, context, and time,")
-    do("Do any tasks that take less than five minutes (morning power hour!)")
-    do("Check if some tasks have already been done")
-    do("Rewrite tasks thinking about how public they are")
-    do("Go thought all tasks and adjust the deadline for an urgent ones")
+    def fill_out_action_points():
+        do("Sort the next actions file alphabetically, this will put the least defined tasks at the top.")
+        do("Fill in the priority, context, and time (mark off done tasks)")
+        do("Note now much time for the full list")
+        do("Do any tasks that take less than five minutes (morning power hour!)")
+        do("Check if some tasks have already been done")
+        do("Rewrite tasks thinking about how public they are")
+        do("Go thought all tasks and adjust the deadline for an urgent ones")
+
+    do("Capture actions from reminders, voicemail and bag:", capture)
+    do("Make sure there are NO '0's in the file and that completed tasks have been removed",fill_out_action_points)
 
 
 def work_on_next_actions():
 ## Working on the next actions list
-
     def single_action():
             answers={}
             answers["A sprint - an action taking 40 minutes or more"]=project_sprint
@@ -229,8 +243,9 @@ def limitedinternet():
 def offlineworking():
     pass
 
-def startwork():
-    do("Put the thing you are most worried about into your todo or project list")
+def emailiftime():
+#    if email_processed:
+#        return
     import datetime
     d = datetime.datetime.today()
     if d.hour > 12:
@@ -240,7 +255,10 @@ def startwork():
                     process_email()
                     do("Open professional email")
                     process_email()
-       #do("Work on projects",project_work)
+#                    email_processed=True
+def startwork():
+    do("Put the thing you are most worried about into your todo or project list")
+    emailiftime()
     do("Work on next actions",work_on_next_actions)
 
 
@@ -253,9 +271,6 @@ def planday():
             do("message about changing it")
         do("Write down any tasks you need to make about the outside appointment ('pack bag' for example).")
         do("Work out what time you need to leave/be ready for a call. And set an alarm. If it involves travel, then put the place into Google Maps (and save as a favourite)")
-    if  not ask("Did you make your last exercise reminder?"):
-        do("Set of pullups")
-        do("Set of pushup")
 
     do("Have guaranteed exercise (by watch reminder)")
 
@@ -311,7 +326,7 @@ def away():
 
 def setup_doghouse():
     do("Go and get full Water Bottle. Put in arm's reach")
-    do("Put Phone on charge with mobile interent and wifi off.")
+    do("Put Phone on charge.")
     do("Put everything lose into the bag")
 
 
@@ -320,11 +335,11 @@ def shutdown_doghouse():
 
 
 def onlaptop():
-    do("Setup Laptop and open Jurgen. // because you are going to gather tasks.")
+    do("Open Jurgen (you are going to gather tasks") #// because you are going to gather tasks.")
     import datetime
     d = datetime.datetime.today()
     if d.hour < 15:
-        planday()
+        do("Plan your day",planday)
     startwork()
 
 
@@ -343,8 +358,8 @@ def main(ui_in,log):
     global LOG_LOC
     LOG_LOC = log
     do("Morning Routine",morning)
-    do("Get mentally ready to work for several hours",state_of_mind)
-    do("Go to the Doghouse - you set it up to be your perfect working area")
+ #   do("Get mentally ready to work for several hours",state_of_mind)
+    do("Go to the Doghouse - you set it up to be your perfect working area - and open laptop")
     do("Setup Doghouse", setup_doghouse)
     onlaptop()
 
