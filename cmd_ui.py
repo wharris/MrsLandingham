@@ -76,6 +76,7 @@ class Cmd_ui():
             results=[]
             for key in sorted(fundic.iterkeys()):
                 self.win.addstr(8+counter,3, "{} - {}".format(counter,key))
+                print "Y{}Y".format(counter)
                 results.append(ord("{}".format(counter)))
                 counter=counter+1
             self.win.refresh()

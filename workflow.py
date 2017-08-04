@@ -1,3 +1,4 @@
+from inspect import getmembers, isfunction
 import pytz
 import os
 import datetime
@@ -115,9 +116,18 @@ def ask(prompt):
 #Now the actual instructions.
 
 
+def findallfunctions():
+    functions_list = [o for o in getmembers(sys.modules[__name__]) if isfunction(o[1])]
+    answers={}
+    for function in functions_list:
+        answers[function[0].strip()]=function[1]
+    return answers
+
+
+
 def jump():
     write_to_file("JUMP") #we log when started
-    answers={}
+    answers={} #findallfunctions()
     answers["process email"]=process_email
     answers["project sprint"]=project_sprint
     answers["jurgen_normal_form"]=jurgen_normal_form
@@ -126,6 +136,7 @@ def jump():
     answers["startwork"]=startwork
     answers["hotel room"]=hotel_room
     answers["planday"]=planday
+
     user_choose_function("Where to go?",answers)
 
 
@@ -159,10 +170,18 @@ def osprey():
 def review_projects():
     def project_normal_form():
         do("Open the project board")
-        do("Check that all cards are in columns")
+        do("Make sure that all issues have been imported to the board.")
         do("Close issues")
         do("Remove closed issues.")
         do("Check that every card is assigned")
+        while (True):
+            if(ask("Are there projects to review?")):
+                do("Check project is assigned")
+                do("Check project is mapped")
+                do("Put two action's into the project, and into melta")
+            else:
+                return
+
 
     do("Check and respond to project notifications.")
     do("Review EQT projects board",project_normal_form)
@@ -202,6 +221,7 @@ def jurgen_normal_form():
         do("Add tasks from reminders")
         do("Add tasks from phone screenshots.")
         do("Check Voicemail and add any messages to Tasks.")
+        do("Check notebook/brainstorms for tasks")
         do("Go thought Osprey bag - everything that isn't meant to be there is a task.")
 
 
@@ -344,7 +364,7 @@ def onlaptop():
 
 
 def hotel_room():
-    do("put everything you can on charge")#Working remotely is normally a sign that you will be away from power for a little while
+    do("put everything you can on charge")#Working remotely is normally a sign that you will be away from power for a little while - also helps you check if you have remembered your charging gear.
     do("Take shoes off")
     do("Get drink")
     do("Pull next actions from server")#You might want it later
@@ -352,16 +372,32 @@ def hotel_room():
 
 ui=None
 
+
+def home_in_morning():
+    do("Morning Routine",morning)
+    do("Go to the Doghouse - you set it up to be your perfect working area - and open laptop")
+    do("Setup Doghouse", setup_doghouse)
+    onlaptop()
+
 def main(ui_in,log):
+#    functions_list = [o for o in getmembers(sys.modules[__name__]) if isfunction(o[1])]
+#    print functions_list
+#    print dir(functions_list[0])
+#    for function in functions_list:
+#        print "X{}X".format(function[0].strip())
+#        print "X{}X".format(function[1])
+#    sys.exit(0)
+
     global ui
     ui=ui_in
     global LOG_LOC
     LOG_LOC = log
-    do("Morning Routine",morning)
- #   do("Get mentally ready to work for several hours",state_of_mind)
-    do("Go to the Doghouse - you set it up to be your perfect working area - and open laptop")
-    do("Setup Doghouse", setup_doghouse)
-    onlaptop()
+    answers={}
+    answers["At home, starting the day"]=home_in_morning
+    answers["In cafe"]=hotel_room
+    user_choose_function("What's Happening?",answers)
+
+
 
     #todo
     #exit button
