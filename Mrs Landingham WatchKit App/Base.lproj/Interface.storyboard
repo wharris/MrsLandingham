@@ -14,8 +14,8 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController">
                     <items>
-                        <label width="133" height="72" alignment="left" text="Hello" id="re6-mg-Jbe"/>
-                        <timer alignment="left" id="Hj5-qf-9oU"/>
+                        <label width="133" height="72" alignment="left" text="Hello This is an initial test " textAlignment="center" numberOfLines="0" minimumScaleFactor="0.29999999999999999" id="re6-mg-Jbe"/>
+                        <timer alignment="center" format="abbreviated" previewedSeconds="299" id="Hj5-qf-9oU"/>
                         <group width="134" alignment="left" id="uds-Dt-nDg">
                             <items>
                                 <button width="44" alignment="left" title="D" id="lyC-iy-Nvm">
@@ -37,7 +37,7 @@
                         </group>
                     </items>
                     <connections>
-                        <outlet property="Timer" destination="Hj5-qf-9oU" id="llk-cy-mPI"/>
+                        <outlet property="joetimer" destination="Hj5-qf-9oU" id="VGw-xR-jkP"/>
                         <outlet property="mylabel" destination="re6-mg-Jbe" id="2bi-WX-kgM"/>
                     </connections>
                 </controller>

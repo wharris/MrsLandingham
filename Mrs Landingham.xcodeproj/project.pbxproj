@@ -781,6 +781,7 @@
 				70A321C11F43207200989D7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		70A321C31F43207200989D7E /* Build configuration list for PBXNativeTarget "Mrs Landingham WatchKit App" */ = {
 			isa = XCConfigurationList;
@@ -789,6 +790,7 @@
 				70A321C51F43207200989D7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		70A321C71F43207200989D7E /* Build configuration list for PBXNativeTarget "Mrs Landingham" */ = {
 			isa = XCConfigurationList;
@@ -797,6 +799,7 @@
 				70A321C91F43207200989D7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		70A321CA1F43207200989D7E /* Build configuration list for PBXNativeTarget "Mrs LandinghamTests" */ = {
 			isa = XCConfigurationList;
@@ -805,6 +808,7 @@
 				70A321CC1F43207200989D7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		70A321CD1F43207200989D7E /* Build configuration list for PBXNativeTarget "Mrs LandinghamUITests" */ = {
 			isa = XCConfigurationList;
@@ -813,6 +817,7 @@
 				70A321CF1F43207200989D7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

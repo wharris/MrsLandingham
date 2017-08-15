@@ -48,46 +48,4 @@ NSInteger fib_numbers[100] = {0,0,0,0,0,0,0,0,0,0};
 
 
 
-- (int) fib:(int) innumber{
-    calls++;
-    NSLog(@"Here");
-    if (fib_numbers[innumber]>0){
-        return fib_numbers[innumber];
-  
-    }
-    if (innumber<=2){
-        return innumber;
-    }
-    
-    
-    int result= [self fib:innumber-1]+[self fib:innumber-2];
-    fib_numbers[innumber]=result;
-    return result;
-}
-
-- (int) euler2WithMax:(int) max{
-    for (int i=0;i<max;i++){
-        fib_numbers[i]=0;
-        
-    }
-    int result=[self fib:max];
-    return result;
-}
-
-
-- (int) euler1WithMax:(int) max{
-    //If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
-    //Find the sum of all the multiples of 3 or 5 below 1000.
-    
-    // Do any additional setup after loading the view, typically from a nib.
-    
-    int running_total=0;
-    for (int i=0;i<max;i++){
-        if ((i % 3==0) ||  (i % 5 ==0)){
-            running_total+=i;
-        }
-     }
-     return running_total;
-}
-
 @end

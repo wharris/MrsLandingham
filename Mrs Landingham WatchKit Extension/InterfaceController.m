@@ -46,12 +46,20 @@ NSMutableArray * algorithmtree;
     NSLog(myStr);
  NSLog([algorithmtree objectAtIndex:algorithmtree.count-1]);
     NSLog(@"it might have worked");
-}
-
-- (void) morning{
+    
+    _targetTime = [NSDate dateWithTimeInterval:300 sinceDate:[NSDate date]];
+    
+    [self.joetimer setDate:_targetTime];
+    
+    [_joetimer start];
+    self.mylabel.text=[algorithmtree objectAtIndex:algorithmtree.count-1];
+    [algorithmtree removeLastObject];
 
     
 }
+
+
+
 
 
 - (void)didDeactivate {
@@ -59,13 +67,14 @@ NSMutableArray * algorithmtree;
     [super didDeactivate];
 }
 - (IBAction)Done {
-    NSLog(@"here");
-    NSString *myStr = [NSString stringWithFormat: @"%d",algorithmtree.count];
-    NSLog(myStr);
-    NSLog([algorithmtree objectAtIndex:algorithmtree.count-1]);
-    NSLog(@"That was it");
     self.mylabel.text=[algorithmtree objectAtIndex:algorithmtree.count-1];
     [algorithmtree removeLastObject];
+    [_joetimer stop];
+    _targetTime = [NSDate dateWithTimeInterval:300 sinceDate:[NSDate date]];
+    
+    [self.joetimer setDate:_targetTime];
+    
+    [_joetimer start];
     
 }
 
