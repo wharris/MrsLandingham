@@ -13,6 +13,7 @@
 
 @end
 
+int x = 0;
 
 @implementation InterfaceController
 
@@ -25,11 +26,25 @@
 - (void)willActivate {
     // This method is called when watch view controller is about to be visible to user
     [super willActivate];
+    self.mylabel.text =@"99";
 }
 
 - (void)didDeactivate {
     // This method is called when watch view controller is no longer visible
     [super didDeactivate];
+}
+- (IBAction)up {
+    x++;
+    NSString *myStr = [NSString stringWithFormat: @"%d",x];
+    NSLog(@"Yo");
+    self.mylabel.text =myStr;
+    
+}
+- (IBAction)down {
+    x--;
+    NSString *myStr = [NSString stringWithFormat: @"%d",x];
+    NSLog(@"No");
+    self.mylabel.text =myStr;
 }
 
 @end
