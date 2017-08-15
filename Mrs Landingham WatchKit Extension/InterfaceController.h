@@ -11,6 +11,5 @@
 
 @interface InterfaceController : WKInterfaceController
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceLabel *mylabel;
-@property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceTimer *Timer;
 
 @end

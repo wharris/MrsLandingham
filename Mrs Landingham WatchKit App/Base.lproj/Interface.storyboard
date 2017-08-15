@@ -14,18 +14,27 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController">
                     <items>
-                        <label width="61" height="39" alignment="left" text="Hello" id="re6-mg-Jbe"/>
+                        <label width="133" height="72" alignment="left" text="Hello" id="re6-mg-Jbe"/>
                         <timer alignment="left" id="Hj5-qf-9oU"/>
-                        <button width="1" alignment="left" title="Up" id="lyC-iy-Nvm">
-                            <connections>
-                                <action selector="up" destination="AgC-eL-Hgc" id="y5X-6U-tDu"/>
-                            </connections>
-                        </button>
-                        <button width="1" alignment="left" title="Down" id="yH1-mU-Ayv">
-                            <connections>
-                                <action selector="down" destination="AgC-eL-Hgc" id="Nww-Vh-o9r"/>
-                            </connections>
-                        </button>
+                        <group width="134" alignment="left" id="uds-Dt-nDg">
+                            <items>
+                                <button width="44" alignment="left" title="D" id="lyC-iy-Nvm">
+                                    <connections>
+                                        <action selector="Done" destination="AgC-eL-Hgc" id="c1g-x7-N2E"/>
+                                    </connections>
+                                </button>
+                                <button width="42" alignment="left" title="E" id="yH1-mU-Ayv">
+                                    <connections>
+                                        <action selector="Expand" destination="AgC-eL-Hgc" id="8ZL-Ko-Wo3"/>
+                                    </connections>
+                                </button>
+                                <button width="51" alignment="left" title="P" id="TmK-lz-4c7">
+                                    <connections>
+                                        <action selector="Problem" destination="AgC-eL-Hgc" id="mJR-lh-SNE"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
                     </items>
                     <connections>
                         <outlet property="Timer" destination="Hj5-qf-9oU" id="llk-cy-mPI"/>
@@ -33,7 +42,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="276" y="347"/>
+            <point key="canvasLocation" x="276" y="346"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">

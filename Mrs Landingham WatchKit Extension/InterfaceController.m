@@ -33,13 +33,15 @@ int x = 0;
     // This method is called when watch view controller is no longer visible
     [super didDeactivate];
 }
-- (IBAction)up {
-    x++;
-    NSString *myStr = [NSString stringWithFormat: @"%d",x];
-    NSLog(@"Yo");
-    self.mylabel.text =myStr;
-    
+- (IBAction)Done {
 }
+
+- (IBAction)Expand {
+}
+- (IBAction)Problem {
+}
+
+
 - (IBAction)down {
     x--;
     NSString *myStr = [NSString stringWithFormat: @"%d",x];
