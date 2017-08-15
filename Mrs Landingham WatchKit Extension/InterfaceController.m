@@ -14,6 +14,12 @@
 @end
 
 int x = 0;
+int myindex=0;
+const int maxSize=10;
+NSString * doing[maxSize];
+NSMutableArray * algorithmtree;
+
+
 
 @implementation InterfaceController
 
@@ -26,14 +32,41 @@ int x = 0;
 - (void)willActivate {
     // This method is called when watch view controller is about to be visible to user
     [super willActivate];
-    self.mylabel.text =@"99";
+    self.mylabel.text =@"98";
+    for (int i=0;i<10;i++){
+        doing[i]=@"";
+    }
+    algorithmtree = [[NSMutableArray alloc] init];
+    [algorithmtree addObject:@"Bathroom"];
+    [algorithmtree addObject:@"Imediate Water"];
+    [algorithmtree addObject:@"Make Tea (get washing)"];
+    [algorithmtree addObject:@"Vitimin Tablet"];
+    NSLog(@"We have populated the algorithm tree");
+    NSString *myStr = [NSString stringWithFormat: @"%d",algorithmtree.count];
+    NSLog(myStr);
+ NSLog([algorithmtree objectAtIndex:algorithmtree.count-1]);
+    NSLog(@"it might have worked");
 }
+
+- (void) morning{
+
+    
+}
+
 
 - (void)didDeactivate {
     // This method is called when watch view controller is no longer visible
     [super didDeactivate];
 }
 - (IBAction)Done {
+    NSLog(@"here");
+    NSString *myStr = [NSString stringWithFormat: @"%d",algorithmtree.count];
+    NSLog(myStr);
+    NSLog([algorithmtree objectAtIndex:algorithmtree.count-1]);
+    NSLog(@"That was it");
+    self.mylabel.text=[algorithmtree objectAtIndex:algorithmtree.count-1];
+    [algorithmtree removeLastObject];
+    
 }
 
 - (IBAction)Expand {
@@ -41,13 +74,6 @@ int x = 0;
 - (IBAction)Problem {
 }
 
-
-- (IBAction)down {
-    x--;
-    NSString *myStr = [NSString stringWithFormat: @"%d",x];
-    NSLog(@"No");
-    self.mylabel.text =myStr;
-}
 
 @end
 
