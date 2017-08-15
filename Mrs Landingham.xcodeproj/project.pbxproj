@@ -1,0 +1,820 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		70A321731F43207100989D7E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A321721F43207100989D7E /* main.m */; };
+		70A321761F43207100989D7E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A321751F43207100989D7E /* AppDelegate.m */; };
+		70A321791F43207100989D7E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A321781F43207100989D7E /* ViewController.m */; };
+		70A3217C1F43207100989D7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70A3217A1F43207100989D7E /* Main.storyboard */; };
+		70A3217E1F43207100989D7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70A3217D1F43207100989D7E /* Assets.xcassets */; };
+		70A321811F43207200989D7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70A3217F1F43207200989D7E /* LaunchScreen.storyboard */; };
+		70A3218C1F43207200989D7E /* Mrs_LandinghamTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A3218B1F43207200989D7E /* Mrs_LandinghamTests.m */; };
+		70A321971F43207200989D7E /* Mrs_LandinghamUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A321961F43207200989D7E /* Mrs_LandinghamUITests.m */; };
+		70A3219C1F43207200989D7E /* Mrs Landingham WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 70A3219B1F43207200989D7E /* Mrs Landingham WatchKit App.app */; };
+		70A321A21F43207200989D7E /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70A321A01F43207200989D7E /* Interface.storyboard */; };
+		70A321A41F43207200989D7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70A321A31F43207200989D7E /* Assets.xcassets */; };
+		70A321AB1F43207200989D7E /* Mrs Landingham WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 70A321AA1F43207200989D7E /* Mrs Landingham WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		70A321B31F43207200989D7E /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A321B21F43207200989D7E /* InterfaceController.m */; };
+		70A321B61F43207200989D7E /* ExtensionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A321B51F43207200989D7E /* ExtensionDelegate.m */; };
+		70A321B91F43207200989D7E /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A321B81F43207200989D7E /* NotificationController.m */; };
+		70A321BB1F43207200989D7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70A321BA1F43207200989D7E /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		70A321881F43207200989D7E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70A321661F43207100989D7E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 70A3216D1F43207100989D7E;
+			remoteInfo = "Mrs Landingham";
+		};
+		70A321931F43207200989D7E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70A321661F43207100989D7E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 70A3216D1F43207100989D7E;
+			remoteInfo = "Mrs Landingham";
+		};
+		70A3219D1F43207200989D7E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70A321661F43207100989D7E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 70A3219A1F43207200989D7E;
+			remoteInfo = "Mrs Landingham WatchKit App";
+		};
+		70A321AC1F43207200989D7E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70A321661F43207100989D7E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 70A321A91F43207200989D7E;
+			remoteInfo = "Mrs Landingham WatchKit Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		70A321C21F43207200989D7E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				70A321AB1F43207200989D7E /* Mrs Landingham WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70A321C61F43207200989D7E /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				70A3219C1F43207200989D7E /* Mrs Landingham WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		70A3216E1F43207100989D7E /* Mrs Landingham.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mrs Landingham.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		70A321721F43207100989D7E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		70A321741F43207100989D7E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		70A321751F43207100989D7E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		70A321771F43207100989D7E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		70A321781F43207100989D7E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		70A3217B1F43207100989D7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		70A3217D1F43207100989D7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		70A321801F43207200989D7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		70A321821F43207200989D7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70A321871F43207200989D7E /* Mrs LandinghamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mrs LandinghamTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		70A3218B1F43207200989D7E /* Mrs_LandinghamTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Mrs_LandinghamTests.m; sourceTree = "<group>"; };
+		70A3218D1F43207200989D7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70A321921F43207200989D7E /* Mrs LandinghamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mrs LandinghamUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		70A321961F43207200989D7E /* Mrs_LandinghamUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Mrs_LandinghamUITests.m; sourceTree = "<group>"; };
+		70A321981F43207200989D7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70A3219B1F43207200989D7E /* Mrs Landingham WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mrs Landingham WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		70A321A11F43207200989D7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		70A321A31F43207200989D7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		70A321A51F43207200989D7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70A321AA1F43207200989D7E /* Mrs Landingham WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Mrs Landingham WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		70A321B01F43207200989D7E /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		70A321B11F43207200989D7E /* InterfaceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterfaceController.h; sourceTree = "<group>"; };
+		70A321B21F43207200989D7E /* InterfaceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterfaceController.m; sourceTree = "<group>"; };
+		70A321B41F43207200989D7E /* ExtensionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExtensionDelegate.h; sourceTree = "<group>"; };
+		70A321B51F43207200989D7E /* ExtensionDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExtensionDelegate.m; sourceTree = "<group>"; };
+		70A321B71F43207200989D7E /* NotificationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationController.h; sourceTree = "<group>"; };
+		70A321B81F43207200989D7E /* NotificationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationController.m; sourceTree = "<group>"; };
+		70A321BA1F43207200989D7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		70A321BC1F43207200989D7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		70A3216B1F43207100989D7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70A321841F43207200989D7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70A3218F1F43207200989D7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70A321A71F43207200989D7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		70A321651F43207100989D7E = {
+			isa = PBXGroup;
+			children = (
+				70A321701F43207100989D7E /* Mrs Landingham */,
+				70A3218A1F43207200989D7E /* Mrs LandinghamTests */,
+				70A321951F43207200989D7E /* Mrs LandinghamUITests */,
+				70A3219F1F43207200989D7E /* Mrs Landingham WatchKit App */,
+				70A321AE1F43207200989D7E /* Mrs Landingham WatchKit Extension */,
+				70A3216F1F43207100989D7E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		70A3216F1F43207100989D7E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				70A3216E1F43207100989D7E /* Mrs Landingham.app */,
+				70A321871F43207200989D7E /* Mrs LandinghamTests.xctest */,
+				70A321921F43207200989D7E /* Mrs LandinghamUITests.xctest */,
+				70A3219B1F43207200989D7E /* Mrs Landingham WatchKit App.app */,
+				70A321AA1F43207200989D7E /* Mrs Landingham WatchKit Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		70A321701F43207100989D7E /* Mrs Landingham */ = {
+			isa = PBXGroup;
+			children = (
+				70A321741F43207100989D7E /* AppDelegate.h */,
+				70A321751F43207100989D7E /* AppDelegate.m */,
+				70A321771F43207100989D7E /* ViewController.h */,
+				70A321781F43207100989D7E /* ViewController.m */,
+				70A3217A1F43207100989D7E /* Main.storyboard */,
+				70A3217D1F43207100989D7E /* Assets.xcassets */,
+				70A3217F1F43207200989D7E /* LaunchScreen.storyboard */,
+				70A321821F43207200989D7E /* Info.plist */,
+				70A321711F43207100989D7E /* Supporting Files */,
+			);
+			path = "Mrs Landingham";
+			sourceTree = "<group>";
+		};
+		70A321711F43207100989D7E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				70A321721F43207100989D7E /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		70A3218A1F43207200989D7E /* Mrs LandinghamTests */ = {
+			isa = PBXGroup;
+			children = (
+				70A3218B1F43207200989D7E /* Mrs_LandinghamTests.m */,
+				70A3218D1F43207200989D7E /* Info.plist */,
+			);
+			path = "Mrs LandinghamTests";
+			sourceTree = "<group>";
+		};
+		70A321951F43207200989D7E /* Mrs LandinghamUITests */ = {
+			isa = PBXGroup;
+			children = (
+				70A321961F43207200989D7E /* Mrs_LandinghamUITests.m */,
+				70A321981F43207200989D7E /* Info.plist */,
+			);
+			path = "Mrs LandinghamUITests";
+			sourceTree = "<group>";
+		};
+		70A3219F1F43207200989D7E /* Mrs Landingham WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				70A321A01F43207200989D7E /* Interface.storyboard */,
+				70A321A31F43207200989D7E /* Assets.xcassets */,
+				70A321A51F43207200989D7E /* Info.plist */,
+			);
+			path = "Mrs Landingham WatchKit App";
+			sourceTree = "<group>";
+		};
+		70A321AE1F43207200989D7E /* Mrs Landingham WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				70A321B11F43207200989D7E /* InterfaceController.h */,
+				70A321B21F43207200989D7E /* InterfaceController.m */,
+				70A321B41F43207200989D7E /* ExtensionDelegate.h */,
+				70A321B51F43207200989D7E /* ExtensionDelegate.m */,
+				70A321B71F43207200989D7E /* NotificationController.h */,
+				70A321B81F43207200989D7E /* NotificationController.m */,
+				70A321BA1F43207200989D7E /* Assets.xcassets */,
+				70A321BC1F43207200989D7E /* Info.plist */,
+				70A321AF1F43207200989D7E /* Supporting Files */,
+			);
+			path = "Mrs Landingham WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		70A321AF1F43207200989D7E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				70A321B01F43207200989D7E /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		70A3216D1F43207100989D7E /* Mrs Landingham */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70A321C71F43207200989D7E /* Build configuration list for PBXNativeTarget "Mrs Landingham" */;
+			buildPhases = (
+				70A3216A1F43207100989D7E /* Sources */,
+				70A3216B1F43207100989D7E /* Frameworks */,
+				70A3216C1F43207100989D7E /* Resources */,
+				70A321C61F43207200989D7E /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				70A3219E1F43207200989D7E /* PBXTargetDependency */,
+			);
+			name = "Mrs Landingham";
+			productName = "Mrs Landingham";
+			productReference = 70A3216E1F43207100989D7E /* Mrs Landingham.app */;
+			productType = "com.apple.product-type.application";
+		};
+		70A321861F43207200989D7E /* Mrs LandinghamTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70A321CA1F43207200989D7E /* Build configuration list for PBXNativeTarget "Mrs LandinghamTests" */;
+			buildPhases = (
+				70A321831F43207200989D7E /* Sources */,
+				70A321841F43207200989D7E /* Frameworks */,
+				70A321851F43207200989D7E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				70A321891F43207200989D7E /* PBXTargetDependency */,
+			);
+			name = "Mrs LandinghamTests";
+			productName = "Mrs LandinghamTests";
+			productReference = 70A321871F43207200989D7E /* Mrs LandinghamTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		70A321911F43207200989D7E /* Mrs LandinghamUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70A321CD1F43207200989D7E /* Build configuration list for PBXNativeTarget "Mrs LandinghamUITests" */;
+			buildPhases = (
+				70A3218E1F43207200989D7E /* Sources */,
+				70A3218F1F43207200989D7E /* Frameworks */,
+				70A321901F43207200989D7E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				70A321941F43207200989D7E /* PBXTargetDependency */,
+			);
+			name = "Mrs LandinghamUITests";
+			productName = "Mrs LandinghamUITests";
+			productReference = 70A321921F43207200989D7E /* Mrs LandinghamUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		70A3219A1F43207200989D7E /* Mrs Landingham WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70A321C31F43207200989D7E /* Build configuration list for PBXNativeTarget "Mrs Landingham WatchKit App" */;
+			buildPhases = (
+				70A321991F43207200989D7E /* Resources */,
+				70A321C21F43207200989D7E /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				70A321AD1F43207200989D7E /* PBXTargetDependency */,
+			);
+			name = "Mrs Landingham WatchKit App";
+			productName = "Mrs Landingham WatchKit App";
+			productReference = 70A3219B1F43207200989D7E /* Mrs Landingham WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		70A321A91F43207200989D7E /* Mrs Landingham WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70A321BF1F43207200989D7E /* Build configuration list for PBXNativeTarget "Mrs Landingham WatchKit Extension" */;
+			buildPhases = (
+				70A321A61F43207200989D7E /* Sources */,
+				70A321A71F43207200989D7E /* Frameworks */,
+				70A321A81F43207200989D7E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Mrs Landingham WatchKit Extension";
+			productName = "Mrs Landingham WatchKit Extension";
+			productReference = 70A321AA1F43207200989D7E /* Mrs Landingham WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		70A321661F43207100989D7E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Joseph Reddington";
+				TargetAttributes = {
+					70A3216D1F43207100989D7E = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = MW65VVNM84;
+						ProvisioningStyle = Automatic;
+					};
+					70A321861F43207200989D7E = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = MW65VVNM84;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 70A3216D1F43207100989D7E;
+					};
+					70A321911F43207200989D7E = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = MW65VVNM84;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 70A3216D1F43207100989D7E;
+					};
+					70A3219A1F43207200989D7E = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = MW65VVNM84;
+						ProvisioningStyle = Automatic;
+					};
+					70A321A91F43207200989D7E = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = MW65VVNM84;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 70A321691F43207100989D7E /* Build configuration list for PBXProject "Mrs Landingham" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 70A321651F43207100989D7E;
+			productRefGroup = 70A3216F1F43207100989D7E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				70A3216D1F43207100989D7E /* Mrs Landingham */,
+				70A321861F43207200989D7E /* Mrs LandinghamTests */,
+				70A321911F43207200989D7E /* Mrs LandinghamUITests */,
+				70A3219A1F43207200989D7E /* Mrs Landingham WatchKit App */,
+				70A321A91F43207200989D7E /* Mrs Landingham WatchKit Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		70A3216C1F43207100989D7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70A321811F43207200989D7E /* LaunchScreen.storyboard in Resources */,
+				70A3217E1F43207100989D7E /* Assets.xcassets in Resources */,
+				70A3217C1F43207100989D7E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70A321851F43207200989D7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70A321901F43207200989D7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70A321991F43207200989D7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70A321A41F43207200989D7E /* Assets.xcassets in Resources */,
+				70A321A21F43207200989D7E /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70A321A81F43207200989D7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70A321BB1F43207200989D7E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		70A3216A1F43207100989D7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70A321791F43207100989D7E /* ViewController.m in Sources */,
+				70A321761F43207100989D7E /* AppDelegate.m in Sources */,
+				70A321731F43207100989D7E /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70A321831F43207200989D7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70A3218C1F43207200989D7E /* Mrs_LandinghamTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70A3218E1F43207200989D7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70A321971F43207200989D7E /* Mrs_LandinghamUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		70A321A61F43207200989D7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70A321B61F43207200989D7E /* ExtensionDelegate.m in Sources */,
+				70A321B31F43207200989D7E /* InterfaceController.m in Sources */,
+				70A321B91F43207200989D7E /* NotificationController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		70A321891F43207200989D7E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 70A3216D1F43207100989D7E /* Mrs Landingham */;
+			targetProxy = 70A321881F43207200989D7E /* PBXContainerItemProxy */;
+		};
+		70A321941F43207200989D7E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 70A3216D1F43207100989D7E /* Mrs Landingham */;
+			targetProxy = 70A321931F43207200989D7E /* PBXContainerItemProxy */;
+		};
+		70A3219E1F43207200989D7E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 70A3219A1F43207200989D7E /* Mrs Landingham WatchKit App */;
+			targetProxy = 70A3219D1F43207200989D7E /* PBXContainerItemProxy */;
+		};
+		70A321AD1F43207200989D7E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 70A321A91F43207200989D7E /* Mrs Landingham WatchKit Extension */;
+			targetProxy = 70A321AC1F43207200989D7E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		70A3217A1F43207100989D7E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				70A3217B1F43207100989D7E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		70A3217F1F43207200989D7E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				70A321801F43207200989D7E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		70A321A01F43207200989D7E /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				70A321A11F43207200989D7E /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		70A321BD1F43207200989D7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		70A321BE1F43207200989D7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		70A321C01F43207200989D7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				DEVELOPMENT_TEAM = MW65VVNM84;
+				INFOPLIST_FILE = "Mrs Landingham WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "equalitytime.Mrs-Landingham.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Debug;
+		};
+		70A321C11F43207200989D7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				DEVELOPMENT_TEAM = MW65VVNM84;
+				INFOPLIST_FILE = "Mrs Landingham WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "equalitytime.Mrs-Landingham.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Release;
+		};
+		70A321C41F43207200989D7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = MW65VVNM84;
+				IBSC_MODULE = Mrs_Landingham_WatchKit_Extension;
+				INFOPLIST_FILE = "Mrs Landingham WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "equalitytime.Mrs-Landingham.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Debug;
+		};
+		70A321C51F43207200989D7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = MW65VVNM84;
+				IBSC_MODULE = Mrs_Landingham_WatchKit_Extension;
+				INFOPLIST_FILE = "Mrs Landingham WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "equalitytime.Mrs-Landingham.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Release;
+		};
+		70A321C81F43207200989D7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = MW65VVNM84;
+				INFOPLIST_FILE = "Mrs Landingham/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "equalitytime.Mrs-Landingham";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		70A321C91F43207200989D7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = MW65VVNM84;
+				INFOPLIST_FILE = "Mrs Landingham/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "equalitytime.Mrs-Landingham";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		70A321CB1F43207200989D7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = MW65VVNM84;
+				INFOPLIST_FILE = "Mrs LandinghamTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "equalitytime.Mrs-LandinghamTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mrs Landingham.app/Mrs Landingham";
+			};
+			name = Debug;
+		};
+		70A321CC1F43207200989D7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = MW65VVNM84;
+				INFOPLIST_FILE = "Mrs LandinghamTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "equalitytime.Mrs-LandinghamTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mrs Landingham.app/Mrs Landingham";
+			};
+			name = Release;
+		};
+		70A321CE1F43207200989D7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = MW65VVNM84;
+				INFOPLIST_FILE = "Mrs LandinghamUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "equalitytime.Mrs-LandinghamUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Mrs Landingham";
+			};
+			name = Debug;
+		};
+		70A321CF1F43207200989D7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = MW65VVNM84;
+				INFOPLIST_FILE = "Mrs LandinghamUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "equalitytime.Mrs-LandinghamUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Mrs Landingham";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		70A321691F43207100989D7E /* Build configuration list for PBXProject "Mrs Landingham" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70A321BD1F43207200989D7E /* Debug */,
+				70A321BE1F43207200989D7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		70A321BF1F43207200989D7E /* Build configuration list for PBXNativeTarget "Mrs Landingham WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70A321C01F43207200989D7E /* Debug */,
+				70A321C11F43207200989D7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		70A321C31F43207200989D7E /* Build configuration list for PBXNativeTarget "Mrs Landingham WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70A321C41F43207200989D7E /* Debug */,
+				70A321C51F43207200989D7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		70A321C71F43207200989D7E /* Build configuration list for PBXNativeTarget "Mrs Landingham" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70A321C81F43207200989D7E /* Debug */,
+				70A321C91F43207200989D7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		70A321CA1F43207200989D7E /* Build configuration list for PBXNativeTarget "Mrs LandinghamTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70A321CB1F43207200989D7E /* Debug */,
+				70A321CC1F43207200989D7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		70A321CD1F43207200989D7E /* Build configuration list for PBXNativeTarget "Mrs LandinghamUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70A321CE1F43207200989D7E /* Debug */,
+				70A321CF1F43207200989D7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 70A321661F43207100989D7E /* Project object */;
+}
