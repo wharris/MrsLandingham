@@ -14,9 +14,6 @@
 @end
 
 int x = 0;
-int myindex=0;
-const int maxSize=10;
-NSString * doing[maxSize];
 NSMutableArray * algorithmtree;
 
 
@@ -33,9 +30,6 @@ NSMutableArray * algorithmtree;
     // This method is called when watch view controller is about to be visible to user
     [super willActivate];
     self.mylabel.text =@"98";
-    for (int i=0;i<10;i++){
-        doing[i]=@"";
-    }
     algorithmtree = [[NSMutableArray alloc] init];
     [algorithmtree addObject:@"Bathroom"];
     [algorithmtree addObject:@"Imediate Water"];

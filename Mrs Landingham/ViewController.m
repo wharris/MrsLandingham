@@ -14,36 +14,39 @@
 
 @implementation ViewController
 
-int calls=0;
 
-NSInteger fib_numbers[100] = {0,0,0,0,0,0,0,0,0,0};
+NSMutableArray * algorithmtree;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-  //  int running_total=[self euler1WithMax:10];
-  //  [self printThis:running_total];
-    NSLog(@"Hello:");
-    int result=[self euler2WithMax: 10];
-    [self printThis:result];
-    NSString *myStr = [NSString stringWithFormat: @"%d",calls];
-    NSLog(@"How many calls?:");
-    NSLog(myStr);
-    NSLog(@"Done");
+    [self populateAlgorithm];
   
 }
 
+- (void) populateAlgorithm{
+    algorithmtree = [[NSMutableArray alloc] init];
+    [algorithmtree addObject:@"Bathroom"];
+    [algorithmtree addObject:@"Imediate Water"];
+    [algorithmtree addObject:@"Make Tea (get washing)"];
+    [algorithmtree addObject:@"Vitimin Tablet"];
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void) printThis:(int) running_total{
-    NSString *myStr = [NSString stringWithFormat: @"%d",running_total];
-    NSLog(@"Final Total is:");
-    NSLog(myStr);
-    NSLog(@"Done");
+
+- (IBAction)done:(id)sender {
+    self.Task.text=[algorithmtree objectAtIndex:algorithmtree.count-1];
+    [algorithmtree removeLastObject];
+    
+}
+- (IBAction)expand:(id)sender {
+}
+- (IBAction)Problem:(id)sender {
 }
 
 
