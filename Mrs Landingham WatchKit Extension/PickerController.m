@@ -1,0 +1,59 @@
+//
+//  PickerController.m
+//  Mrs Landingham
+//
+//  Created by Joseph Reddington on 16/08/2017.
+//  Copyright © 2017 Joseph Reddington. All rights reserved.
+//
+
+#import "PickerController.h"
+
+@interface PickerController ()
+
+@end
+
+@implementation PickerController
+
+NSArray * pickerItems;
+
+
+- (void)awakeWithContext:(id)context {
+    [super awakeWithContext:context];
+    
+    // Configure interface objects here.
+    
+    WKPickerItem *pickerItem1 = [WKPickerItem alloc];
+    [pickerItem1 setTitle:@"Morning"];
+    [pickerItem1 setAccessoryImage:[WKImage imageWithImageName:@"Smile"]];
+    
+    WKPickerItem *pickerItem2 = [WKPickerItem alloc];
+    [pickerItem2 setTitle:@"Night"];
+    [pickerItem2 setAccessoryImage:[WKImage imageWithImageName:@"Smile"]];
+    
+    WKPickerItem *pickerItem3 = [WKPickerItem alloc];
+    [pickerItem3 setTitle:@"Setup Doghouse"];
+    [pickerItem3 setAccessoryImage:[WKImage imageWithImageName:@"Smile"]];
+    
+    NSArray * pickerItems = [[NSArray alloc] initWithObjects:pickerItem1, pickerItem2, pickerItem3, nil];
+    [self.picker setItems:pickerItems];
+    
+}
+
+- (void)willActivate {
+    // This method is called when watch view controller is about to be visible to user
+    [super willActivate];
+}
+
+- (void)didDeactivate {
+    // This method is called when watch view controller is no longer visible
+    [super didDeactivate];
+}
+- (IBAction)Pickertrickers:(NSInteger)value {
+      NSLog(@"value = %d", value);
+    
+}
+
+@end
+
+
+

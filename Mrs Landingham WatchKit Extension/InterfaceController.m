@@ -15,30 +15,32 @@
 
 int x = 0;
 NSMutableArray * algorithmtree;
-
+bool firsttime=TRUE;
 
 
 @implementation InterfaceController
 
-- (void)awakeWithContext:(id)context {
-    [super awakeWithContext:context];
 
-    // Configure interface objects here.
-}
 
-- (void)willActivate {
-    // This method is called when watch view controller is about to be visible to user
-    [super willActivate];
-    self.mylabel.text =@"98";
-    algorithmtree = [[NSMutableArray alloc] init];
+
+
+- (void)morning {
+  algorithmtree = [[NSMutableArray alloc] init];
     [algorithmtree addObject:@"Bathroom"];
     [algorithmtree addObject:@"Imediate Water"];
     [algorithmtree addObject:@"Make Tea (get washing)"];
-    [algorithmtree addObject:@"Vitimin Tablet"];
+    [algorithmtree addObject:@"Version Tablet"];
     NSLog(@"We have populated the algorithm tree");
+}
+
+- (void)awakeWithContext:(id)context {
+    [super awakeWithContext:context];
+    self.mylabel.text =@"98";
+    NSLog(@"Hey");
+    [self morning];
     NSString *myStr = [NSString stringWithFormat: @"%d",algorithmtree.count];
     NSLog(myStr);
- NSLog([algorithmtree objectAtIndex:algorithmtree.count-1]);
+    NSLog([algorithmtree objectAtIndex:algorithmtree.count-1]);
     NSLog(@"it might have worked");
     
     _targetTime = [NSDate dateWithTimeInterval:300 sinceDate:[NSDate date]];
@@ -48,7 +50,14 @@ NSMutableArray * algorithmtree;
     [_joetimer start];
     self.mylabel.text=[algorithmtree objectAtIndex:algorithmtree.count-1];
     [algorithmtree removeLastObject];
+    // Configure interface objects here.
+}
 
+- (void)willActivate {
+    // This method is called when watch view controller is about to be visible to user
+    [super willActivate];
+    NSLog(@"it Visible have worked");
+   
     
 }
 
@@ -61,6 +70,8 @@ NSMutableArray * algorithmtree;
     [super didDeactivate];
 }
 - (IBAction)Done {
+    
+    //TODO: if algoirthmtree is empty then display finnished. 
     self.mylabel.text=[algorithmtree objectAtIndex:algorithmtree.count-1];
     [algorithmtree removeLastObject];
     [_joetimer stop];

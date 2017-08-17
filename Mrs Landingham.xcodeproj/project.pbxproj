@@ -23,6 +23,7 @@
 		70A321B61F43207200989D7E /* ExtensionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A321B51F43207200989D7E /* ExtensionDelegate.m */; };
 		70A321B91F43207200989D7E /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A321B81F43207200989D7E /* NotificationController.m */; };
 		70A321BB1F43207200989D7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70A321BA1F43207200989D7E /* Assets.xcassets */; };
+		70E76D421F44E4380015BC71 /* PickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70E76D411F44E4380015BC71 /* PickerController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,8 @@
 		70A321B81F43207200989D7E /* NotificationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationController.m; sourceTree = "<group>"; };
 		70A321BA1F43207200989D7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		70A321BC1F43207200989D7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70E76D401F44E4370015BC71 /* PickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerController.h; sourceTree = "<group>"; };
+		70E76D411F44E4380015BC71 /* PickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +237,8 @@
 				70A321BA1F43207200989D7E /* Assets.xcassets */,
 				70A321BC1F43207200989D7E /* Info.plist */,
 				70A321AF1F43207200989D7E /* Supporting Files */,
+				70E76D401F44E4370015BC71 /* PickerController.h */,
+				70E76D411F44E4380015BC71 /* PickerController.m */,
 			);
 			path = "Mrs Landingham WatchKit Extension";
 			sourceTree = "<group>";
@@ -476,6 +481,7 @@
 				70A321B61F43207200989D7E /* ExtensionDelegate.m in Sources */,
 				70A321B31F43207200989D7E /* InterfaceController.m in Sources */,
 				70A321B91F43207200989D7E /* NotificationController.m in Sources */,
+				70E76D421F44E4380015BC71 /* PickerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,9 +700,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = MW65VVNM84;
 				INFOPLIST_FILE = "Mrs Landingham/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "equalitytime.Mrs-Landingham";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -706,9 +714,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = MW65VVNM84;
 				INFOPLIST_FILE = "Mrs Landingham/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "equalitytime.Mrs-Landingham";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
