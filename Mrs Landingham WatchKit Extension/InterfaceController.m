@@ -21,36 +21,37 @@ bool firsttime=TRUE;
 @implementation InterfaceController
 
 
-
-
-
 - (void)morning {
   algorithmtree = [[NSMutableArray alloc] init];
-    [algorithmtree addObject:@"Bathroom"];
-    [algorithmtree addObject:@"Imediate Water"];
-    [algorithmtree addObject:@"Make Tea (get washing)"];
-    [algorithmtree addObject:@"Version Tablet"];
+    [algorithmtree insertObject:@"Bathroom3" atIndex:0];
+    [algorithmtree insertObject:@"Imediate Water" atIndex:0];
+    [algorithmtree insertObject:@"Make Tea (get washing)" atIndex:0];
+    [algorithmtree insertObject:@"Vitimin Tablet" atIndex:0];
     NSLog(@"We have populated the algorithm tree");
 }
 
+
+
+- (void)startCountdown {
+  _targetTime = [NSDate dateWithTimeInterval:300 sinceDate:[NSDate date]];
+    [self.joetimer setDate:_targetTime];
+    [_joetimer start];
+}
+
 - (void)awakeWithContext:(id)context {
+    
     [super awakeWithContext:context];
     self.mylabel.text =@"98";
     NSLog(@"Hey");
     [self morning];
-    NSString *myStr = [NSString stringWithFormat: @"%d",algorithmtree.count];
-    NSLog(myStr);
-    NSLog([algorithmtree objectAtIndex:algorithmtree.count-1]);
-    NSLog(@"it might have worked");
     
-    _targetTime = [NSDate dateWithTimeInterval:300 sinceDate:[NSDate date]];
+    [self startCountdown];
     
-    [self.joetimer setDate:_targetTime];
-    
-    [_joetimer start];
     self.mylabel.text=[algorithmtree objectAtIndex:algorithmtree.count-1];
     [algorithmtree removeLastObject];
-    // Configure interface objects here.
+    int pickerValue=[context integerValue];
+    self.mylabel.text=[NSString stringWithFormat:@"%d",pickerValue];
+    // Configureinterface objects here.
 }
 
 - (void)willActivate {

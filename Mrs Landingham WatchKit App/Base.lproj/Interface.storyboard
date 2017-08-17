@@ -19,9 +19,9 @@
                                 <action selector="Pickertrickers:" destination="syG-uw-4GJ" id="PO4-9C-bAw"/>
                             </connections>
                         </picker>
-                        <button width="1" alignment="left" title="Button" id="z1J-y7-BGF">
+                        <button width="1" alignment="left" title="Go!" id="Xbb-F0-jPx">
                             <connections>
-                                <segue destination="AgC-eL-Hgc" kind="push" id="O6z-Kv-E9F"/>
+                                <action selector="picked" destination="syG-uw-4GJ" id="bAT-bG-XTt"/>
                             </connections>
                         </button>
                     </items>
@@ -32,10 +32,10 @@
             </objects>
             <point key="canvasLocation" x="82" y="17"/>
         </scene>
-        <!--Interface Controller-->
+        <!--doing-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController">
+                <controller identifier="doing" id="AgC-eL-Hgc" customClass="InterfaceController">
                     <items>
                         <label width="133" height="72" alignment="left" text="Hello This is an initial test " textAlignment="center" numberOfLines="0" minimumScaleFactor="0.29999999999999999" id="re6-mg-Jbe"/>
                         <timer alignment="center" format="abbreviated" previewedSeconds="299" id="Hj5-qf-9oU"/>
@@ -65,7 +65,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="278" y="348"/>
+            <point key="canvasLocation" x="231" y="358"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">

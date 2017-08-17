@@ -15,7 +15,7 @@
 @implementation PickerController
 
 NSArray * pickerItems;
-
+NSInteger pickerValue =0;
 
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
@@ -39,6 +39,17 @@ NSArray * pickerItems;
     
 }
 
+- (IBAction)picked {
+    
+    NSLog(@"Before push = %d", pickerValue);
+    NSNumber *valuePointer = [NSNumber numberWithInteger:pickerValue];
+
+    int checkValue=[valuePointer integerValue];
+    NSLog(@"Check Value = %d", checkValue);
+    
+    [self pushControllerWithName: @"doing"  context: valuePointer];
+}
+
 - (void)willActivate {
     // This method is called when watch view controller is about to be visible to user
     [super willActivate];
@@ -49,6 +60,7 @@ NSArray * pickerItems;
     [super didDeactivate];
 }
 - (IBAction)Pickertrickers:(NSInteger)value {
+      pickerValue=value;
       NSLog(@"value = %d", value);
     
 }
