@@ -7,8 +7,9 @@
 //
 
 #import "InterfaceController.h"
-
-
+#import "WorkNode.h"
+#import "DoNode.h"
+#import "QuestionNode.h"
 @interface InterfaceController ()
 
 @end
@@ -16,7 +17,8 @@
 int x = 0;
 NSMutableArray * algorithmtree;
 bool firsttime=TRUE;
-
+WorkNode * root;
+WorkNode * currentNode;
 
 @implementation InterfaceController
 
@@ -25,53 +27,72 @@ bool firsttime=TRUE;
     [algorithmtree insertObject:task atIndex:0];
 }
 
-- (void)morning {
-  algorithmtree = [[NSMutableArray alloc] init];
-    [self do: @"Bathroom"];
-    [self do: @"Bath: Drink 1L Water" ];
-    [self do: @"Bath: Shower"];
-    [self do: @"Bath: Dress"];
-    [self do: @"Bath: Teeth"];
-    [self do: @"Bath: Floss"];
-    [self do: @"Bath: Shave head"];
-    [self do: @"Bath: Shave"];
-    [self do: @"Kitc: clothes in wash"];
-    [self do: @"Kitc:Vitimin Tablet"];
-    [self do: @"Kitc:Make Tea (get washing)"];
-    [self do: @"Kitc:Push Wash on"];
-    [self do: @"Kitc:Set Alarm for end of wash"];
-    [self do: @"Kitc:Food prep"];
+- (WorkNode *)morning {
+    DoNode *local=[[DoNode alloc] initWithStep:@"Bathroom"];
+    [local addStep: @"Bath: Drink 1L Water" ];
+    [local addStep: @"Bath: Shower"];
+    [local addStep: @"Bath: Dress"];
+    [local addStep: @"Bath: Teeth"];
+    [local addStep: @"Bath: Floss"];
+    [local addStep: @"Bath: Shave head"];
+    [local addStep: @"Bath: Shave"];
+    [local addStep: @"Kitc: clothes in wash"];
+    [local addStep: @"Kitc:Vitimin Tablet"];
+    [local addStep: @"Kitc:Make Tea (get washing)"];
+    [local addStep: @"Kitc:Push Wash on"];
+    [local addStep: @"Kitc:Set Alarm for end of wash"];
+    [local addStep: @"Kitc:Food prep"];
+    QuestionNode *testQ=[[QuestionNode alloc] initWithQuestion: @"has this worked" yesChild: NULL noChild:NULL];
+    [local addNode:testQ];
+    [local addStep: @"now?"];
+    
+
     NSLog(@"We have populated the algorithm tree");
+    return local;
 }
 
-- (void) night{
-    algorithmtree = [[NSMutableArray alloc] init];
-    [self do: @"Laptop on charge"];//so you know you don't have to go to the shed
-    [self do: @"Glasses in Ospray"];
-    [self do: @"Headphones on charge"];
-    [self do: @"Night Glasses On"];
-    [self do: @"Lock Door"];
-    [self do: @"Put glass in bathroom"];
-    [self do: @"Teeth"];
-    [self do: @"Floss"];
-    [self do: @"Leave good clothes in bathroom"];
-    [self do: @"otherclothes in washing machine"];
-    [self do: @"Get tomorrow's clothes from bedroom"];
-    [self do: @"Keys in bag"];
-    [self do: @"Wallet has two bank cards"];
-    [self do: @"Phone on charge"];
-    [self do: @"Food in bag"];
-    [self do: @"Bike lights"];
-    [self do: @"Pens and notebook in bag"];
-    [self do: @"Spare battery"];
-    [self do: @"Other battery on charge"];
-    [self do: @"MacBook charger"];
-    [self do: @"folding plug"];
-     [self do: @"Seal bag"];
-     [self do: @"Setup tea and water bottles"];
-    [self do: @"Sleep mask on head"];
-     [self do: @"Lights out"];
-     [self do: @"watch on charge"];
+- (WorkNode *) enterCoffeeShop{
+    DoNode *local=[[DoNode alloc] initWithStep:@"Smile"];
+    [local addStep: @"Order a green tea and a glass of tap water"];//No sugar, only peace
+    [local addStep: @"Find seat with plug"];
+    [local addStep: @"Spread things around table"];
+    [local addStep: @"Take off shoes and a layer"];
+    [local addStep: @"Everything on charge"];
+    [local addStep: @"Set timer for leaving"];
+    [local addStep: @"Get a local next actions"];
+    return local;
+    
+}
+
+- (WorkNode *) night{
+    DoNode *local=[[DoNode alloc] initWithStep:@"Laptop on charge"];
+    [local addStep: @"Glasses in Ospray"];
+    [local addStep: @"Headphones on charge"];
+    [local addStep: @"Night Glasses On"];
+    [local addStep: @"Lock Door"];
+    [local addStep: @"Put glass in bathroom"];
+    [local addStep: @"Teeth"];
+    [local addStep: @"Floss"];
+    [local addStep: @"Leave good clothes in bathroom"];
+    [local addStep: @"otherclothes in washing machine"];
+    [local addStep: @"Get tomorrow's clothes from bedroom"];
+    [local addStep: @"Keys in bag"];
+    [local addStep: @"Wallet has two bank cards"];
+    [local addStep: @"Phone on charge"];
+    [local addStep: @"Food in bag"];
+    [local addStep: @"Bike lights"];
+    [local addStep: @"Pens and notebook in bag"];
+    [local addStep: @"Spare battery"];
+    [local addStep: @"Other battery on charge"];
+    [local addStep: @"MacBook charger"];
+    [local addStep: @"folding plug"];
+    [local addStep: @"Seal bag"];
+    [local addStep: @"Setup tea and water bottles"];
+    [local addStep: @"Sleep mask on head"];
+    [local addStep: @"Lights out"];
+    [local addStep: @"watch on charge"];
+    return local;
+
 }
 
 
@@ -91,16 +112,28 @@ bool firsttime=TRUE;
     int pickerValue=[context integerValue];
     self.mylabel.text=[NSString stringWithFormat:@"%d",pickerValue];
     // Configureinterface objects here.
+    root = [self morning];
     if (pickerValue==0){
-        [self morning];
+        root = [self morning];
     }
     if (pickerValue==1){
-        [self night];
+        root = [self night];
+    }
+    if (pickerValue==2){
+        root = [self enterCoffeeShop];
     }
     
     [self startCountdown];
     
     self.mylabel.text=[algorithmtree objectAtIndex:algorithmtree.count-1];
+    
+    
+    ///Sandbox
+    
+    
+    currentNode=root;
+    self.mylabel.text=currentNode.message;
+    
 }
 
 - (void)willActivate {
@@ -120,6 +153,17 @@ bool firsttime=TRUE;
     [super didDeactivate];
 }
 - (IBAction)Done {
+    currentNode=currentNode.child;
+    
+    if (currentNode==NULL){
+        self.mylabel.text=@"done";
+    }else{
+        self.mylabel.text=currentNode.message;
+        [self startCountdown];
+    }
+}
+
+- (IBAction)Doneold {
     
     //TODO: if algoirthmtree is empty then display finnished.
     if(algorithmtree.count==0)
@@ -127,14 +171,14 @@ bool firsttime=TRUE;
         self.mylabel.text=@"done";
         
     }else{
-    self.mylabel.text=[algorithmtree objectAtIndex:algorithmtree.count-1];
-    [algorithmtree removeLastObject];
-    [_joetimer stop];
-    _targetTime = [NSDate dateWithTimeInterval:300 sinceDate:[NSDate date]];
-    
-    [self.joetimer setDate:_targetTime];
-    
-    [_joetimer start];
+        self.mylabel.text=[algorithmtree objectAtIndex:algorithmtree.count-1];
+        [algorithmtree removeLastObject];
+        [_joetimer stop];
+        _targetTime = [NSDate dateWithTimeInterval:300 sinceDate:[NSDate date]];
+        
+        [self.joetimer setDate:_targetTime];
+        
+        [_joetimer start];
     }
 }
 

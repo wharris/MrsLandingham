@@ -31,7 +31,7 @@ NSInteger pickerValue =0;
     [pickerItem2 setAccessoryImage:[WKImage imageWithImageName:@"Smile"]];
     
     WKPickerItem *pickerItem3 = [WKPickerItem alloc];
-    [pickerItem3 setTitle:@"Setup Doghouse"];
+    [pickerItem3 setTitle:@"Coffee Shop"];
     [pickerItem3 setAccessoryImage:[WKImage imageWithImageName:@"Smile"]];
     
     NSArray * pickerItems = [[NSArray alloc] initWithObjects:pickerItem1, pickerItem2, pickerItem3, nil];
