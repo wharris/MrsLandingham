@@ -15,7 +15,7 @@
 
 @implementation ViewController
 
-
+NSString *counterValue;
 
 WCSession *session;
 
@@ -27,6 +27,7 @@ WCSession *session;
         session.delegate = self;
         [session activateSession];
     }
+    counterValue=@"start";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,13 +36,19 @@ WCSession *session;
 }
 
 
-
 - (void)session:(nonnull WCSession *)session didReceiveMessage:(nonnull NSDictionary *)message replyHandler:(nonnull void (^)(NSDictionary * __nonnull))replyHandler {
     NSLog(@"Getting");
 
-    NSString *counterValue = [message objectForKey:@"counterValue"];
+    counterValue = [message objectForKey:@"counterValue"];
     self.display.text
     =counterValue;
 }
+
+- (IBAction)clipboardcopying:(id)sender {
+    [UIPasteboard generalPasteboard].string = counterValue;
+    
+}
+
+
 
 @end

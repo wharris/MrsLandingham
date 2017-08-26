@@ -144,6 +144,7 @@ LogController * logger;
     }
     
     [self startCountdown];
+    
     logger=[[LogController alloc] init];
 
     
@@ -176,6 +177,11 @@ LogController * logger;
     [super didDeactivate];
 }
 - (void)activateCurrentNode {
+    NSDate *currentDate = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"\n\n###### 20YY-MM-dd HH:mm\n"];
+    NSString *dateString = [dateFormatter stringFromDate:currentDate];
+    [logger writeLogWith: dateString];
     [logger writeLogWith: currentNode.message];
     if([currentNode isKindOfClass:[QuestionNode class]])
     {
@@ -235,8 +241,8 @@ LogController * logger;
 }
 - (IBAction)Problem {
     NSLog(@"Sending");
-    NSLog([logger getLog ]);
-    NSString *counterString = @"maybe now";
+    NSLog([logger getLog]);
+    NSString *counterString = [logger getLog ];
     NSDictionary *applicationData = [[NSDictionary alloc] initWithObjects:@[counterString] forKeys:@[@"counterValue"]];
     
     [[WCSession defaultSession] sendMessage:applicationData

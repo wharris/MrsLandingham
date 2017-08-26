@@ -12,7 +12,8 @@
 //Everything here is from: https://stackoverflow.com/questions/11057510/creating-a-log-file-in-an-ios-app
 
 - (void) writeLogWith: (NSString *) content {
-
+     
+    
     NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *filePath = [[documentsDirectory stringByAppendingPathComponent:@"whathappenedwhen"] stringByAppendingPathExtension:@"md"];
     
