@@ -16,25 +16,25 @@
     NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *filePath = [[documentsDirectory stringByAppendingPathComponent:@"whathappenedwhen"] stringByAppendingPathExtension:@"md"];
     
-    if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+    if(![[NSFileManager defaultManager] fileExistsAtPath:filePath])
         [[NSFileManager defaultManager] createFileAtPath:filePath contents:nil attributes:nil];
-    }
     
+    //append text to file (you'll probably want to add a newline every write)
+    NSFileHandle *file = [NSFileHandle fileHandleForUpdatingAtPath:filePath];
+    [file seekToEndOfFile];
+    [file writeData:[content dataUsingEncoding:NSUTF8StringEncoding]];
+    [file closeFile];
     
-    NSError *error;
-    [content writeToFile:filePath atomically:false encoding:NSUTF8StringEncoding error:&error];
-    
-    if (error) {
-        NSLog(@"There was an error writing file\n%@", error.localizedDescription);
-    }
-    
-    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
-        NSLog(@"File exists :)");
-    }
-    else {
-        NSLog(@"File does not exist :(");
-    }
     return;
+}
+
+- (NSString *) getLog{
+    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *fileName = [documentsDirectory stringByAppendingPathComponent:@"whathappenedwhen.md"];
+    
+    //read the whole file as a single string
+    return [NSString stringWithContentsOfFile:fileName encoding:NSUTF8StringEncoding error:nil];
+    
 }
 
 

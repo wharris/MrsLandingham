@@ -11,6 +11,7 @@
 @interface LogController : NSObject
 
 - (void) writeLogWith: (NSString *) content;
+- (NSString *) getLog;
 
 
 @end

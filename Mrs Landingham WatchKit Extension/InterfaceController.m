@@ -235,7 +235,8 @@ LogController * logger;
 }
 - (IBAction)Problem {
     NSLog(@"Sending");
-    NSString *counterString = @"Can you here me?";
+    NSLog([logger getLog ]);
+    NSString *counterString = @"maybe now";
     NSDictionary *applicationData = [[NSDictionary alloc] initWithObjects:@[counterString] forKeys:@[@"counterValue"]];
     
     [[WCSession defaultSession] sendMessage:applicationData
