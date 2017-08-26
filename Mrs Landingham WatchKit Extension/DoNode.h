@@ -10,7 +10,6 @@
 
 @interface DoNode : WorkNode
 
-@property WorkNode *child;
 - (void)addStep:(NSString*) step;
 - (id) initWithStep: (NSString* ) payload;
 

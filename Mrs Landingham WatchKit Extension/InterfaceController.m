@@ -10,25 +10,28 @@
 #import "WorkNode.h"
 #import "DoNode.h"
 #import "QuestionNode.h"
+#import "LogController.h"
+#import "WatchConnectivity/WatchConnectivity.h"
+
 @interface InterfaceController ()
 
 @end
+
+
+@implementation InterfaceController
 
 int x = 0;
 NSMutableArray * algorithmtree;
 bool firsttime=TRUE;
 WorkNode * root;
 WorkNode * currentNode;
+LogController * logger;
 
-@implementation InterfaceController
-
-
-- (void) do: (NSString *) task {
-    [algorithmtree insertObject:task atIndex:0];
-}
 
 - (WorkNode *)morning {
-    DoNode *local=[[DoNode alloc] initWithStep:@"Bathroom"];
+    DoNode *local=[[DoNode alloc] initWithStep:@"Pick one of streaching, meditation, or chinups"];
+    [local addStep: @"Kitchen: Start Kettle boiling"];
+    [local addStep: @"Bathroom" ];
     [local addStep: @"Bath: Drink 1L Water" ];
     [local addStep: @"Bath: Shower"];
     [local addStep: @"Bath: Dress"];
@@ -39,17 +42,31 @@ WorkNode * currentNode;
     [local addStep: @"Kitc: clothes in wash"];
     [local addStep: @"Kitc:Vitimin Tablet"];
     [local addStep: @"Kitc:Make Tea (get washing)"];
-    [local addStep: @"Kitc:Push Wash on"];
-    [local addStep: @"Kitc:Set Alarm for end of wash"];
+   // [local addStep: @"Kitc:Push Wash on"];
+   // [local addStep: @"Kitc:Set Alarm for end of wash"];
     [local addStep: @"Kitc:Food prep"];
-    QuestionNode *testQ=[[QuestionNode alloc] initWithQuestion: @"has this worked" yesChild: NULL noChild:NULL];
-    [local addNode:testQ];
-    [local addStep: @"now?"];
+    DoNode *yesNode=[[DoNode alloc] initWithStep:@"Go to Doghouse"];
+    DoNode *noNode=[[DoNode alloc] initWithStep:@"Then fix it"];
+    QuestionNode *testQ=[[QuestionNode alloc] initWithQuestion: @"Is this a work day?" yesChild: noNode noChild:yesNode];
     
-
     NSLog(@"We have populated the algorithm tree");
     return local;
 }
+
+
+
+- (WorkNode *)questionTest {
+    DoNode *local=[[DoNode alloc] initWithStep:@"Bathroom"];
+    DoNode *yesNode=[[DoNode alloc] initWithStep:@"Then Celebrate"];
+    DoNode *noNode=[[DoNode alloc] initWithStep:@"Then fix it"];
+    QuestionNode *testQ=[[QuestionNode alloc] initWithQuestion: @"has this worked?" yesChild: noNode noChild:yesNode];
+    [local addNode:testQ];
+    [noNode addNode: [self morning]];
+    NSLog(@"We have populated the algorithm tree");
+    return local;
+}
+
+
 
 - (WorkNode *) enterCoffeeShop{
     DoNode *local=[[DoNode alloc] initWithStep:@"Smile"];
@@ -70,7 +87,7 @@ WorkNode * currentNode;
     [local addStep: @"Headphones on charge"];
     [local addStep: @"Night Glasses On"];
     [local addStep: @"Lock Door"];
-    [local addStep: @"Put glass in bathroom"];
+    [local addStep: @"Put glass in bathroom (and drink it)"];
     [local addStep: @"Teeth"];
     [local addStep: @"Floss"];
     [local addStep: @"Leave good clothes in bathroom"];
@@ -92,22 +109,22 @@ WorkNode * currentNode;
     [local addStep: @"Lights out"];
     [local addStep: @"watch on charge"];
     return local;
-
+    
 }
 
 
 
 - (void)startCountdown {
-  _targetTime = [NSDate dateWithTimeInterval:300 sinceDate:[NSDate date]];
+    _targetTime = [NSDate dateWithTimeInterval:300 sinceDate:[NSDate date]];
     [self.joetimer setDate:_targetTime];
     [_joetimer start];
 }
 
 - (void)awakeWithContext:(id)context {
-    
+    NSLog(@"enter 'wake with context''");
     [super awakeWithContext:context];
     self.mylabel.text =@"98";
-  
+    
     [algorithmtree removeLastObject];
     int pickerValue=[context integerValue];
     self.mylabel.text=[NSString stringWithFormat:@"%d",pickerValue];
@@ -122,26 +139,32 @@ WorkNode * currentNode;
     if (pickerValue==2){
         root = [self enterCoffeeShop];
     }
+    if (pickerValue==3){
+        root = [self questionTest];
+    }
     
     [self startCountdown];
-    
-    self.mylabel.text=[algorithmtree objectAtIndex:algorithmtree.count-1];
-    
-    
-    ///Sandbox
-    
+    logger=[[LogController alloc] init];
+
     
     currentNode=root;
-    self.mylabel.text=currentNode.message;
+    //    self.mylabel.text=currentNode.message;
     
 }
 
 - (void)willActivate {
     // This method is called when watch view controller is about to be visible to user
     [super willActivate];
-    NSLog(@"it Visible have worked");
-   
+    NSLog(@"enter 'I will activate'");
+    [self activateCurrentNode];
+    NSLog(@"leave 'i will activate'");
+    if ([WCSession isSupported]) {
+        WCSession *session = [WCSession defaultSession];
+        session.delegate = self;
+        [session activateSession];
+    }
     
+
 }
 
 
@@ -152,14 +175,40 @@ WorkNode * currentNode;
     // This method is called when watch view controller is no longer visible
     [super didDeactivate];
 }
+- (void)activateCurrentNode {
+    [logger writeLogWith: currentNode.message];
+    if([currentNode isKindOfClass:[QuestionNode class]])
+    {
+        NSLog(@"It's a Question");
+        QuestionNode * qn=(QuestionNode *)currentNode;
+        if (qn.result==-1){//because it hasn't been asnswered{
+            
+            [self pushControllerWithName: @"QuestionController"  context: currentNode];
+        }else if (qn.result==0){//no
+            NSLog(@"Taken NO branch");
+
+            currentNode=qn.elseChild;
+            [self activateCurrentNode];
+        }else {//yes
+            currentNode=qn.child;
+            [self activateCurrentNode];
+        }
+    }
+    else{
+        NSLog(@"It's a do");
+        self.mylabel.text=currentNode.message;
+        [self startCountdown];
+    }
+   
+}
+
 - (IBAction)Done {
     currentNode=currentNode.child;
-    
     if (currentNode==NULL){
         self.mylabel.text=@"done";
     }else{
-        self.mylabel.text=currentNode.message;
-        [self startCountdown];
+        [self activateCurrentNode];
+        
     }
 }
 
@@ -185,6 +234,20 @@ WorkNode * currentNode;
 - (IBAction)Expand {
 }
 - (IBAction)Problem {
+    NSLog(@"Sending");
+    NSString *counterString = @"Can you here me?";
+    NSDictionary *applicationData = [[NSDictionary alloc] initWithObjects:@[counterString] forKeys:@[@"counterValue"]];
+    
+    [[WCSession defaultSession] sendMessage:applicationData
+                               replyHandler:^(NSDictionary *reply) {
+                                   //handle reply from iPhone app here
+                               }
+                               errorHandler:^(NSError *error) {
+                                   //catch any errors here
+                               }
+     ];
+    NSLog(@"Sent");
+
 }
 
 

@@ -33,8 +33,13 @@ NSInteger pickerValue =0;
     WKPickerItem *pickerItem3 = [WKPickerItem alloc];
     [pickerItem3 setTitle:@"Coffee Shop"];
     [pickerItem3 setAccessoryImage:[WKImage imageWithImageName:@"Smile"]];
+   
+    WKPickerItem *pickerItem4 = [WKPickerItem alloc];
+    [pickerItem4 setTitle:@"Question Test"];
+    [pickerItem4 setAccessoryImage:[WKImage imageWithImageName:@"Smile"]];
     
-    NSArray * pickerItems = [[NSArray alloc] initWithObjects:pickerItem1, pickerItem2, pickerItem3, nil];
+    
+    NSArray * pickerItems = [[NSArray alloc] initWithObjects:pickerItem1, pickerItem2, pickerItem3, pickerItem4, nil];
     [self.picker setItems:pickerItems];
     
 }

@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		70650B931F4E043800AFEC26 /* LogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70650B921F4E043800AFEC26 /* LogController.m */; };
 		709BDDAC1F4636750016CAFB /* WorkNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 709BDDAB1F4636750016CAFB /* WorkNode.m */; };
 		709BDDAF1F4639C10016CAFB /* DoNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 709BDDAE1F4639C10016CAFB /* DoNode.m */; };
 		709BDDB21F4641A90016CAFB /* QuestionNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 709BDDB11F4641A90016CAFB /* QuestionNode.m */; };
+		709BDDB51F46BF030016CAFB /* QuestionInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 709BDDB41F46BF030016CAFB /* QuestionInterfaceController.m */; };
 		70A321731F43207100989D7E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A321721F43207100989D7E /* main.m */; };
 		70A321761F43207100989D7E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A321751F43207100989D7E /* AppDelegate.m */; };
 		70A321791F43207100989D7E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A321781F43207100989D7E /* ViewController.m */; };
@@ -86,12 +88,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		70650B911F4E043800AFEC26 /* LogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogController.h; sourceTree = "<group>"; };
+		70650B921F4E043800AFEC26 /* LogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogController.m; sourceTree = "<group>"; };
 		709BDDAA1F4636750016CAFB /* WorkNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkNode.h; sourceTree = "<group>"; };
 		709BDDAB1F4636750016CAFB /* WorkNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkNode.m; sourceTree = "<group>"; };
 		709BDDAD1F4639C10016CAFB /* DoNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoNode.h; sourceTree = "<group>"; };
 		709BDDAE1F4639C10016CAFB /* DoNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoNode.m; sourceTree = "<group>"; };
 		709BDDB01F4641A90016CAFB /* QuestionNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionNode.h; sourceTree = "<group>"; };
 		709BDDB11F4641A90016CAFB /* QuestionNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionNode.m; sourceTree = "<group>"; };
+		709BDDB31F46BF030016CAFB /* QuestionInterfaceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionInterfaceController.h; sourceTree = "<group>"; };
+		709BDDB41F46BF030016CAFB /* QuestionInterfaceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionInterfaceController.m; sourceTree = "<group>"; };
 		70A3216E1F43207100989D7E /* Mrs Landingham.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mrs Landingham.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70A321721F43207100989D7E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		70A321741F43207100989D7E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -247,6 +253,10 @@
 				70A321BC1F43207200989D7E /* Info.plist */,
 				70A321AF1F43207200989D7E /* Supporting Files */,
 				70E76D401F44E4370015BC71 /* PickerController.h */,
+				709BDDB31F46BF030016CAFB /* QuestionInterfaceController.h */,
+				70650B911F4E043800AFEC26 /* LogController.h */,
+				70650B921F4E043800AFEC26 /* LogController.m */,
+				709BDDB41F46BF030016CAFB /* QuestionInterfaceController.m */,
 				70E76D411F44E4380015BC71 /* PickerController.m */,
 				709BDDAA1F4636750016CAFB /* WorkNode.h */,
 				709BDDAD1F4639C10016CAFB /* DoNode.h */,
@@ -496,8 +506,10 @@
 				70A321B61F43207200989D7E /* ExtensionDelegate.m in Sources */,
 				70A321B31F43207200989D7E /* InterfaceController.m in Sources */,
 				70A321B91F43207200989D7E /* NotificationController.m in Sources */,
+				70650B931F4E043800AFEC26 /* LogController.m in Sources */,
 				70E76D421F44E4380015BC71 /* PickerController.m in Sources */,
 				709BDDAF1F4639C10016CAFB /* DoNode.m in Sources */,
+				709BDDB51F46BF030016CAFB /* QuestionInterfaceController.m in Sources */,
 				709BDDB21F4641A90016CAFB /* QuestionNode.m in Sources */,
 				709BDDAC1F4636750016CAFB /* WorkNode.m in Sources */,
 			);

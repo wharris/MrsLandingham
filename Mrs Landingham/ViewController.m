@@ -6,7 +6,9 @@
 //  Copyright © 2017 Joseph Reddington. All rights reserved.
 //
 
+
 #import "ViewController.h"
+#import "WatchConnectivity/WatchConnectivity.h"
 @interface ViewController ()
 
 @end
@@ -14,22 +16,17 @@
 @implementation ViewController
 
 
-NSMutableArray * algorithmtree;
 
+WCSession *session;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self populateAlgorithm];
-  
-}
-
-- (void) populateAlgorithm{
-    algorithmtree = [[NSMutableArray alloc] init];
-    [algorithmtree addObject:@"Bathroom"];
-    [algorithmtree addObject:@"Imediate Water"];
-    [algorithmtree addObject:@"Make Tea (get washing)"];
-    [algorithmtree addObject:@"Vitimin Tablet"];
-    
+   self.display.text = @"Hope";
+    if ([WCSession isSupported]) {
+        session = [WCSession defaultSession];
+        session.delegate = self;
+        [session activateSession];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,16 +35,13 @@ NSMutableArray * algorithmtree;
 }
 
 
-- (IBAction)done:(id)sender {
-    self.Task.text=[algorithmtree objectAtIndex:algorithmtree.count-1];
-    [algorithmtree removeLastObject];
-    
-}
-- (IBAction)expand:(id)sender {
-}
-- (IBAction)Problem:(id)sender {
-}
 
+- (void)session:(nonnull WCSession *)session didReceiveMessage:(nonnull NSDictionary *)message replyHandler:(nonnull void (^)(NSDictionary * __nonnull))replyHandler {
+    NSLog(@"Getting");
 
+    NSString *counterValue = [message objectForKey:@"counterValue"];
+    self.display.text
+    =counterValue;
+}
 
 @end

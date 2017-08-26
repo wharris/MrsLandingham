@@ -11,10 +11,12 @@
 @implementation QuestionNode
 
 
-- (id) initWithQuestion: (NSString* ) payload  yesChild:(WorkNode *) child noChild:(WorkNode *) elseChild {
+
+- (id) initWithQuestion: (NSString* ) payload  yesChild:(WorkNode *) child noChild:(WorkNode *) noChild {
     self.message=payload;
     self.child=child;
-    self.elseChild= _elseChild;
+    self.elseChild= noChild;
+    self.result=-1;
     return self;
 }
 

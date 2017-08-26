@@ -30,7 +30,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="82" y="17"/>
+            <point key="canvasLocation" x="-25" y="368"/>
         </scene>
         <!--doing-->
         <scene sceneID="aou-V4-d1y">
@@ -65,7 +65,36 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="231" y="358"/>
+            <point key="canvasLocation" x="231" y="368"/>
+        </scene>
+        <!--QuestionController-->
+        <scene sceneID="Eet-ER-Ibl">
+            <objects>
+                <controller identifier="QuestionController" id="Zs0-Bs-apw" customClass="QuestionInterfaceController">
+                    <items>
+                        <label width="132" height="62" alignment="left" text="Label" textAlignment="center" id="TvW-1p-Zgm"/>
+                        <timer alignment="center" format="abbreviated" previewedSeconds="299" id="5ml-Hh-hUZ"/>
+                        <group width="134" height="52" alignment="left" id="JVZ-1e-25S">
+                            <items>
+                                <button width="65" alignment="left" title="Yes" id="Lgb-Ey-ChX">
+                                    <connections>
+                                        <action selector="yesPress" destination="Zs0-Bs-apw" id="PdT-T7-wGh"/>
+                                    </connections>
+                                </button>
+                                <button width="68" alignment="left" title="No" id="vtX-bW-RNk">
+                                    <connections>
+                                        <action selector="noPress" destination="Zs0-Bs-apw" id="gkm-lt-3Ze"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="questionstring" destination="TvW-1p-Zgm" id="b66-5E-KXu"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="460" y="368"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
@@ -81,14 +110,14 @@
                     </connections>
                 </notificationController>
             </objects>
-            <point key="canvasLocation" x="220" y="643"/>
+            <point key="canvasLocation" x="-25" y="645"/>
         </scene>
         <!--Notification Controller-->
         <scene sceneID="ZPc-GJ-vnh">
             <objects>
                 <controller id="4sK-HA-Art" customClass="NotificationController"/>
             </objects>
-            <point key="canvasLocation" x="468" y="643"/>
+            <point key="canvasLocation" x="231" y="645"/>
         </scene>
     </scenes>
 </document>

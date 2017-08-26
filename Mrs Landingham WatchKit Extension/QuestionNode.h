@@ -12,6 +12,7 @@
 
 @property WorkNode *child;
 @property WorkNode *elseChild;
+@property int result;
 - (id) initWithQuestion: (NSString* ) payload  yesChild:(WorkNode *) child noChild:(WorkNode *) elseChild;
 
 
