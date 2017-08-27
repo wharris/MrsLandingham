@@ -117,6 +117,7 @@ FlowModel * model;
             currentNode=qn.child;
             [self activateCurrentNode];
         }
+        qn.result=-1; //reseting because there are loops.
     }
     else{
         NSLog(@"It's a do");
