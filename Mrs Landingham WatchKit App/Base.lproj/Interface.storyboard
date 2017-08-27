@@ -72,7 +72,7 @@
             <objects>
                 <controller identifier="QuestionController" id="Zs0-Bs-apw" customClass="QuestionInterfaceController">
                     <items>
-                        <label width="132" height="62" alignment="left" text="Label" textAlignment="center" id="TvW-1p-Zgm"/>
+                        <label width="132" height="62" alignment="left" text="Label" textAlignment="center" numberOfLines="0" id="TvW-1p-Zgm"/>
                         <timer alignment="center" format="abbreviated" previewedSeconds="299" id="5ml-Hh-hUZ"/>
                         <group width="134" height="52" alignment="left" id="JVZ-1e-25S">
                             <items>
