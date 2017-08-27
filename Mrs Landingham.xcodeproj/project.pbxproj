@@ -28,6 +28,7 @@
 		70A321B61F43207200989D7E /* ExtensionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A321B51F43207200989D7E /* ExtensionDelegate.m */; };
 		70A321B91F43207200989D7E /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A321B81F43207200989D7E /* NotificationController.m */; };
 		70A321BB1F43207200989D7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70A321BA1F43207200989D7E /* Assets.xcassets */; };
+		70A39A4A1F52A8FB00AB1AED /* FlowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A39A491F52A8FB00AB1AED /* FlowModel.m */; };
 		70E76D421F44E4380015BC71 /* PickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70E76D411F44E4380015BC71 /* PickerController.m */; };
 /* End PBXBuildFile section */
 
@@ -128,6 +129,8 @@
 		70A321B81F43207200989D7E /* NotificationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationController.m; sourceTree = "<group>"; };
 		70A321BA1F43207200989D7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		70A321BC1F43207200989D7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70A39A481F52A8FB00AB1AED /* FlowModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlowModel.h; sourceTree = "<group>"; };
+		70A39A491F52A8FB00AB1AED /* FlowModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlowModel.m; sourceTree = "<group>"; };
 		70E76D401F44E4370015BC71 /* PickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerController.h; sourceTree = "<group>"; };
 		70E76D411F44E4380015BC71 /* PickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -258,6 +261,8 @@
 				70650B921F4E043800AFEC26 /* LogController.m */,
 				709BDDB41F46BF030016CAFB /* QuestionInterfaceController.m */,
 				70E76D411F44E4380015BC71 /* PickerController.m */,
+				70A39A481F52A8FB00AB1AED /* FlowModel.h */,
+				70A39A491F52A8FB00AB1AED /* FlowModel.m */,
 				709BDDAA1F4636750016CAFB /* WorkNode.h */,
 				709BDDAD1F4639C10016CAFB /* DoNode.h */,
 				709BDDAE1F4639C10016CAFB /* DoNode.m */,
@@ -504,6 +509,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70A321B61F43207200989D7E /* ExtensionDelegate.m in Sources */,
+				70A39A4A1F52A8FB00AB1AED /* FlowModel.m in Sources */,
 				70A321B31F43207200989D7E /* InterfaceController.m in Sources */,
 				70A321B91F43207200989D7E /* NotificationController.m in Sources */,
 				70650B931F4E043800AFEC26 /* LogController.m in Sources */,
