@@ -28,6 +28,27 @@
     return local;
 }
 
+- (WorkNode *)plan_day {
+     DoNode *local=[[DoNode alloc] initWithStep:@"Open Calendar"];
+    
+    DoNode *yesNode=[[DoNode alloc] initWithStep:@"Change to Skype"];
+    [yesNode addStep: @"Change to Skype"];
+    [yesNode addStep: @"Think of a way to make it awesome"];
+    [yesNode addStep: @"Add any tasks about appointment"];
+    [yesNode addStep: @"Set Alarm for travel"];
+    
+    DoNode *noNode=[[DoNode alloc] initWithStep:@"Set Alarm for exercise"];
+    [noNode addStep: @"Set Alarm for email"];
+    [noNode addStep: @"Set Alarm for food"];
+    
+    
+    QuestionNode *start=[[QuestionNode alloc] initWithQuestion: @"Are there any unprocessed apointments?" yesChild: yesNode noChild:noNode];
+    [yesNode addNode: start];
+   
+    [local addNode:start];
+    return local;
+}
+
 
 
 - (WorkNode *)morning {
@@ -50,6 +71,8 @@
     
     return local;
 }
+
+
 
 
 - (WorkNode *)questionTest {

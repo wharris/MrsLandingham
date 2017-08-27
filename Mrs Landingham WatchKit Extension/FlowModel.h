@@ -15,6 +15,7 @@
 - (WorkNode *) morning;
 - (WorkNode *) questionTest;
 - (WorkNode *) enterCoffeeShop;
+- (WorkNode *) plan_day;
 - (WorkNode *) night;
 
 @end

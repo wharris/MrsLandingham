@@ -37,6 +37,10 @@ NSInteger pickerValue =0;
     WKPickerItem *pickerItem4 = [WKPickerItem alloc];
     [pickerItem4 setTitle:@"Question Test"];
     [pickerItem4 setAccessoryImage:[WKImage imageWithImageName:@"Smile"]];
+  
+    WKPickerItem *pickerItem5 = [WKPickerItem alloc];
+    [pickerItem4 setTitle:@"Plan Day"];
+    [pickerItem4 setAccessoryImage:[WKImage imageWithImageName:@"Smile"]];
     
     
     NSArray * pickerItems = [[NSArray alloc] initWithObjects:pickerItem1, pickerItem2, pickerItem3, pickerItem4, nil];

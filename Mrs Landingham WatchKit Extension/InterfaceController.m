@@ -60,6 +60,10 @@ FlowModel * model;
     if (pickerValue==3){
         root = [model questionTest];
     }
+    if (pickerValue==3){
+        root = [model plan_day];
+        
+    }
     
     [self startCountdown];
     
