@@ -23,7 +23,6 @@
 @implementation InterfaceController
 
 int x = 0;
-NSMutableArray * algorithmtree;
 bool firsttime=TRUE;
 WorkNode * root;
 WorkNode * currentNode;
@@ -42,7 +41,7 @@ FlowModel * model;
     [super awakeWithContext:context];
     self.mylabel.text =@"98";
     
-    [algorithmtree removeLastObject];
+
     int pickerValue=[context integerValue];
     self.mylabel.text=[NSString stringWithFormat:@"%d",pickerValue];
     // Configureinterface objects here.
@@ -141,24 +140,6 @@ FlowModel * model;
     }
 }
 
-- (IBAction)Doneold {
-    
-    //TODO: if algoirthmtree is empty then display finnished.
-    if(algorithmtree.count==0)
-    {
-        self.mylabel.text=@"done";
-        
-    }else{
-        self.mylabel.text=[algorithmtree objectAtIndex:algorithmtree.count-1];
-        [algorithmtree removeLastObject];
-        [_joetimer stop];
-        _targetTime = [NSDate dateWithTimeInterval:300 sinceDate:[NSDate date]];
-        
-        [self.joetimer setDate:_targetTime];
-        
-        [_joetimer start];
-    }
-}
 
 - (IBAction)Expand {
     NSLog(@"hello");
