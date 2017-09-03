@@ -47,33 +47,9 @@ FlowModel * model;
 
 - (IBAction)picked {
     
-    
-    WorkNode * root = [model morning];
-    if (pickerValue==0){
-        root = [model morning];
-    }
-    if (pickerValue==1){
-        root = [model night];
-    }
-    if (pickerValue==2){
-        root = [model enterCoffeeShop];
-    }
-    if (pickerValue==3){
-        root = [model questionTest];
-    }
-    if (pickerValue==4){
-        root = [model plan_day];
-    }
     NSLog(@"Before push = %d", pickerValue);
-    NSNumber *valuePointer = [NSNumber numberWithInteger:pickerValue];
-    
-    int checkValue=[valuePointer integerValue];
-    NSLog(@"Check Value = %d", checkValue);
-    
+    WorkNode * root = [workNodeItems objectAtIndex: pickerValue];
     [self pushControllerWithName: @"doing"  context: root];
-    
-    
-    
     
 }
 
