@@ -7,6 +7,11 @@
 //
 
 #import "PickerController.h"
+#import "FlowModel.h"
+
+
+
+
 
 @interface PickerController ()
 
@@ -16,6 +21,8 @@
 
 NSArray * pickerItems;
 NSInteger pickerValue =0;
+FlowModel * model;
+
 
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
@@ -50,13 +57,35 @@ NSInteger pickerValue =0;
 
 - (IBAction)picked {
     
+    model=[[FlowModel alloc] init];
+    WorkNode * root = [model morning];
+    if (pickerValue==0){
+        root = [model morning];
+    }
+    if (pickerValue==1){
+        root = [model night];
+    }
+    if (pickerValue==2){
+        root = [model enterCoffeeShop];
+    }
+    if (pickerValue==3){
+        root = [model questionTest];
+    }
+    if (pickerValue==3){
+        root = [model plan_day];
+        
+    }
     NSLog(@"Before push = %d", pickerValue);
     NSNumber *valuePointer = [NSNumber numberWithInteger:pickerValue];
 
     int checkValue=[valuePointer integerValue];
     NSLog(@"Check Value = %d", checkValue);
     
-    [self pushControllerWithName: @"doing"  context: valuePointer];
+    [self pushControllerWithName: @"doing"  context: root];
+    
+    
+    
+    
 }
 
 - (void)willActivate {

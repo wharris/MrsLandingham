@@ -12,8 +12,6 @@
 #import "QuestionNode.h"
 #import "LogController.h"
 #import "WatchConnectivity/WatchConnectivity.h"
-#import "FlowModel.h"
-
 
 @interface InterfaceController ()
 
@@ -27,8 +25,6 @@ bool firsttime=TRUE;
 WorkNode * root;
 WorkNode * currentNode;
 LogController * logger;
-FlowModel * model;
-
 
 - (void)startCountdown {
     _targetTime = [NSDate dateWithTimeInterval:300 sinceDate:[NSDate date]];
@@ -41,28 +37,8 @@ FlowModel * model;
     [super awakeWithContext:context];
     self.mylabel.text =@"98";
     
-
-    int pickerValue=[context integerValue];
-    self.mylabel.text=[NSString stringWithFormat:@"%d",pickerValue];
     // Configureinterface objects here.
-    model=[[FlowModel alloc] init];
-    root = [model morning];
-    if (pickerValue==0){
-        root = [model morning];
-    }
-    if (pickerValue==1){
-        root = [model night];
-    }
-    if (pickerValue==2){
-        root = [model enterCoffeeShop];
-    }
-    if (pickerValue==3){
-        root = [model questionTest];
-    }
-    if (pickerValue==3){
-        root = [model plan_day];
-        
-    }
+    root=context;
     
     [self startCountdown];
     
