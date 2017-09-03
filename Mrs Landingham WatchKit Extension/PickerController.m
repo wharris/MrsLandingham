@@ -9,10 +9,6 @@
 #import "PickerController.h"
 #import "FlowModel.h"
 
-
-
-
-
 @interface PickerController ()
 
 @end
@@ -20,43 +16,38 @@
 @implementation PickerController
 
 NSMutableArray * pickerItems;
-NSMutableArray * WorkNodeItems;
+NSMutableArray * workNodeItems;
 NSInteger pickerValue =0;
 FlowModel * model;
 
-
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
-    
     // Configure interface objects here.
-    //  WKPickerItem *pickerItem1 = [self makeItemWith:@"Morning"];
-   //   WKPickerItem *pickerItem2 = [self makeItemWith:@"Night"];
-   //  WKPickerItem *pickerItem3 = [self makeItemWith:@"Coff Shop"];
-   // WKPickerItem *pickerItem4 = [self makeItemWith:@"Question Test"];
-   // WKPickerItem *pickerItem5 = [self makeItemWith:@"Plan Day"];
-    
     pickerItems = [[NSMutableArray alloc] init];
-    [pickerItems addObject: [self makeItemWith:@"Morning"] ];
-    [pickerItems addObject: [self makeItemWith:@"Night"] ];
-    [pickerItems addObject: [self makeItemWith:@"Coff Shop"] ];
-    [pickerItems addObject: [self makeItemWith:@"Question Test"] ];
-    [pickerItems addObject: [self makeItemWith:@"Plan Day"] ];
+    workNodeItems = [[NSMutableArray alloc] init];
+    model=[[FlowModel alloc] init];
     
- //   NSArray * pickerItems = [[NSArray alloc] initWithObjects:pickerItem1, pickerItem2, pickerItem3, pickerItem4, pickerItem5];
+    [self makeItemWith:@"Morning" startNode: [model morning] ];
+    [self makeItemWith:@"Night" startNode: [model night]] ;
+    [self makeItemWith:@"Coff Shop" startNode: [model enterCoffeeShop] ];
+    [self makeItemWith:@"Question Test" startNode: [model questionTest]];
+    [self makeItemWith:@"Plan Day"  startNode: [model plan_day]];
     [self.picker setItems:pickerItems];
-    
 }
 
-- (WKPickerItem *) makeItemWith: (NSString *) input{
+- (void) makeItemWith: (NSString *) input startNode: (WorkNode *) startNode {
     WKPickerItem *pickerItem4 = [WKPickerItem alloc];
     [pickerItem4 setTitle:input];
     [pickerItem4 setAccessoryImage:[WKImage imageWithImageName:@"Smile"]];
-    return pickerItem4;
+    [pickerItems addObject: pickerItem4 ];
+    [workNodeItems addObject: startNode];
+    
+    
 }
 
 - (IBAction)picked {
     
-    model=[[FlowModel alloc] init];
+    
     WorkNode * root = [model morning];
     if (pickerValue==0){
         root = [model morning];
@@ -75,7 +66,7 @@ FlowModel * model;
     }
     NSLog(@"Before push = %d", pickerValue);
     NSNumber *valuePointer = [NSNumber numberWithInteger:pickerValue];
-
+    
     int checkValue=[valuePointer integerValue];
     NSLog(@"Check Value = %d", checkValue);
     
@@ -96,8 +87,8 @@ FlowModel * model;
     [super didDeactivate];
 }
 - (IBAction)Pickertrickers:(NSInteger)value {
-      pickerValue=value;
-      NSLog(@"value = %d", value);
+    pickerValue=value;
+    NSLog(@"value = %d", value);
     
 }
 
