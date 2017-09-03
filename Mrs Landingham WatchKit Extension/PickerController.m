@@ -28,31 +28,22 @@ FlowModel * model;
     [super awakeWithContext:context];
     
     // Configure interface objects here.
+      WKPickerItem *pickerItem1 = [self makeItemWith:@"Morning"];
+      WKPickerItem *pickerItem2 = [self makeItemWith:@"Night"];
+     WKPickerItem *pickerItem3 = [self makeItemWith:@"Coff Shop"];
+    WKPickerItem *pickerItem4 = [self makeItemWith:@"Question Test"];
+    WKPickerItem *pickerItem5 = [self makeItemWith:@"Plan Day"];
     
-    WKPickerItem *pickerItem1 = [WKPickerItem alloc];
-    [pickerItem1 setTitle:@"Morning"];
-    [pickerItem1 setAccessoryImage:[WKImage imageWithImageName:@"Smile"]];
-    
-    WKPickerItem *pickerItem2 = [WKPickerItem alloc];
-    [pickerItem2 setTitle:@"Night"];
-    [pickerItem2 setAccessoryImage:[WKImage imageWithImageName:@"Smile"]];
-    
-    WKPickerItem *pickerItem3 = [WKPickerItem alloc];
-    [pickerItem3 setTitle:@"Coffee Shop"];
-    [pickerItem3 setAccessoryImage:[WKImage imageWithImageName:@"Smile"]];
-   
-    WKPickerItem *pickerItem4 = [WKPickerItem alloc];
-    [pickerItem4 setTitle:@"Question Test"];
-    [pickerItem4 setAccessoryImage:[WKImage imageWithImageName:@"Smile"]];
-  
-    WKPickerItem *pickerItem5 = [WKPickerItem alloc];
-    [pickerItem4 setTitle:@"Plan Day"];
-    [pickerItem4 setAccessoryImage:[WKImage imageWithImageName:@"Smile"]];
-    
-    
-    NSArray * pickerItems = [[NSArray alloc] initWithObjects:pickerItem1, pickerItem2, pickerItem3, pickerItem4, nil];
+    NSArray * pickerItems = [[NSArray alloc] initWithObjects:pickerItem1, pickerItem2, pickerItem3, pickerItem4, pickerItem5];
     [self.picker setItems:pickerItems];
     
+}
+
+- (WKPickerItem *) makeItemWith: (NSString *) input{
+    WKPickerItem *pickerItem4 = [WKPickerItem alloc];
+    [pickerItem4 setTitle:input];
+    [pickerItem4 setAccessoryImage:[WKImage imageWithImageName:@"Smile"]];
+    return pickerItem4;
 }
 
 - (IBAction)picked {
@@ -71,9 +62,8 @@ FlowModel * model;
     if (pickerValue==3){
         root = [model questionTest];
     }
-    if (pickerValue==3){
+    if (pickerValue==4){
         root = [model plan_day];
-        
     }
     NSLog(@"Before push = %d", pickerValue);
     NSNumber *valuePointer = [NSNumber numberWithInteger:pickerValue];
