@@ -19,7 +19,8 @@
 
 @implementation PickerController
 
-NSArray * pickerItems;
+NSMutableArray * pickerItems;
+NSMutableArray * WorkNodeItems;
 NSInteger pickerValue =0;
 FlowModel * model;
 
@@ -28,13 +29,20 @@ FlowModel * model;
     [super awakeWithContext:context];
     
     // Configure interface objects here.
-      WKPickerItem *pickerItem1 = [self makeItemWith:@"Morning"];
-      WKPickerItem *pickerItem2 = [self makeItemWith:@"Night"];
-     WKPickerItem *pickerItem3 = [self makeItemWith:@"Coff Shop"];
-    WKPickerItem *pickerItem4 = [self makeItemWith:@"Question Test"];
-    WKPickerItem *pickerItem5 = [self makeItemWith:@"Plan Day"];
+    //  WKPickerItem *pickerItem1 = [self makeItemWith:@"Morning"];
+   //   WKPickerItem *pickerItem2 = [self makeItemWith:@"Night"];
+   //  WKPickerItem *pickerItem3 = [self makeItemWith:@"Coff Shop"];
+   // WKPickerItem *pickerItem4 = [self makeItemWith:@"Question Test"];
+   // WKPickerItem *pickerItem5 = [self makeItemWith:@"Plan Day"];
     
-    NSArray * pickerItems = [[NSArray alloc] initWithObjects:pickerItem1, pickerItem2, pickerItem3, pickerItem4, pickerItem5];
+    pickerItems = [[NSMutableArray alloc] init];
+    [pickerItems addObject: [self makeItemWith:@"Morning"] ];
+    [pickerItems addObject: [self makeItemWith:@"Night"] ];
+    [pickerItems addObject: [self makeItemWith:@"Coff Shop"] ];
+    [pickerItems addObject: [self makeItemWith:@"Question Test"] ];
+    [pickerItems addObject: [self makeItemWith:@"Plan Day"] ];
+    
+ //   NSArray * pickerItems = [[NSArray alloc] initWithObjects:pickerItem1, pickerItem2, pickerItem3, pickerItem4, pickerItem5];
     [self.picker setItems:pickerItems];
     
 }
