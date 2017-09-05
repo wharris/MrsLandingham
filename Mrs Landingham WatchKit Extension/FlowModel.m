@@ -31,7 +31,8 @@ NSMutableArray * workNodeItems;
 - (void)make_problem_menu {
     pickerItems = [[NSMutableArray alloc] init];
     workNodeItems = [[NSMutableArray alloc] init];
-    [self makeItemWith:@"I feel resistence to doing it" startNode: [self morning] ];
+    [self makeItemWith:@"I feel resistence to doing it" startNode: [[DoNode alloc] initWithStep:@"Write down the smallest physical step on the notes file"] ];
+       [self makeItemWith:@"The algorithm is incomplete" startNode: [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham to cover this instance."] ];
     [self makeItemWith:@"The algorithm is incomplete" startNode: [self night]] ;
     [self makeItemWith:@"There are special circumstances outside the algorithm" startNode: [self enterCoffeeShop] ];
     [self makeItemWith:@"This task would be better done at the same time as another apointment" startNode: [self questionTest]];
