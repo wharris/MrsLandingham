@@ -15,60 +15,29 @@
 
 @implementation PickerController
 
-NSMutableArray * pickerItems;
-NSMutableArray * workNodeItems;
+
 NSInteger pickerValue =0;
 FlowModel * model;
-
-- (void)make_initial_menu {
-  [self makeItemWith:@"Morning" startNode: [model morning] ];
-    [self makeItemWith:@"Night" startNode: [model night]] ;
-    [self makeItemWith:@"Coff Shop" startNode: [model enterCoffeeShop] ];
-    [self makeItemWith:@"Question Test" startNode: [model questionTest]];
-    [self makeItemWith:@"Plan Day"  startNode: [model plan_day]];
-}
-
-
-- (void)make_problem_menu {
-    [self makeItemWith:@"It's hard" startNode: [model morning] ];
-    [self makeItemWith:@"I'm tired" startNode: [model night]] ;
-    [self makeItemWith:@"It's raining" startNode: [model enterCoffeeShop] ];
-    [self makeItemWith:@"Question Test" startNode: [model questionTest]];
-    [self makeItemWith:@"Plan Day"  startNode: [model plan_day]];
-}
-
 
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
     // Configure interface objects here.
-    pickerItems = [[NSMutableArray alloc] init];
-    workNodeItems = [[NSMutableArray alloc] init];
+    
     model=[[FlowModel alloc] init];
     if (context==nil){
-   [self make_initial_menu];
+   [model make_initial_menu];
     }else
     {
-        [self make_problem_menu];
+        [model make_problem_menu];
     }
     
-    [self make_initial_menu];
-    [self.picker setItems:pickerItems];
-}
-
-- (void) makeItemWith: (NSString *) input startNode: (WorkNode *) startNode {
-    WKPickerItem *pickerItem4 = [WKPickerItem alloc];
-    [pickerItem4 setTitle:input];
-    [pickerItem4 setAccessoryImage:[WKImage imageWithImageName:@"Smile"]];
-    [pickerItems addObject: pickerItem4 ];
-    [workNodeItems addObject: startNode];
-    
-    
+    [self.picker setItems: [model getPickerItems]];
 }
 
 - (IBAction)picked {
     
     NSLog(@"Before push = %d", pickerValue);
-    WorkNode * root = [workNodeItems objectAtIndex: pickerValue];
+    WorkNode * root = [model getWorkNodeAt: pickerValue];
     [self pushControllerWithName: @"doing"  context: root];
     
 }

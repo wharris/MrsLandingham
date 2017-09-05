@@ -17,5 +17,9 @@
 - (WorkNode *) enterCoffeeShop;
 - (WorkNode *) plan_day;
 - (WorkNode *) night;
+- (void)make_problem_menu;
+- (void)make_initial_menu;
+- (WorkNode *) getWorkNodeAt: (int) input;
+- (NSMutableArray*) getPickerItems;
 
 @end

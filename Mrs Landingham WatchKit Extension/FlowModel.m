@@ -10,8 +10,50 @@
 #import "WorkNode.h"
 #import "DoNode.h"
 #import "QuestionNode.h"
+#import "PickerController.h"
 
 @implementation FlowModel
+NSMutableArray * pickerItems;
+NSMutableArray * workNodeItems;
+
+
+- (void)make_initial_menu {
+    pickerItems = [[NSMutableArray alloc] init];
+    workNodeItems = [[NSMutableArray alloc] init];
+    [self makeItemWith:@"Morning" startNode: [self morning] ];
+    [self makeItemWith:@"Night" startNode: [self night]] ;
+    [self makeItemWith:@"Coff Shop" startNode: [self enterCoffeeShop] ];
+    [self makeItemWith:@"Question Test" startNode: [self questionTest]];
+    [self makeItemWith:@"Plan Day"  startNode: [self plan_day]];
+}
+
+
+- (void)make_problem_menu {
+    pickerItems = [[NSMutableArray alloc] init];
+    workNodeItems = [[NSMutableArray alloc] init];
+    [self makeItemWith:@"I feel resistence to doing it" startNode: [self morning] ];
+    [self makeItemWith:@"The algorithm is incomplete" startNode: [self night]] ;
+    [self makeItemWith:@"There are special circumstances outside the algorithm" startNode: [self enterCoffeeShop] ];
+    [self makeItemWith:@"This task would be better done at the same time as another apointment" startNode: [self questionTest]];
+    [self makeItemWith:@"Interuption"  startNode: [self plan_day]];
+    [self makeItemWith:@"This is a cron and I've run out of resource"  startNode: [self plan_day]];
+}
+
+
+
+- (void) makeItemWith: (NSString *) input startNode: (WorkNode *) startNode {
+    WKPickerItem *pickerItem4 = [WKPickerItem alloc];
+    [pickerItem4 setTitle:input];
+    [pickerItem4 setAccessoryImage:[WKImage imageWithImageName:@"Smile"]];
+    [pickerItems addObject: pickerItem4 ];
+    [workNodeItems addObject: startNode];
+}
+
+
+- (WorkNode *) getWorkNodeAt: (int) input {
+    return [workNodeItems objectAtIndex: input];
+}
+
 
 - (WorkNode *)setup_doghouse {
     DoNode *local=[[DoNode alloc] initWithStep:@"Get full water bottle"];
@@ -20,6 +62,9 @@
     [local addStep: @"Put everything on one side of the desk and process it" ];
     return local;
 }
+
+
+
 
 
 - (WorkNode *)project_review {
@@ -64,7 +109,11 @@
 */
 
 
-
+- (NSMutableArray*) getPickerItems{
+    return pickerItems;
+    
+    
+}
 
 - (WorkNode *) melta_normal_form {
     DoNode *local=[[DoNode alloc] initWithStep:@"Open Next Actions"];
