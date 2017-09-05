@@ -9,10 +9,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="12029"/>
     </dependencies>
     <scenes>
-        <!--Picker Controller-->
+        <!--choose-->
         <scene sceneID="WHg-f6-ugW">
             <objects>
-                <controller id="syG-uw-4GJ" customClass="PickerController">
+                <controller identifier="choose" id="syG-uw-4GJ" customClass="PickerController">
                     <items>
                         <picker height="100" alignment="left" id="hhq-cz-K1x">
                             <connections>

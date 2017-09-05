@@ -61,11 +61,7 @@ LogController * logger;
         session.delegate = self;
         [session activateSession];
     }
-    
-
 }
-
-
 
 
 
@@ -117,10 +113,11 @@ LogController * logger;
 }
 
 
-- (IBAction)Expand {
+- (IBAction)Problem {
+    [self pushControllerWithName: @"choose"  context: @"here"];
     NSLog(@"hello");
 }
-- (IBAction)Problem {
+- (IBAction)Expand {
     NSLog(@"Sending");
     NSLog([logger getLog]);
     NSString *counterString = [logger getLog ];

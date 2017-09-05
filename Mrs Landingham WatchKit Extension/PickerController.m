@@ -20,18 +20,38 @@ NSMutableArray * workNodeItems;
 NSInteger pickerValue =0;
 FlowModel * model;
 
+- (void)make_initial_menu {
+  [self makeItemWith:@"Morning" startNode: [model morning] ];
+    [self makeItemWith:@"Night" startNode: [model night]] ;
+    [self makeItemWith:@"Coff Shop" startNode: [model enterCoffeeShop] ];
+    [self makeItemWith:@"Question Test" startNode: [model questionTest]];
+    [self makeItemWith:@"Plan Day"  startNode: [model plan_day]];
+}
+
+
+- (void)make_problem_menu {
+    [self makeItemWith:@"It's hard" startNode: [model morning] ];
+    [self makeItemWith:@"I'm tired" startNode: [model night]] ;
+    [self makeItemWith:@"It's raining" startNode: [model enterCoffeeShop] ];
+    [self makeItemWith:@"Question Test" startNode: [model questionTest]];
+    [self makeItemWith:@"Plan Day"  startNode: [model plan_day]];
+}
+
+
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
     // Configure interface objects here.
     pickerItems = [[NSMutableArray alloc] init];
     workNodeItems = [[NSMutableArray alloc] init];
     model=[[FlowModel alloc] init];
+    if (context==nil){
+   [self make_initial_menu];
+    }else
+    {
+        [self make_problem_menu];
+    }
     
-    [self makeItemWith:@"Morning" startNode: [model morning] ];
-    [self makeItemWith:@"Night" startNode: [model night]] ;
-    [self makeItemWith:@"Coff Shop" startNode: [model enterCoffeeShop] ];
-    [self makeItemWith:@"Question Test" startNode: [model questionTest]];
-    [self makeItemWith:@"Plan Day"  startNode: [model plan_day]];
+    [self make_initial_menu];
     [self.picker setItems:pickerItems];
 }
 

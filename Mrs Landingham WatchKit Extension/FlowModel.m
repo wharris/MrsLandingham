@@ -21,6 +21,51 @@
     return local;
 }
 
+
+- (WorkNode *)project_review {
+    DoNode *local=[[DoNode alloc] initWithStep:@"Check and respond to project notifications."];
+    [local addStep: @"Open EQT Projects Board"];
+    [local addNode:[self project_normal_form]];
+    [local addStep: @"Open Personal Projects Board"];
+    [local addNode:[self project_normal_form]];
+    return local;
+    
+}
+
+- (WorkNode *)project_normal_form {
+    DoNode *local=[[DoNode alloc] initWithStep:@"Make sure all issues have been imported to the board."];
+    [local addStep: @"Removed closed issues"];
+    [local addStep: @"Check that every card is assigned"];
+    return local;
+    
+}
+
+    /*
+     def review_projects():
+     def project_normal_form():
+     do("Open the project board")
+     do("Make sure that all issues have been imported to the board.")
+     do("Close issues")
+     do("Remove closed issues.")
+     do("Check that every card is assigned")
+     while (True):
+     if(ask("Are there projects to review?")):
+     do("Check project is assigned")
+     do("Check project is mapped")
+     do("If someone else is assigned the project, then write a note to them")
+     do("Put two action's into the project, and into melta")
+     else:
+     return
+     
+     
+     do("Check and respond to project notifications.")
+     do("Review EQT projects board",project_normal_form)
+     do("Review Jarvis projects board",project_normal_form)
+*/
+
+
+
+
 - (WorkNode *) melta_normal_form {
     DoNode *local=[[DoNode alloc] initWithStep:@"Open Next Actions"];
     [local addStep: @"Add tasks from phone screenshots."];
@@ -33,6 +78,7 @@
     [local addStep: @"Do any tasks that take less than five minutes (morning power hour!)"];
     [local addStep: @"Check if some tasks have already been done"];
     [local addStep: @"Rewrite tasks thinking about how public they are"];
+    [local addStep: @"Messsage Kat a list of the ones relevent to her"];
     [local addStep: @"Go thought all tasks and adjust the deadline for an urgent ones"];    return local;
 }
 
