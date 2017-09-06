@@ -12,9 +12,9 @@
 #import "QuestionNode.h"
 #import "PickerController.h"
 
-@implementation FlowModel
+@implementation FlowModel{
 NSMutableArray * pickerItems;
-NSMutableArray * workNodeItems;
+    NSMutableArray * workNodeItems;}
 
 
 - (void)make_initial_menu {

@@ -13,11 +13,13 @@
 
 @end
 
-@implementation PickerController
+@implementation PickerController{
 
 
-NSInteger pickerValue =0;
+NSInteger pickerValue;
 FlowModel * model;
+    
+}
 
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
