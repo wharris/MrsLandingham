@@ -111,6 +111,10 @@ WKAudioFilePlayer * audioFilePlayer;
     ///Users/josephreddington/Dropbox/git/Mrs Landingham/Mrs Landingham WatchKit Extension/ring.wav
     NSLog(@"hello");
     [audioFilePlayer play];
+    NSURL *assetURL = [[NSBundle mainBundle] URLForResource:@"ring" withExtension:@"wav"];
+    WKAudioFileAsset *asset = [WKAudioFileAsset assetWithURL:assetURL];
+    WKAudioFilePlayerItem *playerItem = [WKAudioFilePlayerItem playerItemWithAsset:asset];
+    audioFilePlayer = [WKAudioFilePlayer playerWithPlayerItem:playerItem];
     
     currentNode=currentNode.child;
     if (currentNode==NULL){
