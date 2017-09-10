@@ -13,34 +13,44 @@
 #import "PickerController.h"
 
 @implementation FlowModel{
-NSMutableArray * pickerItems;
-    NSMutableArray * workNodeItems;}
-
-
-- (void)make_initial_menu {
-    pickerItems = [[NSMutableArray alloc] init];
-    workNodeItems = [[NSMutableArray alloc] init];
-    [self makeItemWith:@"Morning" startNode: [self morning] ];
-    [self makeItemWith:@"Night" startNode: [self night]] ;
-    [self makeItemWith:@"Coff Shop" startNode: [self enterCoffeeShop] ];
-    [self makeItemWith:@"Question Test" startNode: [self questionTest]];
-    [self makeItemWith:@"Plan Day"  startNode: [self plan_day]];
+    NSMutableArray * pickerItems;
+    NSMutableArray * workNodeItems;
 }
 
 
-- (void)make_problem_menu {
-    pickerItems = [[NSMutableArray alloc] init];
-    workNodeItems = [[NSMutableArray alloc] init];
-    [self makeItemWith:@"I feel resistence to doing it" startNode: [[DoNode alloc] initWithStep:@"Write down the smallest physical step on the notes file"] ];
-       [self makeItemWith:@"The algorithm is incomplete" startNode: [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham to cover this instance."] ];
-    [self makeItemWith:@"The algorithm is incomplete" startNode: [self night]] ;
-    [self makeItemWith:@"There are special circumstances outside the algorithm" startNode: [self enterCoffeeShop] ];
-    [self makeItemWith:@"This task would be better done at the same time as another apointment" startNode: [self questionTest]];
-    [self makeItemWith:@"Interuption"  startNode: [self plan_day]];
-    [self makeItemWith:@"This is a cron and I've run out of resource"  startNode: [self plan_day]];
+
+/* TODO: add this in */
+- (WorkNode *)email {
+    DoNode *local=[[DoNode alloc] initWithStep:@"Open the inbox"];
+    /* First pass*/
+    [local addStep: @"1st pass: read, archive, transfer or unsubscribe"];
+    [local addStep: @"Check that you didn't send anthing in the first pass"];
+
+    /* Only unsubscribe, archive, or transfer tasks*/
+    [local addStep: @"2nd Pass: process the top email until there are none."];
+    /*TODO: add a thing about the different types of email.*/
+    /* Second pass */
+    [local addStep: @"Put Phone on charge"];
+    [local addStep: @"Tell phone Instramental music" ];
+    [local addStep: @"Put everything on one side of the desk and process it" ];
+    return local;
 }
 
 
+- (WorkNode *)red_line {
+    DoNode *local=[[DoNode alloc] initWithStep:@"Open next Actions"];
+    /* First pass*/
+    [local addStep: @"Check the prioirty of all the red tasks"];
+    [local addStep: @"Move all the 5/and6 tasks to projects"];
+    [local addStep: @"Draft text updating people on the the tasks"];
+    [local addStep: @"Free up calendar time to work on next actions more"];
+    return local;
+}
+
+
+
+
+/* TODO: Move this to super class */
 
 - (void) makeItemWith: (NSString *) input startNode: (WorkNode *) startNode {
     WKPickerItem *pickerItem4 = [WKPickerItem alloc];
@@ -50,10 +60,47 @@ NSMutableArray * pickerItems;
     [workNodeItems addObject: startNode];
 }
 
-
+/* TODO: Move this to super class */
 - (WorkNode *) getWorkNodeAt: (int) input {
     return [workNodeItems objectAtIndex: input];
 }
+
+- (void)make_initial_menu {
+    pickerItems = [[NSMutableArray alloc] init];
+    workNodeItems = [[NSMutableArray alloc] init];
+    [self makeItemWith:@"Morning" startNode: [self morning] ];
+    [self makeItemWith:@"Night" startNode: [self night]] ;
+    [self makeItemWith:@"Coffee Shop" startNode: [self enterCoffeeShop] ];
+    [self makeItemWith:@"Question Test" startNode: [self questionTest]];
+    [self makeItemWith:@"Plan Day"  startNode: [self plan_day]];
+    [self makeItemWith:@"Email"  startNode: [self email]];
+    [self makeItemWith:@"Red Line"  startNode: [self red_line]];
+
+}
+
+
+- (void)make_problem_menu {
+    pickerItems = [[NSMutableArray alloc] init];
+    workNodeItems = [[NSMutableArray alloc] init];
+    
+    //This is far all the times when I reach a step and feel like doing something else.
+    [self makeItemWith:@"I feel resistence" startNode: [[DoNode alloc] initWithStep:@"Write down the smallest physical step on the notes file"] ];
+    /*This is simply to keep me going and focused on the details */
+    [self makeItemWith:@"Other" startNode: [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham to cover this instance."] ];
+    /*Needed during the overall process of building and modifying the algorithm */
+    [self makeItemWith:@"Today is different" startNode: [[DoNode alloc] initWithStep:@"Post to Social, then act as if done."] ];
+    /*Sometimes I feel like 'not today', which is fine, as long as I can admit it on social media. */
+    [self makeItemWith:@"Made progress and want to rewrite." startNode: [[DoNode alloc] initWithStep:@"Keep working, write the smallest action."] ];
+    /* Sometimes I think "i've given this a fair whack, let's do something else".  But if we're working in prioity order, I'm working on the most important thing, so I should keep working on that*/
+    [self makeItemWith:@"Cron Needs a resource" startNode: [[DoNode alloc] initWithStep:@"Order it online, mark as done"] ];
+    /* For things like floss and other things we're I'm like, oh, I need to buy something before that*/
+    
+    
+    [self makeItemWith:@"Interuption" startNode: [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham to cover this interuptions."] ];
+    [self makeItemWith:@"Two tasks in a row" startNode: [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham to cover this two in a row."] ];
+    /* These things need answers... */
+}
+
 
 
 - (WorkNode *)setup_doghouse {
@@ -86,28 +133,7 @@ NSMutableArray * pickerItems;
     
 }
 
-    /*
-     def review_projects():
-     def project_normal_form():
-     do("Open the project board")
-     do("Make sure that all issues have been imported to the board.")
-     do("Close issues")
-     do("Remove closed issues.")
-     do("Check that every card is assigned")
-     while (True):
-     if(ask("Are there projects to review?")):
-     do("Check project is assigned")
-     do("Check project is mapped")
-     do("If someone else is assigned the project, then write a note to them")
-     do("Put two action's into the project, and into melta")
-     else:
-     return
-     
-     
-     do("Check and respond to project notifications.")
-     do("Review EQT projects board",project_normal_form)
-     do("Review Jarvis projects board",project_normal_form)
-*/
+
 
 
 - (NSMutableArray*) getPickerItems{
@@ -150,7 +176,7 @@ NSMutableArray * pickerItems;
 }
 
 - (WorkNode *)plan_day {
-     DoNode *local=[[DoNode alloc] initWithStep:@"Open Calendar"];
+    DoNode *local=[[DoNode alloc] initWithStep:@"Open Calendar"];
     
     DoNode *yesNode=[[DoNode alloc] initWithStep:@"Change to Skype"];
     [yesNode addStep: @"Change to Skype"];
@@ -165,7 +191,7 @@ NSMutableArray * pickerItems;
     
     QuestionNode *start=[[QuestionNode alloc] initWithQuestion: @"Are there any unprocessed apointments?" yesChild: yesNode noChild:noNode];
     [yesNode addNode: start];
-   
+    
     [local addNode:start];
     return local;
 }
@@ -182,10 +208,8 @@ NSMutableArray * pickerItems;
     [local addStep: @"Bath: Consider face strip"];
     [local addStep: @"Bath: Shave"];
     [local addStep: @"Bath: Shave head"];
-    [local addStep: @"Bath: Shave"];
     [local addStep: @"Bath: Teeth"];
     [local addStep: @"Bath: Floss"];
-    
     [local addStep: @"Kitc: clothes in wash"];
     [local addStep: @"Kitc:Vitimin Tablet"];
     [local addStep: @"Kitc:Make Tea (get washing)"];

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		705966961F631116008BAD8D /* ring.wav in Resources */ = {isa = PBXBuildFile; fileRef = 705966951F631116008BAD8D /* ring.wav */; };
 		70650B931F4E043800AFEC26 /* LogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70650B921F4E043800AFEC26 /* LogController.m */; };
 		709BDDAC1F4636750016CAFB /* WorkNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 709BDDAB1F4636750016CAFB /* WorkNode.m */; };
 		709BDDAF1F4639C10016CAFB /* DoNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 709BDDAE1F4639C10016CAFB /* DoNode.m */; };
@@ -89,6 +90,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		705966951F631116008BAD8D /* ring.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ring.wav; sourceTree = "<group>"; };
 		70650B911F4E043800AFEC26 /* LogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogController.h; sourceTree = "<group>"; };
 		70650B921F4E043800AFEC26 /* LogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogController.m; sourceTree = "<group>"; };
 		709BDDAA1F4636750016CAFB /* WorkNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkNode.h; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 		70A321AE1F43207200989D7E /* Mrs Landingham WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				705966951F631116008BAD8D /* ring.wav */,
 				70A321B11F43207200989D7E /* InterfaceController.h */,
 				70A321B21F43207200989D7E /* InterfaceController.m */,
 				70A321B41F43207200989D7E /* ExtensionDelegate.h */,
@@ -471,6 +474,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				705966961F631116008BAD8D /* ring.wav in Resources */,
 				70A321BB1F43207200989D7E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

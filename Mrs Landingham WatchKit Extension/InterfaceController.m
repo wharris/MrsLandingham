@@ -25,6 +25,7 @@ bool firsttime=TRUE;
 WorkNode * root;
 WorkNode * currentNode;
 LogController * logger;
+WKAudioFilePlayer * audioFilePlayer;
 
 - (void)startCountdown {
     _targetTime = [NSDate dateWithTimeInterval:300 sinceDate:[NSDate date]];
@@ -37,16 +38,20 @@ LogController * logger;
     [super awakeWithContext:context];
     self.mylabel.text =@"98";
     
-    // Configureinterface objects here.
     root=context;
-    
     [self startCountdown];
-    
     logger=[[LogController alloc] init];
 
     
     currentNode=root;
-    //    self.mylabel.text=currentNode.message;
+    
+    //Audio file initialisation
+    NSURL *assetURL = [[NSBundle mainBundle] URLForResource:@"ring" withExtension:@"wav"];
+    WKAudioFileAsset *asset = [WKAudioFileAsset assetWithURL:assetURL];
+    WKAudioFilePlayerItem *playerItem = [WKAudioFilePlayerItem playerItemWithAsset:asset];
+    audioFilePlayer = [WKAudioFilePlayer playerWithPlayerItem:playerItem];
+
+
     
 }
 
@@ -103,6 +108,10 @@ LogController * logger;
 }
 
 - (IBAction)Done {
+    ///Users/josephreddington/Dropbox/git/Mrs Landingham/Mrs Landingham WatchKit Extension/ring.wav
+    NSLog(@"hello");
+    [audioFilePlayer play];
+    
     currentNode=currentNode.child;
     if (currentNode==NULL){
         self.mylabel.text=@"done";
