@@ -9,15 +9,21 @@
 
 #import "ViewController.h"
 #import "WatchConnectivity/WatchConnectivity.h"
+#import <AudioToolbox/AudioToolbox.h>
 @interface ViewController ()
 
 @end
 
 @implementation ViewController
 
+
+
+
+
 NSString *counterValue;
 
 WCSession *session;
+SystemSoundID sound1;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,7 +51,16 @@ WCSession *session;
 }
 
 - (IBAction)clipboardcopying:(id)sender {
-    [UIPasteboard generalPasteboard].string = counterValue;
+   
+    AudioServicesPlaySystemSound(sound1);
+    
+    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"ring" ofType:@"wav"];
+    SystemSoundID soundID;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:soundPath], &soundID);
+    AudioServicesPlaySystemSound(soundID);
+    
+  //  [UIPasteboard generalPasteboard].string = counterValue;
+    self.display.text=@"played sound";
     
 }
 

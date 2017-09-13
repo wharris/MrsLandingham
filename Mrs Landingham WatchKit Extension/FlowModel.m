@@ -30,9 +30,6 @@
     [local addStep: @"2nd Pass: process the top email until there are none."];
     /*TODO: add a thing about the different types of email.*/
     /* Second pass */
-    [local addStep: @"Put Phone on charge"];
-    [local addStep: @"Tell phone Instramental music" ];
-    [local addStep: @"Put everything on one side of the desk and process it" ];
     return local;
 }
 
@@ -76,6 +73,7 @@
     [self makeItemWith:@"Email"  startNode: [self email]];
     [self makeItemWith:@"Red Line"  startNode: [self red_line]];
     [self makeItemWith:@"Map Project"  startNode: [self map_project]];
+    [self makeItemWith:@"Project Review"  startNode: [self project_review]];
 
 }
 
@@ -142,6 +140,12 @@
     DoNode *local=[[DoNode alloc] initWithStep:@"Make sure all issues have been imported to the board."];
     [local addStep: @"Removed closed issues"];
     [local addStep: @"Check that every card is assigned"];
+    
+    DoNode *yesNode=[[DoNode alloc] initWithStep:@"Check project is mapped."];
+    [yesNode addStep: @"Check it has the right priority"];
+    [yesNode addStep: @"Check there is a next action in melta"];
+    DoNode *noNode=[[DoNode alloc] initWithStep:@"All done. Take a breath"];
+    
     return local;
     
 }
@@ -167,7 +171,6 @@
     [local addStep: @"Do any tasks that take less than five minutes (morning power hour!)"];
     [local addStep: @"Check if some tasks have already been done"];
     [local addStep: @"Rewrite tasks thinking about how public they are"];
-    [local addStep: @"Messsage Kat a list of the ones relevent to her"];
     [local addStep: @"Go thought all tasks and adjust the deadline for an urgent ones"];    return local;
 }
 
@@ -202,7 +205,8 @@
     [noNode addStep: @"Set Alarm for food"];
     
     
-    QuestionNode *start=[[QuestionNode alloc] initWithQuestion: @"Are there any unprocessed apointments?" yesChild: yesNode noChild:noNode];
+    QuestionNode *start=[[QuestionNode alloc] initWithQuestion: @"Are there any unprocessed apointments?"
+                                                      yesChild: yesNode noChild:noNode];
     [yesNode addNode: start];
     
     [local addNode:start];

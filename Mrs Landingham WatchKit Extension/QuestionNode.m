@@ -20,12 +20,14 @@
     return self;
 }
 
-
-- (void) activate{
-    
-    
-    
+- (id) initWithOnlyQuestion: (NSString* ) payload  {
+    self.message=payload;
+    self.result=-1;
+    return self;
 }
+
+
+
 
 
 
