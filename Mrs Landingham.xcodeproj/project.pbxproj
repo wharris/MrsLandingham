@@ -11,6 +11,7 @@
 		703C563E1F693CDF00B517CA /* ring.wav in Resources */ = {isa = PBXBuildFile; fileRef = 705966951F631116008BAD8D /* ring.wav */; };
 		703C563F1F693CE000B517CA /* ring.wav in Resources */ = {isa = PBXBuildFile; fileRef = 705966951F631116008BAD8D /* ring.wav */; };
 		703C56401F693CE100B517CA /* ring.wav in Resources */ = {isa = PBXBuildFile; fileRef = 705966951F631116008BAD8D /* ring.wav */; };
+		703C56541F694A4F00B517CA /* DashController.m in Sources */ = {isa = PBXBuildFile; fileRef = 703C56531F694A4F00B517CA /* DashController.m */; };
 		705966961F631116008BAD8D /* ring.wav in Resources */ = {isa = PBXBuildFile; fileRef = 705966951F631116008BAD8D /* ring.wav */; };
 		70650B931F4E043800AFEC26 /* LogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70650B921F4E043800AFEC26 /* LogController.m */; };
 		709BDDAC1F4636750016CAFB /* WorkNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 709BDDAB1F4636750016CAFB /* WorkNode.m */; };
@@ -94,6 +95,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		703C56521F694A4F00B517CA /* DashController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashController.h; sourceTree = "<group>"; };
+		703C56531F694A4F00B517CA /* DashController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashController.m; sourceTree = "<group>"; };
 		705966951F631116008BAD8D /* ring.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = ring.wav; path = "Mrs Landingham WatchKit Extension/ring.wav"; sourceTree = SOURCE_ROOT; };
 		70650B911F4E043800AFEC26 /* LogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogController.h; sourceTree = "<group>"; };
 		70650B921F4E043800AFEC26 /* LogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogController.m; sourceTree = "<group>"; };
@@ -210,6 +213,8 @@
 				70A3217F1F43207200989D7E /* LaunchScreen.storyboard */,
 				70A321821F43207200989D7E /* Info.plist */,
 				70A321711F43207100989D7E /* Supporting Files */,
+				703C56521F694A4F00B517CA /* DashController.h */,
+				703C56531F694A4F00B517CA /* DashController.m */,
 			);
 			path = "Mrs Landingham";
 			sourceTree = "<group>";
@@ -497,6 +502,7 @@
 				70A321791F43207100989D7E /* ViewController.m in Sources */,
 				70A321761F43207100989D7E /* AppDelegate.m in Sources */,
 				70A321731F43207100989D7E /* main.m in Sources */,
+				703C56541F694A4F00B517CA /* DashController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

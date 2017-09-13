@@ -55,10 +55,10 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
         </scene>
-        <!--View Controller-->
+        <!--Dash Controller-->
         <scene sceneID="6T4-fp-Zsw">
             <objects>
-                <viewController id="nrE-9r-KyS" sceneMemberID="viewController">
+                <viewController id="nrE-9r-KyS" customClass="DashController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5s6-ke-q99"/>
                         <viewControllerLayoutGuide type="bottom" id="LxQ-T5-0el"/>
@@ -74,8 +74,17 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OWP-k5-oF6">
+                                <rect key="frame" x="107" y="474" width="179" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.71949886658031081" green="0.71949886658031081" blue="0.71949886658031081" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Play Sound"/>
+                                <connections>
+                                    <action selector="playsound:" destination="nrE-9r-KyS" eventType="touchUpInside" id="6y7-to-wjo"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vsX-Ii-CTQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
