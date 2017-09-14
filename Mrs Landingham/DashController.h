@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface DashController : UIViewController
-
+{
+    int counter;
+}
+@property (assign) int counter;
+- (IBAction)startCountdown:(id)sender;
 @end
+

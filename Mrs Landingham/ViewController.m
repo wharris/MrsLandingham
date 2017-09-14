@@ -17,9 +17,6 @@
 @implementation ViewController
 
 
-
-
-
 NSString *counterValue;
 
 WCSession *session;
@@ -41,7 +38,6 @@ WCSession *session;
     // Dispose of any resources that can be recreated.
 }
 
-
 - (void)session:(nonnull WCSession *)session didReceiveMessage:(nonnull NSDictionary *)message replyHandler:(nonnull void (^)(NSDictionary * __nonnull))replyHandler {
     NSLog(@"Getting");
 
@@ -51,11 +47,8 @@ WCSession *session;
 }
 
 - (IBAction)clipboardcopying:(id)sender {
-   
-    
     [UIPasteboard generalPasteboard].string = counterValue;
     self.display.text=@"played sound";
-    
 }
 
 

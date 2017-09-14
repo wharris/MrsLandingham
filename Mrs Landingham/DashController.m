@@ -10,7 +10,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 
 @interface DashController ()
-
+@property (weak, nonatomic) IBOutlet UILabel *counterString;
 @end
 
 @implementation DashController
@@ -53,8 +53,37 @@ SystemSoundID sound1;
     SystemSoundID soundID;
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:soundPath], &soundID);
     AudioServicesPlaySystemSound(soundID);
-    
+//timer
+    self.counter = 10;
+    self.counterString.text=[NSString stringWithFormat:@"started %d", counter];
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self
+                                   selector:@selector(advanceTimer:)
+                                   userInfo:nil
+                                    repeats:YES];
+
     
 }
+
+- (IBAction)startCountdown:(id)sender
+{
+    self.counter = 10;
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self
+                                                             selector:@selector(advanceTimer:)
+                                                             userInfo:nil
+                                                              repeats:YES];
+    NSLog(@"Here");
+}
+
+- (void)advanceTimer:(NSTimer *)timer
+{
+    NSLog(@"advance timer");
+    NSLog(@"%@", [NSString stringWithFormat:@"counter %d", self.counter]);
+    self.counter=self.counter-1;
+    self.counterString.text=[NSString stringWithFormat:@"%d", self.counter];
+    if (self.counter <= 0) { [timer invalidate]; }
+}
+
+
+
 
 @end
