@@ -29,17 +29,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fE5-SE-Usy">
-                                <rect key="frame" x="51" y="470" width="270" height="90"/>
+                                <rect key="frame" x="87" y="437" width="193" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Copy to Clipboard"/>
+                                <color key="backgroundColor" red="0.70411674222797926" green="0.70411674222797926" blue="0.70411674222797926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Copy log to clipboard"/>
                                 <connections>
                                     <action selector="clipboardcopying:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hbg-SC-Kco"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFz-PQ-FM9">
-                                <rect key="frame" x="229" y="568" width="46" height="30"/>
+                                <rect key="frame" x="113" y="523" width="141" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <color key="backgroundColor" red="0.65145320595854916" green="0.65145320595854916" blue="0.65145320595854916" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Dashboard"/>
                                 <connections>
                                     <segue destination="nrE-9r-KyS" kind="show" id="Vyl-fp-aoI"/>
                                 </connections>
@@ -75,16 +77,23 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OWP-k5-oF6">
-                                <rect key="frame" x="107" y="474" width="179" height="63"/>
+                                <rect key="frame" x="98" y="460" width="179" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.71949886658031081" green="0.71949886658031081" blue="0.71949886658031081" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Play Sound"/>
+                                <state key="normal" title="Reset Timer"/>
                                 <connections>
                                     <action selector="playsound:" destination="nrE-9r-KyS" eventType="touchUpInside" id="6y7-to-wjo"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time Remaining" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLa-NL-9I1">
-                                <rect key="frame" x="104" y="75" width="184" height="69"/>
+                                <rect key="frame" x="31" y="131" width="184" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Task:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Icj-U0-0Yo">
+                                <rect key="frame" x="31" y="34" width="308" height="69"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>

@@ -30,6 +30,11 @@ SystemSoundID sound1;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.counter = 10;
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self
+                                   selector:@selector(advanceTimer:)
+                                   userInfo:nil
+                                    repeats:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,21 +52,18 @@ SystemSoundID sound1;
 }
 */
 - (IBAction)playsound:(id)sender {
+   //timer
+    [self playSoundCalled:@"ring"];
+}
+
+
+- (void) playSoundCalled: (NSString *) nameOfFile{
     AudioServicesPlaySystemSound(sound1);
     
-    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"ring" ofType:@"wav"];
+    NSString *soundPath = [[NSBundle mainBundle] pathForResource:nameOfFile ofType:@"wav"];
     SystemSoundID soundID;
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:soundPath], &soundID);
     AudioServicesPlaySystemSound(soundID);
-//timer
-    self.counter = 10;
-    self.counterString.text=[NSString stringWithFormat:@"started %d", counter];
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self
-                                   selector:@selector(advanceTimer:)
-                                   userInfo:nil
-                                    repeats:YES];
-
-    
 }
 
 - (IBAction)startCountdown:(id)sender
@@ -79,7 +81,7 @@ SystemSoundID sound1;
     NSLog(@"advance timer");
     NSLog(@"%@", [NSString stringWithFormat:@"counter %d", self.counter]);
     self.counter=self.counter-1;
-    self.counterString.text=[NSString stringWithFormat:@"%d", self.counter];
+    self.counterString.text=[NSString stringWithFormat:@"Seconds remaining: %d", self.counter];
     if (self.counter <= 0) { [timer invalidate]; }
 }
 
