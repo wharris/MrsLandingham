@@ -8,12 +8,17 @@
 
 #import "DashController.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import "WatchConnectivity/WatchConnectivity.h"
 
 @interface DashController ()
 @property (weak, nonatomic) IBOutlet UILabel *counterString;
 @end
 
-@implementation DashController
+@implementation DashController{
+    
+    WCSession *session;
+    
+}
 
 //
 //  DashController.m
@@ -24,6 +29,7 @@
 //
 
 
+//WCSession *session;
 SystemSoundID sound1;
 int startValue=300;
 
@@ -35,6 +41,12 @@ int startValue=300;
                                    selector:@selector(advanceTimer:)
                                    userInfo:nil
                                     repeats:YES];
+    //Comunication is needed .
+    if ([WCSession isSupported]) {
+        session = [WCSession defaultSession];
+        session.delegate = self;
+        [session activateSession];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,6 +67,7 @@ int startValue=300;
    //timer
     [self playSoundCalled:@"ring"];
     self.counter=startValue;
+    
 }
 
 
@@ -77,6 +90,14 @@ int startValue=300;
     if (self.counter == 10) { [self playSoundCalled:@"countdown"]; }
     if (self.counter <= 0) { [timer invalidate]; }
 }
+
+- (void)session:(nonnull WCSession *)session didReceiveMessage:(nonnull NSDictionary *)message replyHandler:(nonnull void (^)(NSDictionary * __nonnull))replyHandler {
+    NSLog(@"in the communcation");
+    [self playSoundCalled:@"ring"];
+    self.counter=startValue;
+
+}
+
 
 
 

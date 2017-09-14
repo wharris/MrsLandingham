@@ -110,11 +110,11 @@ WKAudioFilePlayer * audioFilePlayer;
 - (IBAction)Done {
     ///Users/josephreddington/Dropbox/git/Mrs Landingham/Mrs Landingham WatchKit Extension/ring.wav
     NSLog(@"hello");
-    [audioFilePlayer play];
-    NSURL *assetURL = [[NSBundle mainBundle] URLForResource:@"ring" withExtension:@"wav"];
-    WKAudioFileAsset *asset = [WKAudioFileAsset assetWithURL:assetURL];
-    WKAudioFilePlayerItem *playerItem = [WKAudioFilePlayerItem playerItemWithAsset:asset];
-    audioFilePlayer = [WKAudioFilePlayer playerWithPlayerItem:playerItem];
+  //  [audioFilePlayer play];
+ //   NSURL *assetURL = [[NSBundle mainBundle] URLForResource:@"ring" withExtension:@"wav"];
+ //   WKAudioFileAsset *asset = [WKAudioFileAsset assetWithURL:assetURL];
+  //  WKAudioFilePlayerItem *playerItem = [WKAudioFilePlayerItem playerItemWithAsset:asset];
+ //   audioFilePlayer = [WKAudioFilePlayer playerWithPlayerItem:playerItem];
     
     currentNode=currentNode.child;
     if (currentNode==NULL){
@@ -133,15 +133,16 @@ WKAudioFilePlayer * audioFilePlayer;
 - (IBAction)Expand {
     NSLog(@"Sending");
     NSLog([logger getLog]);
-    NSString *counterString = [logger getLog ];
+    NSString *counterString = @"small example"; //[logger getLog ];
     NSDictionary *applicationData = [[NSDictionary alloc] initWithObjects:@[counterString] forKeys:@[@"counterValue"]];
     
     [[WCSession defaultSession] sendMessage:applicationData
                                replyHandler:^(NSDictionary *reply) {
-                                   //handle reply from iPhone app here
+                                   NSLog(@"There was a reply");
                                }
                                errorHandler:^(NSError *error) {
-                                   //catch any errors here
+                                   NSLog(@"There was an error");
+
                                }
      ];
     NSLog(@"Sent");
