@@ -47,6 +47,7 @@ int startValue=300;
         session.delegate = self;
         [session activateSession];
     }
+    [UIApplication sharedApplication].idleTimerDisabled = YES;
 }
 
 - (void)didReceiveMemoryWarning {

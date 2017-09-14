@@ -123,6 +123,7 @@ WKAudioFilePlayer * audioFilePlayer;
         [self activateCurrentNode];
         
     }
+    [self tellThePhone];
 }
 
 
@@ -131,6 +132,11 @@ WKAudioFilePlayer * audioFilePlayer;
     NSLog(@"hello");
 }
 - (IBAction)Expand {
+    
+}
+
+
+- (void) tellThePhone {
     NSLog(@"Sending");
     NSLog([logger getLog]);
     NSString *counterString = @"small example"; //[logger getLog ];
@@ -142,13 +148,11 @@ WKAudioFilePlayer * audioFilePlayer;
                                }
                                errorHandler:^(NSError *error) {
                                    NSLog(@"There was an error");
-
+                                   
                                }
      ];
     NSLog(@"Sent");
-
 }
-
 
 @end
 
