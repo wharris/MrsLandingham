@@ -25,12 +25,12 @@
 
 
 SystemSoundID sound1;
-
+int startValue=300;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.counter = 10;
+    self.counter = startValue;
     [NSTimer scheduledTimerWithTimeInterval:1 target:self
                                    selector:@selector(advanceTimer:)
                                    userInfo:nil
@@ -54,6 +54,7 @@ SystemSoundID sound1;
 - (IBAction)playsound:(id)sender {
    //timer
     [self playSoundCalled:@"ring"];
+    self.counter=startValue;
 }
 
 
@@ -66,15 +67,6 @@ SystemSoundID sound1;
     AudioServicesPlaySystemSound(soundID);
 }
 
-- (IBAction)startCountdown:(id)sender
-{
-    self.counter = 10;
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self
-                                                             selector:@selector(advanceTimer:)
-                                                             userInfo:nil
-                                                              repeats:YES];
-    NSLog(@"Here");
-}
 
 - (void)advanceTimer:(NSTimer *)timer
 {
@@ -82,6 +74,7 @@ SystemSoundID sound1;
     NSLog(@"%@", [NSString stringWithFormat:@"counter %d", self.counter]);
     self.counter=self.counter-1;
     self.counterString.text=[NSString stringWithFormat:@"Seconds remaining: %d", self.counter];
+    if (self.counter == 10) { [self playSoundCalled:@"countdown"]; }
     if (self.counter <= 0) { [timer invalidate]; }
 }
 
