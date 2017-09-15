@@ -139,7 +139,9 @@ WKAudioFilePlayer * audioFilePlayer;
 - (void) tellThePhone {
     NSLog(@"Sending");
     NSLog([logger getLog]);
-    NSString *counterString = @"small example"; //[logger getLog ];
+    NSString *counterString = currentNode.message; //[logger getLog ];
+    NSLog(@"Okay then");
+    NSLog(counterString);
     NSDictionary *applicationData = [[NSDictionary alloc] initWithObjects:@[counterString] forKeys:@[@"counterValue"]];
     
     [[WCSession defaultSession] sendMessage:applicationData

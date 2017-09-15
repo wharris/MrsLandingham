@@ -12,12 +12,16 @@
 
 @interface DashController ()
 @property (weak, nonatomic) IBOutlet UILabel *counterString;
+
+@property (weak, nonatomic) IBOutlet UILabel *taskString;
+
 @end
 
 @implementation DashController{
     
     WCSession *session;
     
+    __weak IBOutlet UILabel *taskLabel;
 }
 
 //
@@ -32,6 +36,7 @@
 //WCSession *session;
 SystemSoundID sound1;
 int startValue=300;
+NSString * taskValue;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,6 +53,7 @@ int startValue=300;
         [session activateSession];
     }
     [UIApplication sharedApplication].idleTimerDisabled = YES;
+    taskValue=@"Open Watch";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -88,15 +94,18 @@ int startValue=300;
     NSLog(@"%@", [NSString stringWithFormat:@"counter %d", self.counter]);
     self.counter=self.counter-1;
     self.counterString.text=[NSString stringWithFormat:@"Seconds remaining: %d", self.counter];
+    self.taskString.text=[NSString stringWithFormat:@"Task: %@", taskValue];
     if (self.counter == 10) { [self playSoundCalled:@"countdown"]; }
     if (self.counter <= 0) { [timer invalidate]; }
-}
+    
+ }
 
 - (void)session:(nonnull WCSession *)session didReceiveMessage:(nonnull NSDictionary *)message replyHandler:(nonnull void (^)(NSDictionary * __nonnull))replyHandler {
     NSLog(@"in the communcation");
     [self playSoundCalled:@"ring"];
     self.counter=startValue;
-
+    taskValue = [message objectForKey:@"counterValue"];
+  
 }
 
 
