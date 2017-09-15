@@ -178,7 +178,7 @@
     DoNode *local=[[DoNode alloc] initWithStep:@"Open Jurgen and livenotes"];
     [local addStep: @"Open Prioirty and Time Chart (for flow)"];
     [local addStep: @"Close other programs (not terminal)"];
-    [local addStep: @"Put Bank Balance on livenotes"];
+    //[local addStep: @"Put Bank Balance on livenotes"];
     [local addStep: @"Put the thing you are most worried abotu in next actions"];
     [local addNode:[self melta_normal_form]];
     return local;
@@ -203,6 +203,8 @@
     DoNode *noNode=[[DoNode alloc] initWithStep:@"Set Alarm for exercise"];
     [noNode addStep: @"Set Alarm for email"];
     [noNode addStep: @"Set Alarm for food"];
+    [noNode addStep: @"Check for redline protocal"];
+    
     
     
     QuestionNode *start=[[QuestionNode alloc] initWithQuestion: @"Are there any unprocessed apointments?"
