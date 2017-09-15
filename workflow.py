@@ -48,6 +48,11 @@ def meeting():
 # when, you forget that a lot
     pass
 
+def facebook():
+    do("Messages")
+    do("notifications")
+    do("Todo list")
+    do("friends with new posts")
 
 def problem():
        answers={}
@@ -67,13 +72,16 @@ def problem():
 
 def interruption():
        answers={}
-       answers["Phone Call"]=phonecall
+       answers["Phone Call"]=phonecall_in
        answers["Food"]=lambda:do("rewrite Mrs Landingham for this function")
        user_choose_function("What happened",answers)
 
 
-def phonecall():
+def phonecall_in():
     do("fix the ML for phonecalls")
+
+def phonecall_out():
+    do("Write the script first, make sure all information is to hand.")
 
 def timed_task():
     do("Timed task")
@@ -112,6 +120,12 @@ def ask(prompt):
 
 
 
+def redline():
+    # Let's work out what we want to do with a red line.  Does it trigger a full
+    # bankrupcy? or are we in a position where, because of the prioiries, we
+    # simply note down what happens next? Is interesting right? Let's look at
+    # what they are?
+
 ###############################################################################
 #Now the actual instructions.
 
@@ -130,6 +144,7 @@ def jump():
     answers={} #findallfunctions()
     answers["process email"]=process_email
     answers["project sprint"]=project_sprint
+    answers["project mapping"]=map_project
     answers["jurgen_normal_form"]=jurgen_normal_form
     answers["work_on_next_actions"]=work_on_next_actions
     answers["osprey"]=osprey
@@ -178,6 +193,7 @@ def review_projects():
             if(ask("Are there projects to review?")):
                 do("Check project is assigned")
                 do("Check project is mapped")
+                do("If someone else is assigned the project, then write a note to them")
                 do("Put two action's into the project, and into melta")
             else:
                 return
@@ -186,6 +202,9 @@ def review_projects():
     do("Check and respond to project notifications.")
     do("Review EQT projects board",project_normal_form)
     do("Review Jarvis projects board",project_normal_form)
+
+
+
 
 
 def map_project():
@@ -199,19 +218,17 @@ def map_project():
 def project_sprint():
     do("Create an issue if necessary")
     do("Open the file and add a datestamp to the comment (before mapping, you map later)")
-    if(ask("Does the project need mapping?")):
-        do("Map project",map_project)
+    do("Update Mapping",map_project)
+    do("Refactor the notes")
     while (True):
-        if(ask("Is the project finnished")):
+        if(not ask("Are there any remaining actions?")):
             do("Close project")
             do("Write blog post about project")
             return
         else:
-            if(not ask("Does the project have an obvious next action")):
-                do("Write a next action.")
+            do("Find the next action")
             do("Do the next action.")
             do("Make a note of any filenames or commands you used")
-            do("Write a short note saying what you did")
 
 
 def jurgen_normal_form():
@@ -222,13 +239,14 @@ def jurgen_normal_form():
         do("Add tasks from phone screenshots.")
         do("Check Voicemail and add any messages to Tasks.")
         do("Check notebook/brainstorms for tasks")
-        do("Go thought Osprey bag - everything that isn't meant to be there is a task.")
+        do("Go thought Osprey bag - everything that isn't intended to be there is a task.")
 
 
     def fill_out_action_points():
         do("Sort the next actions file alphabetically, this will put the least defined tasks at the top.")
-        do("Fill in the priority, context, and time (mark off done tasks)")
+        do("Fill in the priority, and time (mark off done tasks)")
         do("Note now much time for the full list")
+        do("Note the watson timing")
         do("Do any tasks that take less than five minutes (morning power hour!)")
         do("Check if some tasks have already been done")
         do("Rewrite tasks thinking about how public they are")
@@ -240,16 +258,28 @@ def jurgen_normal_form():
 
 def work_on_next_actions():
 ## Working on the next actions list
+
+    def action_dependance():
+            answers={}
+            answers["Someone else"]=lambda:do("Contact them to remind them, it is the most important thing")
+            answers["Another action"]=lambda:do("Make the other action a lower priority and do it")
+            answers["A project review"]=review_projects
+            user_choose_function("What does this action depend on?", answers)
+
+
+
     def single_action():
             answers={}
             answers["A sprint - an action taking 40 minutes or more"]=project_sprint
+            answers["Mapping a project"]=map_project
             answers["An action dependant on something else"]=lambda:do("rewrite ML for this 2039424")
+            answers["An action that might be better as part of a batch"]=lambda:do("rewrite ML for this 253039424")
+            answers["A phone call"]=phonecall_out
             answers["A project review"]=review_projects
             user_choose_function("What sort of action is this", answers)
 
     do("Start a relevant notes file")
-    if ask("Are there any zeros in the next actions list?"):
-        do("Put Jurgen in Normal form",jurgen_normal_form)
+    do("Put Jurgen in Normal form",jurgen_normal_form)
 
     while True:
         do("Complete the action at the top of the list?", single_action)
@@ -278,19 +308,67 @@ def emailiftime():
 #                    email_processed=True
 def startwork():
     do("Put the thing you are most worried about into your todo or project list")
+    do("Check bank balance")
     emailiftime()
     do("Work on next actions",work_on_next_actions)
 
+
+def climbing():
+    pass
+    #You approach a wall, you work out the sequence of holds, all the way to the top,  so that you know where you feet are when you touch each hold for the first time.
+    #You do every problem at least twice, and properly three times.
+    #
+    #If its too easy, then do it silently,
+    #
+    #Write down everything you do, and everything you failed at .  Come back to it next time.
+
+def changeoutlook():
+    #Mediative movement
+    #What have you done today that helped you.
+    pass
+
+def accounts():
+    def invoice():
+        do("*Use the pivot table to find the largest thing that is being claimed for.")
+        do("*Put the code in the expenses claim form")
+        do("* create the folder")
+        do("* Find all the receipts for it - label them")
+        do("* when all the receipts are in. create a pdf of the code.")
+        do("* replace the code and the invoice number with the folder title")
+
+    do("Make a pile of all the lose receipts")
+    do("Put all the receipts into the accounts book")
+    do("Open the Littlefinger Excel file,")
+    do("Sort transactions by date descending (tells you were to copy from Natwest")
+    do("Copy and paste the Natwest transactions to Littlefinger")
+    do("Go thought Amazon Spending and put descriptions in")
+    do("Go thought PayPal Spending and put descriptions in")
+    do("Sort transactions by amount and label everything down to 5")
+    do("Use receipt book to label all the other things.")
+    do("For the remaining things mark them as 'unknown'")
+    do("Download the Halifax statement and transfer Joka things to the sheet.")
+    do("Look at calendar and work out things you drove to - put them in the sheet.")
+    do("Download and go thought TFL statements and add to sheet.")
+    do("Check pivot table to see what needs to be done")
+    while ask("are there any invoices that need to be done"):
+        do("Create invoice for largest amount",invoice)
+    do("Work out how much Kat owes for things.")
+    do("Put all claim forms into the expenditure against grant sheet and sum the ones that need paying.")
+    do("Check in with the WWW page of expenditure and make sure things add up reasonably.")
+    do("Write a report for the trustees. or at least message clare.")
 
 def planday():
   #  tell("Open your calendar first - you need to know all your commitments and have planned them.")
   #  tell("Being late is awful and disrespectful, if you can, find the nearby Starbucks first.")
  #   do("Write what you had for breakfast in diet file and plan foods you will eat today (times of food is later)")
-    while ask("Do you have any unprocessed appointments?"):
+    do("open calendar: add any commitment blocks")
+    while ask("Do you have any unprocessed calendar events?"):
         if ask("Can this apointment be changed into a Skype call?"):
             do("message about changing it")
+        do("Do you want to make it awesome?")
         do("Write down any tasks you need to make about the outside appointment ('pack bag' for example).")
         do("Work out what time you need to leave/be ready for a call. And set an alarm. If it involves travel, then put the place into Google Maps (and save as a favourite)")
+        do("Consider if you have to move email checking or other apointments to fit")
 
     do("Have guaranteed exercise (by watch reminder)")
 
@@ -347,7 +425,8 @@ def away():
 def setup_doghouse():
     do("Go and get full Water Bottle. Put in arm's reach")
     do("Put Phone on charge.")
-    do("Put everything lose into the bag")
+    do("Tell phone to 'play absolution")
+    do("Put everything lose to one side of the desk and process it")
 
 
 def shutdown_doghouse():
@@ -356,6 +435,7 @@ def shutdown_doghouse():
 
 def onlaptop():
     do("Open Jurgen (you are going to gather tasks") #// because you are going to gather tasks.")
+    do("Open Priority and time graphs (help you get into flow)")
     import datetime
     d = datetime.datetime.today()
     if d.hour < 15:
@@ -392,9 +472,11 @@ def main(ui_in,log):
     ui=ui_in
     global LOG_LOC
     LOG_LOC = log
+    #onlaptop()
     answers={}
     answers["At home, starting the day"]=home_in_morning
     answers["In cafe"]=hotel_room
+    answers["On laptop"]=onlaptop
     user_choose_function("What's Happening?",answers)
 
 
