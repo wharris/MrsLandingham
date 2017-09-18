@@ -261,27 +261,23 @@
     return local;
 }
 
-- (WorkNode *)plan_day {
-    DoNode *local=[[DoNode alloc] initWithStep:@"Open Calendar"];
-    
-    DoNode *yesNode=[[DoNode alloc] initWithStep:@"Change to Skype"];
+- (DoNode *)process_apointment {
+  DoNode *yesNode=[[DoNode alloc] initWithStep:@"Change to Skype"];
     [yesNode addStep: @"Change to Skype"];
     [yesNode addStep: @"Think of a way to make it awesome"];
     [yesNode addStep: @"Email/call to confirm"];
     [yesNode addStep: @"Add any tasks about appointment"];//which wil have prioirt 0 and happen first
     [yesNode addStep: @"Set Alarm for travel"];
-    
-    
-    QuestionNode *start=[[QuestionNode alloc] initBranch: @"Are there any unprocessed apointments (72 hours)?" yesChild: yesNode];
-    [yesNode addNode: start];
-  
+  return yesNode;
+}
+
+- (WorkNode *)plan_day {
+    QuestionNode *start=[[QuestionNode alloc] initLoop: @"Are there any unprocessed apointments (72 hours)?" yesChild: [self process_apointment]];
     [start addStep: @"Set Alarm for exercise"];
     [start addStep: @"Set Alarm for email"];
     [start addStep: @"Set Alarm for food"];
     [start addStep: @"Check for redline protocal"];
-    
-    [local addNode:start];
-    return local;
+    return start;
 }
 
 

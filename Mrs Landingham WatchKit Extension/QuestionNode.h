@@ -14,6 +14,8 @@
 @property WorkNode *elseChild;
 @property int result;
 - (id)  initBranch: (NSString* ) payload  yesChild:(WorkNode *) yesChild;
+- (id)  initLoop: (NSString* ) payload  yesChild:(WorkNode *) yesChild;
+
 - (void)addStep:(NSString*) step;
 
 @end
