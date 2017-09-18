@@ -10,10 +10,10 @@
 
 @interface QuestionNode : WorkNode
 
-@property WorkNode *child;
+
 @property WorkNode *elseChild;
 @property int result;
-- (id) initWithQuestion: (NSString* ) payload  yesChild:(WorkNode *) child noChild:(WorkNode *) elseChild;
-
+- (id)  initBranch: (NSString* ) payload  yesChild:(WorkNode *) yesChild;
+- (void)addStep:(NSString*) step;
 
 @end

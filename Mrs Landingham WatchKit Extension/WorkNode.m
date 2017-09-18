@@ -19,8 +19,11 @@
 }
 
 - (void)addNode:(WorkNode*) target  {
-    
-    
+    if (self.child==NULL){
+        self.child=target;
+    }else{
+        [self.child addNode:target];
+    }
     
 }
 

@@ -7,27 +7,35 @@
 //
 
 #import "QuestionNode.h"
+#import "DoNode.h"
+
 
 @implementation QuestionNode
 
 
 
-- (id) initWithQuestion: (NSString* ) payload  yesChild:(WorkNode *) child noChild:(WorkNode *) noChild {
+- (id) initBranch: (NSString* ) payload  yesChild:(WorkNode *) yesChild  {
     self.message=payload;
-    self.child=child;
-    self.elseChild= noChild;
+    self.elseChild= yesChild;
     self.result=-1;
     return self;
 }
 
-- (id) initWithOnlyQuestion: (NSString* ) payload  {
+- (id) initLoop: (NSString* ) payload  yesChild:(WorkNode *) yesChild  {
+    [yesChild addNode:self];
     self.message=payload;
+    self.elseChild= yesChild;
     self.result=-1;
     return self;
 }
 
 
 
+
+- (void)addStep:(NSString*) step{
+    DoNode *node=[[DoNode alloc] initWithStep:step];
+    [self addNode: node];
+}
 
 
 

@@ -88,7 +88,7 @@ WKAudioFilePlayer * audioFilePlayer;
         if (qn.result==-1){//because it hasn't been asnswered{
             
             [self pushControllerWithName: @"QuestionController"  context: currentNode];
-        }else if (qn.result==0){//no
+        }else if (qn.result==1){//no
             NSLog(@"Taken NO branch");
 
             currentNode=qn.elseChild;

@@ -19,7 +19,6 @@
 
 
 
-
 - (WorkNode *)email {
     DoNode *local=[[DoNode alloc] initWithStep:@"Open the inbox"];
     /* First pass*/
@@ -68,13 +67,86 @@
     [self makeItemWith:@"Morning" startNode: [self morning] ];
     [self makeItemWith:@"Night" startNode: [self night]] ;
     [self makeItemWith:@"Coffee Shop" startNode: [self enterCoffeeShop] ];
-    [self makeItemWith:@"Question Test" startNode: [self questionTest]];
     [self makeItemWith:@"Plan Day"  startNode: [self plan_day]];
     [self makeItemWith:@"Email"  startNode: [self email]];
     [self makeItemWith:@"Red Line"  startNode: [self red_line]];
     [self makeItemWith:@"Map Project"  startNode: [self map_project]];
     [self makeItemWith:@"Project Review"  startNode: [self project_review]];
+    [self makeItemWith:@"Clean the house"  startNode: [self house_cleaning]];
 
+}
+
+
+- (WorkNode *)house_cleaning {
+    DoNode *local=[[DoNode alloc] initWithStep:@"Replace Get bathroom bin"];
+    [local addStep: @"Empty Recycling"];
+    [local addStep: @"Empty rubbish bin"];
+    [local addStep: @"Do all three bin liners" ];
+    [local addStep: @"Laundary Box - take things into the right room" ];
+    [local addStep: @"Bathroom"];
+    [local addStep: @"Pee"];
+    [local addStep: @"Put bleach in toilet"];
+    [local addStep: @"Replace towels"];
+    [local addStep: @"Sink items into bath"];
+    [local addStep: @"Get Pink dustclothe"];
+    [local addStep: @"Wipe tops of toliet, tiles, and roll holder"];
+    [local addStep: @"Clean mirrors"];
+    [local addStep: @"Bedroom"];
+    [local addStep: @"Strip sheets, put in washing machine"];
+    [local addStep: @"New sheets on bed"];
+    [local addStep: @"All bedside stuff on bed"];
+    [local addStep: @"Don't be pooky"];
+    [local addStep: @"Wipe bedside tablets and window sill"];
+    [local addStep: @"Clean bedroom mirros"];
+    [local addStep: @"Arrange sofa cusions"];
+    [local addStep: @"Fold blankets"];
+    [local addStep: @"Clean ash from fire"];
+    [local addStep: @"Clean mirror and tv"];
+    [local addStep: @"Wipe table"];
+    [local addStep: @"Scrub sink"];
+    [local addStep: @"Wipe edge of bath"];
+    [local addStep: @"wipe top of toilet (again)"];
+    [local addStep: @"rince cloth"];
+    [local addStep: @"wipe next bit of toilet"];
+    [local addStep: @"rince cloth"];
+    [local addStep: @"wipe next bit of toilet"];
+    [local addStep: @"rince cloth again"];
+    [local addStep: @"Put bin on side of bath (for hoovering)"];
+    [local addStep: @"Put wash on line"];
+    [local addStep: @"throw out any old fruit in basket"];
+    [local addStep: @"rince both parts of compost bin"];
+    [local addStep: @"shot glass of bleech in compost bleech"];
+    [local addStep: @"compost bin outside"];
+    [local addStep: @"Washing up"];
+    [local addStep: @"clear away everything on the drainer"];
+    [local addStep: @"wipe down drainer"];
+    [local addStep: @"spray kitchen cleaner on drainer"];
+    [local addStep: @"put dirtest item in sink to soak"];
+    [local addStep: @"turn on hot top"];
+    [local addStep: @"wash cleanest item"];
+    [local addStep: @"put sponge in microwave 60 sec"];
+    [local addStep: @"clean surfaces"];
+    [local addStep: @"Get vacume"];
+    [local addStep: @"Longue, including moving table and chairs"];
+    [local addStep: @"Bedroom"];
+    [local addStep: @"Hall, inc shared with S&C"];
+    [local addStep: @"Bathroom"];
+    [local addStep: @"Kitchen inc mat"];
+    [local addStep: @"Use vaccuum extension"];
+    [local addStep: @"sirting boards including behind doors."];
+    [local addStep: @"under stove"];
+    [local addStep: @"around wood pile"];
+    [local addStep: @"floorboards under sofa"];
+    [local addStep: @"Gooves of hall cuboards"];
+    [local addStep: @"behind sink and toilet"];
+    [local addStep: @"bedhind bedside table"];
+    [local addStep: @"edges in kitchen"];
+    [local addStep: @"Mopping"];
+    [local addStep: @"Run hot tab in bath"];
+    [local addStep: @"teaspoons-woth of bleech in bucket"];
+    [local addStep: @"Half fill bucket"];
+    [local addStep: @"Mop kitchen, bathroom and hallway"];
+    return local;
 }
 
 
@@ -121,8 +193,6 @@
     [local addStep: @"Put everything on one side of the desk and process it" ];
     return local;
 }
-
-
 
 
 
@@ -197,19 +267,18 @@
     DoNode *yesNode=[[DoNode alloc] initWithStep:@"Change to Skype"];
     [yesNode addStep: @"Change to Skype"];
     [yesNode addStep: @"Think of a way to make it awesome"];
+    [yesNode addStep: @"Email/call to confirm"];
     [yesNode addStep: @"Add any tasks about appointment"];//which wil have prioirt 0 and happen first
     [yesNode addStep: @"Set Alarm for travel"];
     
-    DoNode *noNode=[[DoNode alloc] initWithStep:@"Set Alarm for exercise"];
-    [noNode addStep: @"Set Alarm for email"];
-    [noNode addStep: @"Set Alarm for food"];
-    [noNode addStep: @"Check for redline protocal"];
     
-    
-    
-    QuestionNode *start=[[QuestionNode alloc] initWithQuestion: @"Are there any unprocessed apointments?"
-                                                      yesChild: yesNode noChild:noNode];
+    QuestionNode *start=[[QuestionNode alloc] initBranch: @"Are there any unprocessed apointments (72 hours)?" yesChild: yesNode];
     [yesNode addNode: start];
+  
+    [start addStep: @"Set Alarm for exercise"];
+    [start addStep: @"Set Alarm for email"];
+    [start addStep: @"Set Alarm for food"];
+    [start addStep: @"Check for redline protocal"];
     
     [local addNode:start];
     return local;
@@ -240,26 +309,6 @@
     
     return local;
 }
-
-
-
-
-
-
-- (WorkNode *)questionTest {
-    DoNode *local=[[DoNode alloc] initWithStep:@"This is the beginging"];
-    [local addStep: @"1"];
-    [local addStep: @"2"];
-    [local addStep: @"3"];
-    DoNode *yesNode=[[DoNode alloc] initWithStep:@"Then Celebrate"];
-    DoNode *noNode=[[DoNode alloc] initWithStep:@"Then fix it"];
-    QuestionNode *testQ=[[QuestionNode alloc] initWithQuestion: @"Do you want to go back to the begining?" yesChild: local noChild:noNode];
-    [local addNode:testQ];
-    [noNode addNode: [self morning]];
-    NSLog(@"We have populated the algorithm tree");
-    return local;
-}
-
 
 
 - (WorkNode *) enterCoffeeShop{

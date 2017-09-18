@@ -25,14 +25,7 @@
     
 }
 
-- (void)addNode:(WorkNode*) target  {
-    if (self.child==NULL){
-        self.child=target;
-    }else{
-        [self.child addNode:target];
-    }
-    
-}
+
     - (void)addStep:(NSString*) step{
         DoNode *node=[[DoNode alloc] initWithStep:step];
         [self addNode: node];
