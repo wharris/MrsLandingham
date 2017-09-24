@@ -12,11 +12,7 @@
 #import "QuestionNode.h"
 #import "PickerController.h"
 
-@implementation FlowModel{
-    NSMutableArray * pickerItems;
-    NSMutableArray * workNodeItems;
-}
-
+@implementation FlowModel
 
 
 - (WorkNode *)email {
@@ -46,35 +42,46 @@
 
 
 
-/* TODO: Move this to super class */
-
-- (void) makeItemWith: (NSString *) input startNode: (WorkNode *) startNode {
-    WKPickerItem *pickerItem4 = [WKPickerItem alloc];
-    [pickerItem4 setTitle:input];
-    [pickerItem4 setAccessoryImage:[WKImage imageWithImageName:@"Smile"]];
-    [pickerItems addObject: pickerItem4 ];
-    [workNodeItems addObject: startNode];
+- (NSMutableDictionary *)make_initial_menu {
+    NSLog(@"making the menu");
+    NSMutableDictionary *menu= [[NSMutableDictionary alloc] init];
+    menu[@"Morning"]=[self morning];
+    menu[@"Morning" ] = [self morning];
+    menu[@"Night" ] = [self night] ;
+    menu[@"Coffee Shop" ] = [self enterCoffeeShop];
+    menu[@"Plan Day"  ] = [self plan_day];
+    menu[@"Email"  ] = [self email];
+    menu[@"Red Line"  ] = [self red_line];
+    menu[@"Map Project"  ] = [self map_project];
+    menu[@"Project Review"  ] = [self project_review];
+    menu[@"Clean the house"  ] = [self house_cleaning];
+    return menu;
 }
 
-/* TODO: Move this to super class */
-- (WorkNode *) getWorkNodeAt: (int) input {
-    return [workNodeItems objectAtIndex: input];
+
+
+
+- (NSMutableDictionary* )make_problem_menu {
+    NSMutableDictionary *menu= [[NSMutableDictionary alloc] init];
+    //This is far all the times when I reach a step and feel like doing something else.
+    menu[@"I feel resistence" ] = [[DoNode alloc] initWithStep:@"Write down the smallest physical step on the notes file"] ;
+    /*This is simply to keep me going and focused on the details */
+    menu[@"Other" ] = [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham to cover this instance." ];
+    /*Needed during the overall process of building and modifying the algorithm */
+    menu[@"Today is different" ] = [[DoNode alloc] initWithStep:@"Post to Social, then act as if done."] ;
+    /*Sometimes I feel like 'not today', which is fine, as long as I can admit it on social media. */
+    menu[@"Made progress and want to rewrite." ] = [[DoNode alloc] initWithStep:@"Keep working, write the smallest action."];
+    /* Sometimes I think "i've given this a fair whack, let's do something else".  But if we're working in prioity order, I'm working on the most important thing, so I should keep working on that*/
+    menu[@"Cron Needs a resource" ] = [[DoNode alloc] initWithStep:@"Order it online, mark as done"];
+    /* For things like floss and other things we're I'm like, oh, I need to buy something before that*/
+   
+    
+  /*  menu[@"Interuption" ] = [[DoNode alloc] initWithStep:[@"Rewrite Mrs Landingham to cover this interuptions." ];*/
+    menu[@"Two tasks in a row" ] = [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham to cover this two in a row."];
+    /* These things need answers... */
+    return menu;
 }
 
-- (void)make_initial_menu {
-    pickerItems = [[NSMutableArray alloc] init];
-    workNodeItems = [[NSMutableArray alloc] init];
-    [self makeItemWith:@"Morning" startNode: [self morning] ];
-    [self makeItemWith:@"Night" startNode: [self night]] ;
-    [self makeItemWith:@"Coffee Shop" startNode: [self enterCoffeeShop] ];
-    [self makeItemWith:@"Plan Day"  startNode: [self plan_day]];
-    [self makeItemWith:@"Email"  startNode: [self email]];
-    [self makeItemWith:@"Red Line"  startNode: [self red_line]];
-    [self makeItemWith:@"Map Project"  startNode: [self map_project]];
-    [self makeItemWith:@"Project Review"  startNode: [self project_review]];
-    [self makeItemWith:@"Clean the house"  startNode: [self house_cleaning]];
-
-}
 
 
 - (WorkNode *)house_cleaning {
@@ -150,28 +157,6 @@
 }
 
 
-- (void)make_problem_menu {
-    pickerItems = [[NSMutableArray alloc] init];
-    workNodeItems = [[NSMutableArray alloc] init];
-    
-    //This is far all the times when I reach a step and feel like doing something else.
-    [self makeItemWith:@"I feel resistence" startNode: [[DoNode alloc] initWithStep:@"Write down the smallest physical step on the notes file"] ];
-    /*This is simply to keep me going and focused on the details */
-    [self makeItemWith:@"Other" startNode: [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham to cover this instance."] ];
-    /*Needed during the overall process of building and modifying the algorithm */
-    [self makeItemWith:@"Today is different" startNode: [[DoNode alloc] initWithStep:@"Post to Social, then act as if done."] ];
-    /*Sometimes I feel like 'not today', which is fine, as long as I can admit it on social media. */
-    [self makeItemWith:@"Made progress and want to rewrite." startNode: [[DoNode alloc] initWithStep:@"Keep working, write the smallest action."] ];
-    /* Sometimes I think "i've given this a fair whack, let's do something else".  But if we're working in prioity order, I'm working on the most important thing, so I should keep working on that*/
-    [self makeItemWith:@"Cron Needs a resource" startNode: [[DoNode alloc] initWithStep:@"Order it online, mark as done"] ];
-    /* For things like floss and other things we're I'm like, oh, I need to buy something before that*/
-    
-    
-    [self makeItemWith:@"Interuption" startNode: [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham to cover this interuptions."] ];
-    [self makeItemWith:@"Two tasks in a row" startNode: [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham to cover this two in a row."] ];
-    /* These things need answers... */
-}
-
 
 
 - (WorkNode *)map_project {
@@ -221,12 +206,6 @@
 
 
 
-
-- (NSMutableArray*) getPickerItems{
-    return pickerItems;
-    
-    
-}
 
 - (WorkNode *) melta_normal_form {
     DoNode *local=[[DoNode alloc] initWithStep:@"Process reminders"];
