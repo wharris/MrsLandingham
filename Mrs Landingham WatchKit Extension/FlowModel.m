@@ -215,7 +215,6 @@
     [yesNode addStep: @"Check it has the right priority"];
     [yesNode addStep: @"Check there is a next action in melta"];
     DoNode *noNode=[[DoNode alloc] initWithStep:@"All done. Take a breath"];
-    
     return local;
     
 }
@@ -248,7 +247,6 @@
     DoNode *local=[[DoNode alloc] initWithStep:@"Open Jurgen and livenotes"];
     [local addStep: @"Open Prioirty and Time Chart (for flow)"];
     [local addStep: @"Close other programs (not terminal)"];
-    //[local addStep: @"Put Bank Balance on livenotes"];
     [local addStep: @"Put the thing you are most worried abotu in next actions"];
     [local addNode:[self melta_normal_form]];
     return local;
@@ -300,7 +298,8 @@
     [local addNode: [self setup_doghouse]];
     [local addNode: [self start_laptop]];
     [local addNode: [self plan_day]];
-    [local addStep: @"Work on next actions"];
+    [local addStep: @"Move heartrate from phone to dropbox"];
+    [local addStep: @"Open Next Action algorothim"];
 //ends here.
     
     return local;
