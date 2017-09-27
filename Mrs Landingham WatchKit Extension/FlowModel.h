@@ -17,6 +17,7 @@
 + (void) done;
 + (void) yes;
 + (void) no;
++ (void) picked: (WorkNode *) input;
 + (NSString *) getMessage;
 + (WorkNode *) getNode;
 - (WorkNode *) setup_doghouse;

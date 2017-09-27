@@ -61,8 +61,12 @@ WorkNode *activeNode;
     else{
         NSLog(@"Error, 'no' has been called on a non question node");
     }
-
 }
+
++ (void) picked: (WorkNode*) input{
+    activeNode=input;
+}
+
 
 
 + (NSString *) getMessage{

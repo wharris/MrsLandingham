@@ -70,13 +70,18 @@ numberOfRowsInComponent:(NSInteger)component {
     return pickerItems.count;//Or, return as suitable for you...normally we use array for dynamic
 }
 
-- (NSString *)pickerView:(UIPickerView *)thePickerView
-             titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return [NSString stringWithFormat:@"Choice-%ld",(long)row];//Or, your suitable title; like Choice-a, etc.
+- (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return [NSString stringWithFormat:@"%@", pickerItems[row]];//Or, your suitable title; like Choice-a, etc.
 }
 
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    pickerValue=row;
+}
 
 - (IBAction)doneButton:(id)sender {
+    [FlowModel picked:workNodeItems[pickerValue]];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
