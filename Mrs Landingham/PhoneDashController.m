@@ -21,17 +21,89 @@
 @end
 
 @implementation PhoneDashController {
-SystemSoundID sound1;
-NSString * taskValue;
-int startValue;
-FlowModel * model;
+    SystemSoundID sound1;
+    NSString * taskValue;
+    int startValue;
+    FlowModel * model;
+}
+
+- (void) dispatchNode{
+    WorkNode *currentNode=[FlowModel getNode];
+    if([currentNode isKindOfClass:[QuestionNode class]])
+    {
+        [self performSegueWithIdentifier:@"GoToQuestion" sender:self];
+    }
+    else if([currentNode isKindOfClass:[PickerNode class]])
+    {
+        [self performSegueWithIdentifier:@"GoToPicker" sender:self];
+    }
+    else{
+        [self activateDoNode];
+    }
+}
+
+- (void) activateDoNode{
+    
+    self.counter = startValue;
+    taskValue=[FlowModel getMessage];
+    if ([FlowModel canExpand]){
+        self.ExpandButton.enabled=YES;
+        self.ExpandButton.backgroundColor = [UIColor greenColor];
+    }else{
+        self.ExpandButton.enabled=NO;
+        self.ExpandButton.backgroundColor = [UIColor redColor];
+    }
 }
 
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [UIApplication sharedApplication].idleTimerDisabled = YES;
+    startValue=300;
+    taskValue=@"Start";
+    model=[FlowModel coreBrain];
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self
+                                   selector:@selector(advanceTimer:)
+                                   userInfo:nil
+                                    repeats:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self dispatchNode];
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)ProblemButton:(id)sender {
+    [FlowModel problem];
+    [self dispatchNode];
+}
+
+- (IBAction)DoneButton:(id)sender {
+    [self playSoundCalled:@"ring"];
+    [FlowModel done];
+    [self dispatchNode];
+}
+
+- (IBAction)ExpandButton:(id)sender {
+    [FlowModel expand];
+    [self dispatchNode];
+}
+
+
+- (IBAction)LogButton:(id)sender {
+    [self playSoundCalled:@"ring"];
+    self.counter=startValue;
+    
+}
+
 
 - (void) playSoundCalled: (NSString *) nameOfFile{
-    
-    
     AudioServicesPlaySystemSound(sound1);
     NSString *soundPath = [[NSBundle mainBundle] pathForResource:nameOfFile ofType:@"wav"];
     SystemSoundID soundID;
@@ -51,91 +123,6 @@ FlowModel * model;
     if (self.counter == 10) { [self playSoundCalled:@"countdown"]; }
     if (self.counter <= 0) { [timer invalidate]; }
     
-}
-
-- (void) dispatchNode{
-    WorkNode *currentNode=[FlowModel getNode];
-    if([currentNode isKindOfClass:[QuestionNode class]])
-    {
-       [self performSegueWithIdentifier:@"GoToQuestion" sender:self];
-    }
-    else if([currentNode isKindOfClass:[PickerNode class]])
-    {
-        [self performSegueWithIdentifier:@"GoToPicker" sender:self];
-    }
-    else{
-       [self activateDoNode];
-    }
-}
-
-- (void) activateDoNode{
-    
-    self.counter = startValue;
-    taskValue=[FlowModel getMessage];
-    if ([FlowModel canExpand]){
-        self.ExpandButton.enabled=YES;
-        self.ExpandButton.backgroundColor = [UIColor greenColor];
-    }else{
-        self.ExpandButton.enabled=NO;
-        self.ExpandButton.backgroundColor = [UIColor redColor];
-    }
-}
-
-
-
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [UIApplication sharedApplication].idleTimerDisabled = YES;
-    startValue=300;
-    taskValue=@"Start";
-    model=[FlowModel coreBrain];
-    
-    
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self
-                                   selector:@selector(advanceTimer:)
-                                   userInfo:nil
-                                    repeats:YES];
-    
-    // Do any additional setup after loading the view.
-    
-    
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self dispatchNode];
-        
-    }
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)ProblemButton:(id)sender {
-    [FlowModel problem];
-    [self dispatchNode];
-    
-}
-
-- (IBAction)DoneButton:(id)sender {
-    [self playSoundCalled:@"ring"];
-    [FlowModel done];
-    [self dispatchNode];
-    }
-
-- (IBAction)ExpandButton:(id)sender {
-    [FlowModel expand];
-    [self dispatchNode];
-}
-
-
-- (IBAction)LogButton:(id)sender {
-    [self playSoundCalled:@"ring"];
-    self.counter=startValue;
-
 }
 
 

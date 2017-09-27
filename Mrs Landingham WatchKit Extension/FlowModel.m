@@ -189,7 +189,7 @@ WorkNode *saveNode; /*this should be a stack*/
 }
 
 + (WorkNode *)expansion_test {
-    DoNode *local=[[DoNode alloc] initWithStep:@"Replace Get bathroom bin"];
+    DoNode *local=[[DoNode alloc] initWithStep:@"Replace bathroom bin"];
     [local addStep: @"Empty Recycling"];
     [local addStep: @"Empty rubbish bin"];
     [local addStep: @"Do all three bin liners" ];
@@ -256,7 +256,7 @@ WorkNode *saveNode; /*this should be a stack*/
 
 
 + (WorkNode *)house_cleaning {
-    DoNode *local=[[DoNode alloc] initWithStep:@"Replace Get bathroom bin"];
+    DoNode *local=[[DoNode alloc] initWithStep:@"Replace bathroom bin"];
     [local addStep: @"Empty Recycling"];
     [local addStep: @"Empty rubbish bin"];
     [local addStep: @"Do all three bin liners" ];
@@ -349,7 +349,6 @@ WorkNode *saveNode; /*this should be a stack*/
     [local addStep: @"Put everything on one side of the desk and process it" ];
     return local;
 }
-
 
 
 + (WorkNode *)project_review {
