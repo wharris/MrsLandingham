@@ -68,7 +68,7 @@
                                     repeats:YES];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self dispatchNode];
 }
@@ -124,6 +124,7 @@
     if (self.counter <= 0) { [timer invalidate]; }
     
 }
+
 
 
 @end

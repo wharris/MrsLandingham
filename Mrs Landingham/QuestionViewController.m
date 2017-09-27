@@ -34,6 +34,7 @@
 - (IBAction)YesButton:(id)sender {
     self.message.text=@"Yes";
     [FlowModel yes];
+    [self viewWillAppear:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -42,6 +43,8 @@
     [FlowModel no];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
 
 /*
 #pragma mark - Navigation
