@@ -14,8 +14,37 @@
 
 @implementation FlowModel
 
+WorkNode *activeNode;
 
-- (WorkNode *)email {
+
+
+
++ (id) coreBrain {
+    //from http://www.galloway.me.uk/tutorials/singleton-classes/
+    static FlowModel *sharedFlowModel = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedFlowModel = [[self alloc] init];
+        [self setup];
+    });
+    
+    return sharedFlowModel;
+}
+
++ (void) setup{
+    activeNode=[self morning];
+}
+
++ (void) done{
+     activeNode=activeNode.child;
+}
+
+
++ (NSString *) getMessage{
+    return activeNode.message;
+}
+
++ (WorkNode *)email {
     DoNode *local=[[DoNode alloc] initWithStep:@"Open the inbox"];
     /* First pass*/
     [local addStep: @"1st pass: read, archive, transfer or unsubscribe"];
@@ -29,7 +58,7 @@
 }
 
 
-- (WorkNode *)red_line {
++ (WorkNode *)red_line {
     DoNode *local=[[DoNode alloc] initWithStep:@"Open next Actions"];
     /* First pass*/
     [local addStep: @"Check the prioirty of all the red tasks"];
@@ -42,7 +71,7 @@
 
 
 
-- (NSMutableDictionary *)make_initial_menu {
++ (NSMutableDictionary *)make_initial_menu {
     NSLog(@"making the menu");
     NSMutableDictionary *menu= [[NSMutableDictionary alloc] init];
     menu[@"Morning"]=[self morning];
@@ -61,7 +90,7 @@
 
 
 
-- (NSMutableDictionary* )make_problem_menu {
++ (NSMutableDictionary* )make_problem_menu {
     NSMutableDictionary *menu= [[NSMutableDictionary alloc] init];
     //This is far all the times when I reach a step and feel like doing something else.
     menu[@"I feel resistence" ] = [[DoNode alloc] initWithStep:@"Write down the smallest physical step on the notes file"] ;
@@ -84,7 +113,7 @@
 
 
 
-- (WorkNode *)house_cleaning {
++ (WorkNode *)house_cleaning {
     DoNode *local=[[DoNode alloc] initWithStep:@"Replace Get bathroom bin"];
     [local addStep: @"Empty Recycling"];
     [local addStep: @"Empty rubbish bin"];
@@ -159,7 +188,7 @@
 
 
 
-- (WorkNode *)map_project {
++ (WorkNode *)map_project {
     DoNode *local=[[DoNode alloc] initWithStep:@"Create Issue"];
     [local addStep: @"Write down SMART goal"];
     [local addStep: @"Write down WHY you do it"];
@@ -170,7 +199,7 @@
     return local;
 }
 
-- (WorkNode *)setup_doghouse {
++ (WorkNode *)setup_doghouse {
     DoNode *local=[[DoNode alloc] initWithStep:@"Setup laptop"];
     [local addStep: @"Get water bottle"];
     [local addStep: @"Put Phone on charge"];
@@ -181,7 +210,7 @@
 
 
 
-- (WorkNode *)project_review {
++ (WorkNode *)project_review {
     DoNode *local=[[DoNode alloc] initWithStep:@"Check and respond to project notifications."];
     [local addStep: @"Open EQT Projects Board"];
     [local addNode:[self project_normal_form]];
@@ -191,7 +220,7 @@
     
 }
 
-- (WorkNode *)project_normal_form {
++ (WorkNode *)project_normal_form {
     DoNode *local=[[DoNode alloc] initWithStep:@"Make sure all issues have been imported to the board."];
     [local addStep: @"Removed closed issues"];
     [local addStep: @"Check that every card is assigned"];
@@ -207,7 +236,7 @@
 
 
 
-- (WorkNode *) melta_normal_form {
++ (WorkNode *) melta_normal_form {
     DoNode *local=[[DoNode alloc] initWithStep:@"Process reminders"];
     [local addStep: @"Add tasks from phone screenshots."];
     [local addStep: @"Check Voicemail and add any messages to Tasks."];
@@ -222,7 +251,7 @@
     [local addStep: @"Go thought all tasks and adjust the deadline for an urgent ones"];    return local;
 }
 
-- (WorkNode *)start_laptop {
++ (WorkNode *)start_laptop {
     DoNode *local=[[DoNode alloc] initWithStep:@"Open Jurgen and livenotes"];
     [local addStep: @"Open Prioirty and Time Chart (for flow)"];
     [local addStep: @"Close other programs (not terminal)"];
@@ -231,14 +260,14 @@
     return local;
 }
 
-- (WorkNode *)alarm_has_gone_off {
++ (WorkNode *)alarm_has_gone_off {
     DoNode *local=[[DoNode alloc] initWithStep:@"Stand up"];
     [local addStep: @"Write the 'context stack' down on a log if you have one"];
     [local addStep: @"Do the thing"];
     return local;
 }
 
-- (DoNode *)process_apointment {
++ (DoNode *)process_apointment {
   DoNode *yesNode=[[DoNode alloc] initWithStep:@"Change to Skype"];
     [yesNode addStep: @"Change to Skype"];
     [yesNode addStep: @"Think of a way to make it awesome"];
@@ -248,7 +277,7 @@
   return yesNode;
 }
 
-- (WorkNode *)plan_day {
++ (WorkNode *)plan_day {
     QuestionNode *start=[[QuestionNode alloc] initLoop: @"Are there any unprocessed apointments (72 hours)?" yesChild: [self process_apointment]];
     [start addStep: @"Set Alarm for exercise"];
     [start addStep: @"Set Alarm for email"];
@@ -259,7 +288,7 @@
 
 
 
-- (WorkNode *)morning {
++ (WorkNode *)morning {
     DoNode *local=[[DoNode alloc] initWithStep:@"Exercise"];
     [local addStep: @"Bathroom" ];
     [local addStep: @"Bath: Shower"];
@@ -285,7 +314,7 @@
 }
 
 
-- (WorkNode *) enterCoffeeShop{
++ (WorkNode *) enterCoffeeShop{
     DoNode *local=[[DoNode alloc] initWithStep:@"Smile"];
     [local addStep: @"Order a green tea and a glass of tap water"];//No sugar, only peace
     [local addStep: @"Find seat with plug"];
@@ -298,7 +327,7 @@
     
 }
 
-- (WorkNode *) night{
++ (WorkNode *) night{
     DoNode *local=[[DoNode alloc] initWithStep:@"Bed: Get tomorrow's clothes from bedroom"];
     
     [local addStep: @"Bed:Headphones on charge"];

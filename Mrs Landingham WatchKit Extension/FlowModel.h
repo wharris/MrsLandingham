@@ -11,6 +11,11 @@
 
 @interface FlowModel : NSObject
 
+
+
++ (id)coreBrain;
++ (void) done;
++ (NSString *) getMessage;
 - (WorkNode *) setup_doghouse;
 - (WorkNode *) morning;
 - (WorkNode *) questionTest;

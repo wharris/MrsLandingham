@@ -194,8 +194,7 @@
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="LogButton:" destination="eZt-p9-tbL" eventType="touchUpInside" id="toQ-t5-Vfg"/>
-                                    <action selector="playsound:" destination="eZt-p9-tbL" eventType="touchUpInside" id="D39-Zs-fAu"/>
+                                    <action selector="LogButton:" destination="eZt-p9-tbL" eventType="touchUpInside" id="3yY-l2-s5f"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6HP-DT-o2j">

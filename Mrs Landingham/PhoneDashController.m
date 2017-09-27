@@ -22,7 +22,6 @@ SystemSoundID sound1;
 NSString * taskValue;
 int startValue;
 FlowModel * model;
-WorkNode * currentNode;
 }
 
 
@@ -61,9 +60,8 @@ WorkNode * currentNode;
                                    selector:@selector(advanceTimer:)
                                    userInfo:nil
                                     repeats:YES];
-    model=[[FlowModel alloc] init];
-    currentNode=[model morning];
-    taskValue=currentNode.message;
+    model=[FlowModel coreBrain];
+    taskValue=[FlowModel getMessage];
     
     // Do any additional setup after loading the view.
 }
@@ -79,22 +77,22 @@ WorkNode * currentNode;
 }
 
 - (IBAction)DoneButton:(id)sender {
-    currentNode=currentNode.child;
-    taskValue=currentNode.message;
+    [self playSoundCalled:@"ring"];
+    [FlowModel done];
+    taskValue=[FlowModel getMessage];
+    self.counter=startValue;
 }
 
 - (IBAction)ExpandButton:(id)sender {
     
 }
 
+
 - (IBAction)LogButton:(id)sender {
-    NSLog(@"Hello");
     [self playSoundCalled:@"ring"];
     self.counter=startValue;
+
 }
-
-
-
 
 
 @end
