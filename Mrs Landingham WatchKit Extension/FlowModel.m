@@ -18,9 +18,6 @@
 WorkNode *activeNode;
 WorkNode *saveNode; /*this should be a stack*/
 
-
-
-
 + (id) coreBrain {
     //from http://www.galloway.me.uk/tutorials/singleton-classes/
     static FlowModel *sharedFlowModel = nil;
@@ -148,10 +145,25 @@ WorkNode *saveNode; /*this should be a stack*/
     menu[@"Map Project"  ] = [self map_project];
     menu[@"Project Review"  ] = [self project_review];
     menu[@"Clean the house"  ] = [self house_cleaning];
-    menu[@"Test Expansion"  ] = [self expansion_test];
+    menu[@"Meeting"  ] = [self meeting];
+     menu[@"Interuption"  ] = [self interuption];
     return menu;
 }
 
+
++ (WorkNode *) interuption {
+    PickerNode *picker=[[PickerNode alloc] initWithDic: [self make_interupt_menu]];
+    return picker;
+    
+}
+
++ (NSMutableDictionary* )make_interupt_menu {
+    NSMutableDictionary *menu= [[NSMutableDictionary alloc] init];
+    menu[@"Phone call" ] = [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham to cover this"] ;
+    menu[@"Food" ] = [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham to cover this instance." ];
+    menu[@"Heart" ] = [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham to cover this"] ;
+    return menu;
+}
 
 
 
@@ -170,7 +182,7 @@ WorkNode *saveNode; /*this should be a stack*/
     /* For things like floss and other things we're I'm like, oh, I need to buy something before that*/
    
     
-  /*  menu[@"Interuption" ] = [[DoNode alloc] initWithStep:[@"Rewrite Mrs Landingham to cover this interuptions." ];*/
+    menu[@"Interuption" ] = [self interuption];
     menu[@"Two tasks in a row" ] = [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham to cover this two in a row."];
     /* These things need answers... */
     return menu;
@@ -205,51 +217,6 @@ WorkNode *saveNode; /*this should be a stack*/
     [local addStep: @"Arrange sofa cusions"];
     [local addStep: @"Fold blankets"];
     [local addStep: @"Clean ash from fire"];
-    [local addStep: @"Clean mirror and tv"];
-    [local addStep: @"Wipe table"];
-    [local addStep: @"Scrub sink"];
-    [local addStep: @"Wipe edge of bath"];
-    [local addStep: @"wipe top of toilet (again)"];
-    [local addStep: @"rince cloth"];
-    [local addStep: @"wipe next bit of toilet"];
-    [local addStep: @"rince cloth"];
-    [local addStep: @"wipe next bit of toilet"];
-    [local addStep: @"rince cloth again"];
-    [local addStep: @"Put bin on side of bath (for hoovering)"];
-    [local addStep: @"Put wash on line"];
-    [local addStep: @"throw out any old fruit in basket"];
-    [local addStep: @"rince both parts of compost bin"];
-    [local addStep: @"shot glass of bleech in compost bleech"];
-    [local addStep: @"compost bin outside"];
-    [local addStep: @"Washing up"];
-    [local addStep: @"clear away everything on the drainer"];
-    [local addStep: @"wipe down drainer"];
-    [local addStep: @"spray kitchen cleaner on drainer"];
-    [local addStep: @"put dirtest item in sink to soak"];
-    [local addStep: @"turn on hot top"];
-    [local addStep: @"wash cleanest item"];
-    [local addStep: @"put sponge in microwave 60 sec"];
-    [local addStep: @"clean surfaces"];
-    [local addStep: @"Get vacume"];
-    [local addStep: @"Longue, including moving table and chairs"];
-    [local addStep: @"Bedroom"];
-    [local addStep: @"Hall, inc shared with S&C"];
-    [local addStep: @"Bathroom"];
-    [local addStep: @"Kitchen inc mat"];
-    [local addStep: @"Use vaccuum extension"];
-    [local addStep: @"sirting boards including behind doors."];
-    [local addStep: @"under stove"];
-    [local addStep: @"around wood pile"];
-    [local addStep: @"floorboards under sofa"];
-    [local addStep: @"Gooves of hall cuboards"];
-    [local addStep: @"behind sink and toilet"];
-    [local addStep: @"bedhind bedside table"];
-    [local addStep: @"edges in kitchen"];
-    [local addStep: @"Mopping"];
-    [local addStep: @"Run hot tab in bath"];
-    [local addStep: @"teaspoons-woth of bleech in bucket"];
-    [local addStep: @"Half fill bucket"];
-    [local addStep: @"Mop kitchen, bathroom and hallway"];
     return local;
 }
 
@@ -365,16 +332,20 @@ WorkNode *saveNode; /*this should be a stack*/
     DoNode *local=[[DoNode alloc] initWithStep:@"Make sure all issues have been imported to the board."];
     [local addStep: @"Removed closed issues"];
     [local addStep: @"Check that every card is assigned"];
-    
-    DoNode *yesNode=[[DoNode alloc] initWithStep:@"Check project is mapped."];
-    [yesNode addStep: @"Check it has the right priority"];
-    [yesNode addStep: @"Check there is a next action in melta"];
-    DoNode *noNode=[[DoNode alloc] initWithStep:@"All done. Take a breath"];
+    QuestionNode *start=[[QuestionNode alloc] initLoop: @"Are there any unprocessed projects?" yesChild: [self check_project]];
+    [local addNode:start];
+    [local addStep:@"All done. Take a breath"];
     return local;
     
 }
 
-
++ (WorkNode *)check_project {
+    QuestionNode *start=[[QuestionNode alloc] initBranch: @"Does it need mapping?" yesChild: [self map_project]];
+    [start addStep: @"Check it has the right priority"];
+    [start addStep: @"Check it has a next action"];
+    [start addStep: @"Check there is a next action in melta"];
+    return start;
+}
 
 
 + (WorkNode *) melta_normal_form {
@@ -393,7 +364,7 @@ WorkNode *saveNode; /*this should be a stack*/
 }
 
 + (WorkNode *)start_laptop {
-    DoNode *local=[[DoNode alloc] initWithStep:@"Open Jurgen and livenotes"];
+    DoNode *local=[[DoNode alloc] initWithStep:@"Open livenotes, make an entry"];
     [local addStep: @"Open Prioirty and Time Chart (for flow)"];
     [local addStep: @"Close other programs (not terminal)"];
     [local addStep: @"Put the thing you are most worried abotu in next actions"];
@@ -431,6 +402,24 @@ WorkNode *saveNode; /*this should be a stack*/
 
 + (WorkNode *)morning {
     DoNode *local=[[DoNode alloc] initWithStep:@"Exercise"];
+    [local addStep: @"Morning Bathroom" with:[self morning_bathroom]];
+    [local addStep: @"Kitc: clothes in wash"];
+    [local addStep: @"Kitc:Vitimin Tablet"];
+    [local addStep: @"Kitc:Make Tea"];
+    [local addStep: @"Go To Doghouse"];
+    [local addStep: @"Setup Doghouse" with:[self setup_doghouse]];
+    [local addStep: @"Setup Laptop" with:[self start_laptop]];
+    [local addStep: @"Plan Day" with:[self plan_day]];
+    
+    [local addStep: @"Move heartrate from phone to dropbox"];
+    [local addStep: @"Open Next Action algorothim"];
+//ends here.
+    
+    return local;
+}
+
++ (WorkNode *) morning_bathroom{
+    DoNode *local=[[DoNode alloc] initWithStep:@"Exercise"];
     [local addStep: @"Bathroom" ];
     [local addStep: @"Bath: Shower"];
     [local addStep: @"Bath: Dress"];
@@ -440,17 +429,6 @@ WorkNode *saveNode; /*this should be a stack*/
     [local addStep: @"Bath: Shave head"];
     [local addStep: @"Bath: Teeth"];
     [local addStep: @"Bath: Floss"];
-    [local addStep: @"Kitc: clothes in wash"];
-    [local addStep: @"Kitc:Vitimin Tablet"];
-    [local addStep: @"Kitc:Make Tea"];
-    [local addStep: @"Go To Doghouse"];
-    [local addNode: [self setup_doghouse]];
-    [local addNode: [self start_laptop]];
-    [local addNode: [self plan_day]];
-    [local addStep: @"Move heartrate from phone to dropbox"];
-    [local addStep: @"Open Next Action algorothim"];
-//ends here.
-    
     return local;
 }
 
@@ -498,6 +476,22 @@ WorkNode *saveNode; /*this should be a stack*/
     return local;
     
 }
+
++ (WorkNode *) meeting{
+    DoNode *local=[[DoNode alloc] initWithStep:@"Find out other people's ending time"];
+    [local addStep: @"Quietly set alarm for ending time"];
+    [local addStep: @"I don't know if there is an adenda, I have some things to add"];
+    [local addStep: @"Move on when there is a next action only"];
+    [local addStep: @"Be Patient"];
+    [local addStep: @"Be Patient"];
+    [local addStep: @"Be Patient"];
+    [local addStep: @"Be Patient"];
+    return local;
+    
+}
+
+
+
 
 
 

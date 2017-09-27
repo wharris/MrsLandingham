@@ -128,8 +128,11 @@ WKAudioFilePlayer * audioFilePlayer;
 - (IBAction)Expand {
     NSLog(@"start expanding");
     DoNode * temp=currentNode;
-     currentNode=temp.expansion;
-    [self activateCurrentNode];
+    if(temp.expansion!=NULL){
+        NSLog(@"In expansion");
+        currentNode=temp.expansion;
+        [self activateCurrentNode];}
+    
     NSLog(@"done expanding");
 }
 
