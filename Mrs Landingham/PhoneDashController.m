@@ -74,8 +74,10 @@ FlowModel * model;
     taskValue=[FlowModel getMessage];
     if ([FlowModel canExpand]){
         self.ExpandButton.enabled=YES;
+        self.ExpandButton.backgroundColor = [UIColor greenColor];
     }else{
         self.ExpandButton.enabled=NO;
+        self.ExpandButton.backgroundColor = [UIColor redColor];
     }
 }
 
