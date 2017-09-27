@@ -60,17 +60,11 @@ FlowModel * model;
     else{
        [self activateDoNode];
     }
-
-    
 }
 
 - (void) activateDoNode{
     
     self.counter = startValue;
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self
-                                   selector:@selector(advanceTimer:)
-                                   userInfo:nil
-                                    repeats:YES];
     taskValue=[FlowModel getMessage];
 }
 
@@ -82,7 +76,11 @@ FlowModel * model;
     taskValue=@"Start";
     model=[FlowModel coreBrain];
     
-    [self activateDoNode];
+    [self dispatchNode];
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self
+                                   selector:@selector(advanceTimer:)
+                                   userInfo:nil
+                                    repeats:YES];
     
     // Do any additional setup after loading the view.
 }

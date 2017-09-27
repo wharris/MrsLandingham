@@ -7,17 +7,23 @@
 //
 
 #import "QuestionViewController.h"
+#import "FlowModel.h"
 
 @interface QuestionViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *message;
 
 @end
 
-@implementation QuestionViewController
+@implementation QuestionViewController{
+    FlowModel * model;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    model=[FlowModel coreBrain];
+    self.message.text=[FlowModel getMessage];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,10 +33,14 @@
 
 - (IBAction)YesButton:(id)sender {
     self.message.text=@"Yes";
+    [FlowModel yes];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)NoButton:(id)sender {
     self.message.text=@"No";
+    [FlowModel no];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*

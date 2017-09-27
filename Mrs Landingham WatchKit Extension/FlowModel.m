@@ -39,6 +39,29 @@ WorkNode *activeNode;
      activeNode=activeNode.child;
 }
 
++ (void) yes{
+    if([activeNode isKindOfClass:[QuestionNode class]])
+    {
+        QuestionNode *temp = activeNode;
+        activeNode=temp.elseChild;
+    }
+    else{
+        NSLog(@"Error, 'yes' has been called on a non question node");
+    }
+}
+
++ (void) no{
+    if([activeNode isKindOfClass:[QuestionNode class]])
+    {
+        activeNode=activeNode.child;
+
+    }
+    else{
+        NSLog(@"Error, 'no' has been called on a non question node");
+    }
+
+}
+
 
 + (NSString *) getMessage{
     return activeNode.message;

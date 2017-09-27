@@ -15,6 +15,8 @@
 
 + (id)coreBrain;
 + (void) done;
++ (void) yes;
++ (void) no;
 + (NSString *) getMessage;
 + (WorkNode *) getNode;
 - (WorkNode *) setup_doghouse;
