@@ -36,6 +36,7 @@ WorkNode *saveNode; /*this should be a stack*/
 + (void) setup{
     activeNode=[[DoNode alloc] initWithStep:@"Get ready"];
     [activeNode addNode:[[PickerNode alloc] initWithDic: [self make_initial_menu]]];
+    activeNode=[[PickerNode alloc] initWithDic: [self make_initial_menu]];
 }
 
 + (void) done{

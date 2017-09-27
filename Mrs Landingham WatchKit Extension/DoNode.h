@@ -10,7 +10,13 @@
 
 @interface DoNode : WorkNode
 
+@property WorkNode *expansion;
+
 - (void)addStep:(NSString*) step;
+- (void)addStep:(NSString*) step with: (WorkNode *) function;
+
 - (id) initWithStep: (NSString* ) payload;
+
+
 
 @end

@@ -13,6 +13,7 @@
 @property NSString *message;
 @property WorkNode *child;
 
+
 - (void)addNode:(WorkNode*) target;
 
 @end

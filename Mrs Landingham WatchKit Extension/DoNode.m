@@ -19,17 +19,20 @@
 }
 
 
-- (void) activate{
-    
-    
-    
-}
 
 
     - (void)addStep:(NSString*) step{
         DoNode *node=[[DoNode alloc] initWithStep:step];
         [self addNode: node];
     }
+
+- (void)addStep:(NSString*) step with: (WorkNode *) function{
+    DoNode *node=[[DoNode alloc] initWithStep:step];
+    node.expansion=function;
+    [self addNode: node];
+    //hmm, how do we tie this up?
+    
+}
 
 
 

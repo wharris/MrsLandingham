@@ -27,8 +27,8 @@
 - (WorkNode *) enterCoffeeShop;
 - (WorkNode *) plan_day;
 - (WorkNode *) night;
-- (NSMutableDictionary *)make_problem_menu;
-- (NSMutableDictionary *)make_initial_menu;
++ (NSMutableDictionary *)make_problem_menu;
++ (NSMutableDictionary *)make_initial_menu;
 - (WorkNode *) getWorkNodeAt: (int) input;
 - (NSMutableArray*) getPickerItems;
 
