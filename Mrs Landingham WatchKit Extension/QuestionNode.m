@@ -10,7 +10,9 @@
 #import "DoNode.h"
 
 
-@implementation QuestionNode
+@implementation QuestionNode{
+    BOOL loop;
+}
 
 
 
@@ -18,6 +20,7 @@
     self.message=payload;
     self.elseChild= yesChild;
     self.result=-1;
+    loop=FALSE;
     return self;
 }
 
@@ -26,14 +29,19 @@
     self.message=payload;
     self.elseChild= yesChild;
     self.result=-1;
+    loop=TRUE;
     return self;
 }
 
 
 
-
 - (void)addStep:(NSString*) step{
     DoNode *node=[[DoNode alloc] initWithStep:step];
+    if(!loop){
+    if(self.child==NULL){
+        [self.elseChild addNode: node];
+    }}
+        
     [self addNode: node];
 }
 
