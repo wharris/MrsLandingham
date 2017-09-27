@@ -11,6 +11,7 @@
 #import "FlowModel.h"
 #import "WorkNode.h"
 #import "QuestionNode.h"
+#import "PickerNode.h"
 
 @interface PhoneDashController ()
 @property (weak, nonatomic) IBOutlet UILabel *taskString;
@@ -56,6 +57,10 @@ FlowModel * model;
     if([currentNode isKindOfClass:[QuestionNode class]])
     {
        [self performSegueWithIdentifier:@"GoToQuestion" sender:self];
+    }
+    else if([currentNode isKindOfClass:[PickerNode class]])
+    {
+        [self performSegueWithIdentifier:@"GoToPicker" sender:self];
     }
     else{
        [self activateDoNode];

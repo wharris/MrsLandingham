@@ -11,6 +11,7 @@
 #import "DoNode.h"
 #import "QuestionNode.h"
 #import "PickerController.h"
+#import "PickerNode.h"
 
 @implementation FlowModel
 
@@ -32,7 +33,8 @@ WorkNode *activeNode;
 }
 
 + (void) setup{
-    activeNode=[self morning];
+    activeNode=[[DoNode alloc] initWithStep:@"Get ready"];
+    [activeNode addNode:[[PickerNode alloc] initWithDic: [self make_initial_menu]]];
 }
 
 + (void) done{
@@ -102,7 +104,6 @@ WorkNode *activeNode;
 + (NSMutableDictionary *)make_initial_menu {
     NSLog(@"making the menu");
     NSMutableDictionary *menu= [[NSMutableDictionary alloc] init];
-    menu[@"Morning"]=[self morning];
     menu[@"Morning" ] = [self morning];
     menu[@"Night" ] = [self night] ;
     menu[@"Coffee Shop" ] = [self enterCoffeeShop];
