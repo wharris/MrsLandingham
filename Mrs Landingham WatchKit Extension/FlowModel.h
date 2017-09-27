@@ -18,7 +18,9 @@
 + (void) yes;
 + (void) no;
 + (void) problem;
++ (void) expand;
 + (void) picked: (WorkNode *) input;
++ (BOOL) canExpand;
 + (NSString *) getMessage;
 + (WorkNode *) getNode;
 - (WorkNode *) setup_doghouse;

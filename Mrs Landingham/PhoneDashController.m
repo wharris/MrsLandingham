@@ -16,6 +16,7 @@
 @interface PhoneDashController ()
 @property (weak, nonatomic) IBOutlet UILabel *taskString;
 @property (weak, nonatomic) IBOutlet UILabel *counterString;
+@property (weak, nonatomic) IBOutlet UIButton *ExpandButton;
 
 @end
 
@@ -71,6 +72,11 @@ FlowModel * model;
     
     self.counter = startValue;
     taskValue=[FlowModel getMessage];
+    if ([FlowModel canExpand]){
+        self.ExpandButton.enabled=YES;
+    }else{
+        self.ExpandButton.enabled=NO;
+    }
 }
 
 
@@ -119,7 +125,8 @@ FlowModel * model;
     }
 
 - (IBAction)ExpandButton:(id)sender {
-    
+    [FlowModel expand];
+    [self dispatchNode];
 }
 
 

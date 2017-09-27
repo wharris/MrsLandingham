@@ -36,7 +36,6 @@ WorkNode *saveNode; /*this should be a stack*/
 + (void) setup{
     activeNode=[[DoNode alloc] initWithStep:@"Get ready"];
     [activeNode addNode:[[PickerNode alloc] initWithDic: [self make_initial_menu]]];
-    activeNode=[[PickerNode alloc] initWithDic: [self make_initial_menu]];
 }
 
 + (void) done{
@@ -46,6 +45,27 @@ WorkNode *saveNode; /*this should be a stack*/
         activeNode=saveNode;
     }
 }
+
++ (void) expand{
+    DoNode *hope=activeNode;
+    if (hope.expansion!=NULL){
+    activeNode=hope.expansion;
+    }
+    else{
+        NSLog(@"expand called in error");
+    }
+}
+
++ (BOOL) canExpand{
+    DoNode *hope=activeNode;
+    if (hope.expansion!=NULL){
+        return TRUE;
+    }
+    else{
+        return FALSE;
+    }
+}
+
 
 + (void) yes{
     if([activeNode isKindOfClass:[QuestionNode class]])
@@ -128,6 +148,7 @@ WorkNode *saveNode; /*this should be a stack*/
     menu[@"Map Project"  ] = [self map_project];
     menu[@"Project Review"  ] = [self project_review];
     menu[@"Clean the house"  ] = [self house_cleaning];
+    menu[@"Test Expansion"  ] = [self expansion_test];
     return menu;
 }
 
@@ -153,6 +174,83 @@ WorkNode *saveNode; /*this should be a stack*/
     menu[@"Two tasks in a row" ] = [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham to cover this two in a row."];
     /* These things need answers... */
     return menu;
+}
+
+
++ (WorkNode *) clean_bathroom {
+     DoNode *local=[[DoNode alloc] initWithStep:@"Pee"];
+    [local addStep: @"Put bleach in toilet"];
+    [local addStep: @"Replace towels"];
+    [local addStep: @"Sink items into bath"];
+    [local addStep: @"Get Pink dustclothe"];
+    [local addStep: @"Wipe tops of toliet, tiles, and roll holder"];
+    [local addStep: @"Clean mirrors"];
+    return local;
+}
+
++ (WorkNode *)expansion_test {
+    DoNode *local=[[DoNode alloc] initWithStep:@"Replace Get bathroom bin"];
+    [local addStep: @"Empty Recycling"];
+    [local addStep: @"Empty rubbish bin"];
+    [local addStep: @"Do all three bin liners" ];
+    [local addStep: @"Laundary Box - take things into the right room" ];
+    [local addStep: @"Bathroom" with:[self clean_bathroom]];
+    [local addStep: @"Bedroom"];
+    [local addStep: @"Strip sheets, put in washing machine"];
+    [local addStep: @"New sheets on bed"];
+    [local addStep: @"All bedside stuff on bed"];
+    [local addStep: @"Don't be pooky"];
+    [local addStep: @"Wipe bedside tablets and window sill"];
+    [local addStep: @"Clean bedroom mirros"];
+    [local addStep: @"Arrange sofa cusions"];
+    [local addStep: @"Fold blankets"];
+    [local addStep: @"Clean ash from fire"];
+    [local addStep: @"Clean mirror and tv"];
+    [local addStep: @"Wipe table"];
+    [local addStep: @"Scrub sink"];
+    [local addStep: @"Wipe edge of bath"];
+    [local addStep: @"wipe top of toilet (again)"];
+    [local addStep: @"rince cloth"];
+    [local addStep: @"wipe next bit of toilet"];
+    [local addStep: @"rince cloth"];
+    [local addStep: @"wipe next bit of toilet"];
+    [local addStep: @"rince cloth again"];
+    [local addStep: @"Put bin on side of bath (for hoovering)"];
+    [local addStep: @"Put wash on line"];
+    [local addStep: @"throw out any old fruit in basket"];
+    [local addStep: @"rince both parts of compost bin"];
+    [local addStep: @"shot glass of bleech in compost bleech"];
+    [local addStep: @"compost bin outside"];
+    [local addStep: @"Washing up"];
+    [local addStep: @"clear away everything on the drainer"];
+    [local addStep: @"wipe down drainer"];
+    [local addStep: @"spray kitchen cleaner on drainer"];
+    [local addStep: @"put dirtest item in sink to soak"];
+    [local addStep: @"turn on hot top"];
+    [local addStep: @"wash cleanest item"];
+    [local addStep: @"put sponge in microwave 60 sec"];
+    [local addStep: @"clean surfaces"];
+    [local addStep: @"Get vacume"];
+    [local addStep: @"Longue, including moving table and chairs"];
+    [local addStep: @"Bedroom"];
+    [local addStep: @"Hall, inc shared with S&C"];
+    [local addStep: @"Bathroom"];
+    [local addStep: @"Kitchen inc mat"];
+    [local addStep: @"Use vaccuum extension"];
+    [local addStep: @"sirting boards including behind doors."];
+    [local addStep: @"under stove"];
+    [local addStep: @"around wood pile"];
+    [local addStep: @"floorboards under sofa"];
+    [local addStep: @"Gooves of hall cuboards"];
+    [local addStep: @"behind sink and toilet"];
+    [local addStep: @"bedhind bedside table"];
+    [local addStep: @"edges in kitchen"];
+    [local addStep: @"Mopping"];
+    [local addStep: @"Run hot tab in bath"];
+    [local addStep: @"teaspoons-woth of bleech in bucket"];
+    [local addStep: @"Half fill bucket"];
+    [local addStep: @"Mop kitchen, bathroom and hallway"];
+    return local;
 }
 
 

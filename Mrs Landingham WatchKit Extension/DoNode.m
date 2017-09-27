@@ -34,6 +34,17 @@
     
 }
 
+/* This override is needed because we have to add the child to the extension as well */
+- (void)addNode:(WorkNode*) target  {
+    if (self.child==NULL){
+        self.child=target;
+        [self.expansion addNode: target];
+    }else{
+        [self.child addNode:target];
+    }
+    
+}
+
 
 
 

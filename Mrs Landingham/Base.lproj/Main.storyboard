@@ -328,6 +328,7 @@
                         <color key="backgroundColor" red="0.35355518299711874" green="0.72546405665446922" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
+                        <outlet property="ExpandButton" destination="TnT-a6-zda" id="nTk-WY-5xy"/>
                         <outlet property="counterString" destination="1Vd-zN-HyT" id="yW2-qA-2BV"/>
                         <outlet property="taskString" destination="t0n-6e-ILt" id="a7z-VX-Rub"/>
                         <segue destination="wf9-h2-SyD" kind="show" identifier="GoToQuestion" id="MVH-w0-e4F"/>
