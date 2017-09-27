@@ -206,6 +206,9 @@
                                 <state key="normal" title="Done">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="DoneButton:" destination="eZt-p9-tbL" eventType="touchUpInside" id="PhI-Dd-lzM"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TnT-a6-zda">
                                 <rect key="frame" x="353" y="237" width="101" height="87"/>
@@ -215,6 +218,9 @@
                                 <state key="normal" title="Expand">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="ExpandButton:" destination="eZt-p9-tbL" eventType="touchUpInside" id="GyU-8V-WjK"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mYV-rx-1GW">
                                 <rect key="frame" x="472" y="236" width="101" height="87"/>
@@ -224,6 +230,9 @@
                                 <state key="normal" title="Problem">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="ProblemButton:" destination="eZt-p9-tbL" eventType="touchUpInside" id="suD-zL-i4c"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.35355518299711874" green="0.72546405665446922" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -27,18 +27,8 @@ WorkNode * currentNode;
 
 
 
-- (IBAction)LogButton:(id)sender {
-    [self playSoundCalled:@"ring"];
-    self.counter=startValue;
-}
-
-
-
-
-
 - (void) playSoundCalled: (NSString *) nameOfFile{
     AudioServicesPlaySystemSound(sound1);
-    
     NSString *soundPath = [[NSBundle mainBundle] pathForResource:nameOfFile ofType:@"wav"];
     SystemSoundID soundID;
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:soundPath], &soundID);
@@ -83,14 +73,28 @@ WorkNode * currentNode;
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)ProblemButton:(id)sender {
+    
+    
 }
-*/
+
+- (IBAction)DoneButton:(id)sender {
+    currentNode=currentNode.child;
+    taskValue=currentNode.message;
+}
+
+- (IBAction)ExpandButton:(id)sender {
+    
+}
+
+- (IBAction)LogButton:(id)sender {
+    NSLog(@"Hello");
+    [self playSoundCalled:@"ring"];
+    self.counter=startValue;
+}
+
+
+
+
 
 @end
