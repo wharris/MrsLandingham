@@ -16,6 +16,7 @@
 @implementation FlowModel
 
 WorkNode *activeNode;
+WorkNode *saveNode; /*this should be a stack*/
 
 
 
@@ -38,7 +39,11 @@ WorkNode *activeNode;
 }
 
 + (void) done{
+    if(activeNode.child!=NULL){
      activeNode=activeNode.child;
+    }else{
+        activeNode=saveNode;
+    }
 }
 
 + (void) yes{
@@ -68,11 +73,9 @@ WorkNode *activeNode;
 }
 
 + (void) problem{
-    WorkNode *oldNode=activeNode;
+    saveNode=activeNode;
     PickerNode *picker=[[PickerNode alloc] initWithDic: [self make_problem_menu]];
     activeNode=picker;
-
-    
 }
 
 
