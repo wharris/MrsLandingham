@@ -69,6 +69,8 @@ FlowModel * model;
 }
 
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [UIApplication sharedApplication].idleTimerDisabled = YES;
@@ -76,14 +78,23 @@ FlowModel * model;
     taskValue=@"Start";
     model=[FlowModel coreBrain];
     
-    [self dispatchNode];
+    
     [NSTimer scheduledTimerWithTimeInterval:1 target:self
                                    selector:@selector(advanceTimer:)
                                    userInfo:nil
                                     repeats:YES];
     
     // Do any additional setup after loading the view.
+    
+    
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self dispatchNode];
+        
+    }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
