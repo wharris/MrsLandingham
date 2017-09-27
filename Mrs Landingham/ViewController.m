@@ -24,7 +24,6 @@ WCSession *session;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   self.display.text = @"Hope";
     if ([WCSession isSupported]) {
         session = [WCSession defaultSession];
         session.delegate = self;

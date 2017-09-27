@@ -10,6 +10,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import "FlowModel.h"
 #import "WorkNode.h"
+#import "QuestionNode.h"
 
 @interface PhoneDashController ()
 @property (weak, nonatomic) IBOutlet UILabel *taskString;
@@ -27,6 +28,8 @@ FlowModel * model;
 
 
 - (void) playSoundCalled: (NSString *) nameOfFile{
+    
+    
     AudioServicesPlaySystemSound(sound1);
     NSString *soundPath = [[NSBundle mainBundle] pathForResource:nameOfFile ofType:@"wav"];
     SystemSoundID soundID;
@@ -48,6 +51,28 @@ FlowModel * model;
     
 }
 
+- (void) dispatchNode{
+    WorkNode *currentNode=[FlowModel getNode];
+    if([currentNode isKindOfClass:[QuestionNode class]])
+    {
+       [self performSegueWithIdentifier:@"GoToQuestion" sender:self];
+    }
+    else{
+       [self activateDoNode];
+    }
+
+    
+}
+
+- (void) activateDoNode{
+    
+    self.counter = startValue;
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self
+                                   selector:@selector(advanceTimer:)
+                                   userInfo:nil
+                                    repeats:YES];
+    taskValue=[FlowModel getMessage];
+}
 
 
 - (void)viewDidLoad {
@@ -55,13 +80,9 @@ FlowModel * model;
     [UIApplication sharedApplication].idleTimerDisabled = YES;
     startValue=300;
     taskValue=@"Start";
-    self.counter = startValue;
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self
-                                   selector:@selector(advanceTimer:)
-                                   userInfo:nil
-                                    repeats:YES];
     model=[FlowModel coreBrain];
-    taskValue=[FlowModel getMessage];
+    
+    [self activateDoNode];
     
     // Do any additional setup after loading the view.
 }
@@ -79,6 +100,7 @@ FlowModel * model;
 - (IBAction)DoneButton:(id)sender {
     [self playSoundCalled:@"ring"];
     [FlowModel done];
+    [self dispatchNode];
     taskValue=[FlowModel getMessage];
     self.counter=startValue;
 }

@@ -44,6 +44,11 @@ WorkNode *activeNode;
     return activeNode.message;
 }
 
++ (WorkNode *) getNode{
+    return activeNode;
+}
+
+
 + (WorkNode *)email {
     DoNode *local=[[DoNode alloc] initWithStep:@"Open the inbox"];
     /* First pass*/

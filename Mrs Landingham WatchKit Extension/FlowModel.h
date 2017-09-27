@@ -16,6 +16,7 @@
 + (id)coreBrain;
 + (void) done;
 + (NSString *) getMessage;
++ (WorkNode *) getNode;
 - (WorkNode *) setup_doghouse;
 - (WorkNode *) morning;
 - (WorkNode *) questionTest;

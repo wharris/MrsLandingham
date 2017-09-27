@@ -37,6 +37,7 @@
 		70A321B91F43207200989D7E /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A321B81F43207200989D7E /* NotificationController.m */; };
 		70A321BB1F43207200989D7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70A321BA1F43207200989D7E /* Assets.xcassets */; };
 		70A39A4A1F52A8FB00AB1AED /* FlowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A39A491F52A8FB00AB1AED /* FlowModel.m */; };
+		70B3D5211F7BB9EC0020D5C2 /* QuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B3D5201F7BB9EC0020D5C2 /* QuestionViewController.m */; };
 		70C7C24A1F7BA3F60041A6B5 /* PhoneDashController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C7C2491F7BA3F60041A6B5 /* PhoneDashController.m */; };
 		70C7C24B1F7BAA620041A6B5 /* FlowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A39A491F52A8FB00AB1AED /* FlowModel.m */; };
 		70C7C24C1F7BAA7B0041A6B5 /* DoNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 709BDDAE1F4639C10016CAFB /* DoNode.m */; };
@@ -148,6 +149,8 @@
 		70A321BC1F43207200989D7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70A39A481F52A8FB00AB1AED /* FlowModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlowModel.h; sourceTree = "<group>"; };
 		70A39A491F52A8FB00AB1AED /* FlowModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlowModel.m; sourceTree = "<group>"; };
+		70B3D51F1F7BB9EC0020D5C2 /* QuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionViewController.h; sourceTree = "<group>"; };
+		70B3D5201F7BB9EC0020D5C2 /* QuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionViewController.m; sourceTree = "<group>"; };
 		70C7C2481F7BA3F60041A6B5 /* PhoneDashController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneDashController.h; sourceTree = "<group>"; };
 		70C7C2491F7BA3F60041A6B5 /* PhoneDashController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneDashController.m; sourceTree = "<group>"; };
 		70E76D401F44E4370015BC71 /* PickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerController.h; sourceTree = "<group>"; };
@@ -228,6 +231,8 @@
 				703C56531F694A4F00B517CA /* DashController.m */,
 				70C7C2481F7BA3F60041A6B5 /* PhoneDashController.h */,
 				70C7C2491F7BA3F60041A6B5 /* PhoneDashController.m */,
+				70B3D51F1F7BB9EC0020D5C2 /* QuestionViewController.h */,
+				70B3D5201F7BB9EC0020D5C2 /* QuestionViewController.m */,
 			);
 			path = "Mrs Landingham";
 			sourceTree = "<group>";
@@ -520,6 +525,7 @@
 				70A321731F43207100989D7E /* main.m in Sources */,
 				70C7C24B1F7BAA620041A6B5 /* FlowModel.m in Sources */,
 				703C56541F694A4F00B517CA /* DashController.m in Sources */,
+				70B3D5211F7BB9EC0020D5C2 /* QuestionViewController.m in Sources */,
 				70C7C24A1F7BA3F60041A6B5 /* PhoneDashController.m in Sources */,
 				70C7C24E1F7BAA8A0041A6B5 /* WorkNode.m in Sources */,
 				70C7C24D1F7BAA7E0041A6B5 /* QuestionNode.m in Sources */,

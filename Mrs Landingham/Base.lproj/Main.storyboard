@@ -21,15 +21,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This is the time that I think  we can use  and there are many things that can be a thing and we've " lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXD-j7-Avn">
-                                <rect key="frame" x="37" y="81" width="293" height="299"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What's Next?" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXD-j7-Avn">
+                                <rect key="frame" x="29" y="-19" width="272" height="179"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="43"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fE5-SE-Usy">
-                                <rect key="frame" x="79" y="288" width="193" height="48"/>
+                                <rect key="frame" x="29" y="214" width="166" height="121"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.70411674222797926" green="0.70411674222797926" blue="0.70411674222797926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Copy log to clipboard"/>
@@ -38,16 +38,16 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFz-PQ-FM9">
-                                <rect key="frame" x="321" y="288" width="141" height="30"/>
+                                <rect key="frame" x="219" y="214" width="141" height="121"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.65145320595854916" green="0.65145320595854916" blue="0.65145320595854916" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Phone Dashboard"/>
+                                <state key="normal" title="Watch Dashboard"/>
                                 <connections>
                                     <segue destination="nrE-9r-KyS" kind="show" id="Vyl-fp-aoI"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kuD-Zn-Jbe">
-                                <rect key="frame" x="401" y="122" width="138" height="56"/>
+                                <rect key="frame" x="387" y="214" width="138" height="121"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Phone DashBoard">
@@ -147,6 +147,82 @@
             </objects>
             <point key="canvasLocation" x="904.49775112443785" y="138.40000000000001"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="6sI-TW-sIv">
+            <objects>
+                <viewController id="EsO-cu-49i" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NOn-NF-mbB"/>
+                        <viewControllerLayoutGuide type="bottom" id="RVh-7n-oRD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6Nu-aV-t83">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Fe-cJ-X4d">
+                                <rect key="frame" x="0.0" y="79" width="667" height="216"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YiU-X7-3w4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="904" y="1084"/>
+        </scene>
+        <!--Question View Controller-->
+        <scene sceneID="77d-Kd-1yY">
+            <objects>
+                <viewController id="wf9-h2-SyD" customClass="QuestionViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uh9-aW-wGc"/>
+                        <viewControllerLayoutGuide type="bottom" id="SbI-ZJ-Zv5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="QuestionViewController" id="UYv-OT-HJ7">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What is the meaning of life? " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eeO-fZ-XWr">
+                                <rect key="frame" x="83" y="28" width="459" height="83"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VtJ-nb-Wte">
+                                <rect key="frame" x="94" y="176" width="136" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.353555183" green="0.72546405670000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Yes">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="YesButton:" destination="wf9-h2-SyD" eventType="touchUpInside" id="RQK-iY-2ZW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REE-aW-RVf">
+                                <rect key="frame" x="352" y="176" width="136" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.353555183" green="0.72546405670000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="No">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="NoButton:" destination="wf9-h2-SyD" eventType="touchUpInside" id="5zK-GV-KWX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="message" destination="eeO-fZ-XWr" id="YVs-Gh-tD4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e16-im-1YY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="904.49775112443785" y="1860"/>
+        </scene>
         <!--Phone Dash Controller-->
         <scene sceneID="LrJ-jp-lCT">
             <objects>
@@ -239,6 +315,7 @@
                     <connections>
                         <outlet property="counterString" destination="1Vd-zN-HyT" id="yW2-qA-2BV"/>
                         <outlet property="taskString" destination="t0n-6e-ILt" id="a7z-VX-Rub"/>
+                        <segue destination="wf9-h2-SyD" kind="show" identifier="GoToQuestion" id="MVH-w0-e4F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sqi-dx-zT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
