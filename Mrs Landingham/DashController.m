@@ -9,6 +9,7 @@
 #import "DashController.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import "WatchConnectivity/WatchConnectivity.h"
+#import "flowmodel.h"
 
 @interface DashController ()
 @property (weak, nonatomic) IBOutlet UILabel *counterString;
@@ -22,6 +23,10 @@
     WCSession *session;
     
     __weak IBOutlet UILabel *taskLabel;
+    SystemSoundID sound1;
+    int startValue;
+    NSString * taskValue;
+
 }
 
 //
@@ -34,12 +39,11 @@
 
 
 //WCSession *session;
-SystemSoundID sound1;
-int startValue=300;
-NSString * taskValue;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    startValue=300;
     // Do any additional setup after loading the view.
     self.counter = startValue;
     [NSTimer scheduledTimerWithTimeInterval:1 target:self
@@ -51,6 +55,9 @@ NSString * taskValue;
         session = [WCSession defaultSession];
         session.delegate = self;
         [session activateSession];
+    }
+    else{
+        NSLog(@"nope, NOT here");
     }
     [UIApplication sharedApplication].idleTimerDisabled = YES;
     taskValue=@"Open Watch";

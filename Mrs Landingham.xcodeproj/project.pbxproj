@@ -37,6 +37,7 @@
 		70A321B91F43207200989D7E /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A321B81F43207200989D7E /* NotificationController.m */; };
 		70A321BB1F43207200989D7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70A321BA1F43207200989D7E /* Assets.xcassets */; };
 		70A39A4A1F52A8FB00AB1AED /* FlowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A39A491F52A8FB00AB1AED /* FlowModel.m */; };
+		70C7C24A1F7BA3F60041A6B5 /* PhoneDashController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C7C2491F7BA3F60041A6B5 /* PhoneDashController.m */; };
 		70E76D421F44E4380015BC71 /* PickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70E76D411F44E4380015BC71 /* PickerController.m */; };
 /* End PBXBuildFile section */
 
@@ -143,6 +144,8 @@
 		70A321BC1F43207200989D7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70A39A481F52A8FB00AB1AED /* FlowModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlowModel.h; sourceTree = "<group>"; };
 		70A39A491F52A8FB00AB1AED /* FlowModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlowModel.m; sourceTree = "<group>"; };
+		70C7C2481F7BA3F60041A6B5 /* PhoneDashController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneDashController.h; sourceTree = "<group>"; };
+		70C7C2491F7BA3F60041A6B5 /* PhoneDashController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneDashController.m; sourceTree = "<group>"; };
 		70E76D401F44E4370015BC71 /* PickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerController.h; sourceTree = "<group>"; };
 		70E76D411F44E4380015BC71 /* PickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -219,6 +222,8 @@
 				70A321711F43207100989D7E /* Supporting Files */,
 				703C56521F694A4F00B517CA /* DashController.h */,
 				703C56531F694A4F00B517CA /* DashController.m */,
+				70C7C2481F7BA3F60041A6B5 /* PhoneDashController.h */,
+				70C7C2491F7BA3F60041A6B5 /* PhoneDashController.m */,
 			);
 			path = "Mrs Landingham";
 			sourceTree = "<group>";
@@ -509,6 +514,7 @@
 				70A321761F43207100989D7E /* AppDelegate.m in Sources */,
 				70A321731F43207100989D7E /* main.m in Sources */,
 				703C56541F694A4F00B517CA /* DashController.m in Sources */,
+				70C7C24A1F7BA3F60041A6B5 /* PhoneDashController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
