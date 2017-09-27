@@ -8,6 +8,8 @@
 
 #import "PhoneDashController.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import "FlowModel.h"
+#import "WorkNode.h"
 
 @interface PhoneDashController ()
 @property (weak, nonatomic) IBOutlet UILabel *taskString;
@@ -19,7 +21,11 @@
 SystemSoundID sound1;
 NSString * taskValue;
 int startValue;
+FlowModel * model;
+WorkNode * currentNode;
 }
+
+
 
 - (IBAction)LogButton:(id)sender {
     [self playSoundCalled:@"ring"];
@@ -65,6 +71,10 @@ int startValue;
                                    selector:@selector(advanceTimer:)
                                    userInfo:nil
                                     repeats:YES];
+    model=[[FlowModel alloc] init];
+    currentNode=[model morning];
+    taskValue=currentNode.message;
+    
     // Do any additional setup after loading the view.
 }
 

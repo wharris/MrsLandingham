@@ -38,6 +38,10 @@
 		70A321BB1F43207200989D7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70A321BA1F43207200989D7E /* Assets.xcassets */; };
 		70A39A4A1F52A8FB00AB1AED /* FlowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A39A491F52A8FB00AB1AED /* FlowModel.m */; };
 		70C7C24A1F7BA3F60041A6B5 /* PhoneDashController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C7C2491F7BA3F60041A6B5 /* PhoneDashController.m */; };
+		70C7C24B1F7BAA620041A6B5 /* FlowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A39A491F52A8FB00AB1AED /* FlowModel.m */; };
+		70C7C24C1F7BAA7B0041A6B5 /* DoNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 709BDDAE1F4639C10016CAFB /* DoNode.m */; };
+		70C7C24D1F7BAA7E0041A6B5 /* QuestionNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 709BDDB11F4641A90016CAFB /* QuestionNode.m */; };
+		70C7C24E1F7BAA8A0041A6B5 /* WorkNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 709BDDAB1F4636750016CAFB /* WorkNode.m */; };
 		70E76D421F44E4380015BC71 /* PickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70E76D411F44E4380015BC71 /* PickerController.m */; };
 /* End PBXBuildFile section */
 
@@ -510,11 +514,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70C7C24C1F7BAA7B0041A6B5 /* DoNode.m in Sources */,
 				70A321791F43207100989D7E /* ViewController.m in Sources */,
 				70A321761F43207100989D7E /* AppDelegate.m in Sources */,
 				70A321731F43207100989D7E /* main.m in Sources */,
+				70C7C24B1F7BAA620041A6B5 /* FlowModel.m in Sources */,
 				703C56541F694A4F00B517CA /* DashController.m in Sources */,
 				70C7C24A1F7BA3F60041A6B5 /* PhoneDashController.m in Sources */,
+				70C7C24E1F7BAA8A0041A6B5 /* WorkNode.m in Sources */,
+				70C7C24D1F7BAA7E0041A6B5 /* QuestionNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
