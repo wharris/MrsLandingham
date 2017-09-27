@@ -107,7 +107,8 @@ FlowModel * model;
 }
 
 - (IBAction)ProblemButton:(id)sender {
-    
+    [FlowModel problem];
+    [self dispatchNode];
     
 }
 
@@ -115,9 +116,7 @@ FlowModel * model;
     [self playSoundCalled:@"ring"];
     [FlowModel done];
     [self dispatchNode];
-    taskValue=[FlowModel getMessage];
-    self.counter=startValue;
-}
+    }
 
 - (IBAction)ExpandButton:(id)sender {
     

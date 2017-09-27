@@ -67,6 +67,13 @@ WorkNode *activeNode;
     activeNode=input;
 }
 
++ (void) problem{
+    WorkNode *oldNode=activeNode;
+    PickerNode *picker=[[PickerNode alloc] initWithDic: [self make_problem_menu]];
+    activeNode=picker;
+
+    
+}
 
 
 + (NSString *) getMessage{

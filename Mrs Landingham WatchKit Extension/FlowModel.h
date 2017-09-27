@@ -17,6 +17,7 @@
 + (void) done;
 + (void) yes;
 + (void) no;
++ (void) problem;
 + (void) picked: (WorkNode *) input;
 + (NSString *) getMessage;
 + (WorkNode *) getNode;
