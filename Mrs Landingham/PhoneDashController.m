@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *taskString;
 @property (weak, nonatomic) IBOutlet UILabel *counterString;
 @property (weak, nonatomic) IBOutlet UIButton *ExpandButton;
+@property (weak, nonatomic) IBOutlet UIButton *taskDisplayButton;
 
 @end
 
@@ -118,8 +119,9 @@
     NSLog(@"advance timer");
     NSLog(@"%@", [NSString stringWithFormat:@"counter %d", self.counter]);
     self.counter=self.counter-1;
-    self.counterString.text=[NSString stringWithFormat:@"Seconds remaining: %d", self.counter];
-    self.taskString.text=[NSString stringWithFormat:@"Task: %@", taskValue];
+    self.counterString.text=[NSString stringWithFormat:@"%d", self.counter];
+    self.taskString.text=[NSString stringWithFormat:@"%@", taskValue];
+    [self.taskDisplayButton setTitle:[NSString stringWithFormat:@"%@", taskValue] forState:UIControlStateNormal ];
     if (self.counter == 10) { [self playSoundCalled:@"countdown"]; }
     if (self.counter <= 0) { [timer invalidate]; }
     

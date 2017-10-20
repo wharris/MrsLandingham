@@ -16,7 +16,7 @@
 @implementation FlowModel
 
 WorkNode *activeNode;
-WorkNode *saveNode; /*this should be a stack*/
+NSMutableArray *saveNodes; /*this should be a stack*/
 
 + (id) coreBrain {
     //from http://www.galloway.me.uk/tutorials/singleton-classes/
@@ -33,13 +33,18 @@ WorkNode *saveNode; /*this should be a stack*/
 + (void) setup{
     activeNode=[[DoNode alloc] initWithStep:@"Get ready"];
     [activeNode addNode:[[PickerNode alloc] initWithDic: [self make_initial_menu]]];
+  //  activeNode=[[PickerNode alloc] initWithDic: [self make_initial_menu]];
+    saveNodes=[[NSMutableArray alloc] init];
+    
 }
 
 + (void) done{
     if(activeNode.child!=NULL){
      activeNode=activeNode.child;
     }else{
-        activeNode=saveNode;
+        /* need a guard in here*/
+        activeNode=[saveNodes objectAtIndex:saveNodes.count-1];
+        [saveNodes removeLastObject];
     }
 }
 
@@ -90,8 +95,12 @@ WorkNode *saveNode; /*this should be a stack*/
     activeNode=input;
 }
 
++ (void) save{
+    [saveNodes addObject:activeNode];
+}
+
 + (void) problem{
-    saveNode=activeNode;
+    [self save];
     PickerNode *picker=[[PickerNode alloc] initWithDic: [self make_problem_menu]];
     activeNode=picker;
 }
@@ -112,6 +121,7 @@ WorkNode *saveNode; /*this should be a stack*/
     [local addStep: @"1st pass: read, archive, transfer or unsubscribe"];
     [local addStep: @"Check that you didn't send anthing in the first pass"];
 
+    [local addStep: @"Keystrokes - move responses to blog/wiki"];
     /* Only unsubscribe, archive, or transfer tasks*/
     [local addStep: @"2nd Pass: process the top email until there are none."];
     /*TODO: add a thing about the different types of email.*/
@@ -132,6 +142,27 @@ WorkNode *saveNode; /*this should be a stack*/
 
 
 
++ (WorkNode *) nextAction {
+    PickerNode *picker=[[PickerNode alloc] initWithDic: [self make_na_menu]];
+    return picker;
+    
+}
+
++ (NSMutableDictionary *)make_na_menu {
+    NSLog(@"making the menu");
+    NSMutableDictionary *menu= [[NSMutableDictionary alloc] init];
+    menu[@"Plan Day"  ] = [self plan_day];
+    menu[@"Email"  ] = [self email];
+    menu[@"Red Line"  ] = [self red_line];
+    menu[@"Map Project"  ] = [self map_project];
+    menu[@"Project work"  ] = [self work_on_project];
+    menu[@"Project Review"  ] = [self project_review];
+    menu[@"Clean the house"  ] = [self house_cleaning];
+    menu[@"Meeting"] = [self meeting];
+    return menu;
+}
+
+
 
 + (NSMutableDictionary *)make_initial_menu {
     NSLog(@"making the menu");
@@ -146,7 +177,6 @@ WorkNode *saveNode; /*this should be a stack*/
     menu[@"Project Review"  ] = [self project_review];
     menu[@"Clean the house"  ] = [self house_cleaning];
     menu[@"Meeting"  ] = [self meeting];
-     menu[@"Interuption"  ] = [self interuption];
     return menu;
 }
 
@@ -347,6 +377,15 @@ WorkNode *saveNode; /*this should be a stack*/
     return start;
 }
 
++ (WorkNode *)work_on_project {
+    DoNode *local=[[DoNode alloc] initWithStep:@"Remap it"];
+    QuestionNode *start=[[QuestionNode alloc] initLoop: @"Is there an obvious next action?" yesChild: [[DoNode alloc] initWithStep:@"Do it"]];
+    [local addNode:start];
+    [local addStep: @"Define a next action."];
+    
+    return start;
+}
+
 
 + (WorkNode *) melta_normal_form {
     DoNode *local=[[DoNode alloc] initWithStep:@"Process reminders"];
@@ -405,30 +444,30 @@ WorkNode *saveNode; /*this should be a stack*/
     [local addStep: @"Morning Bathroom" with:[self morning_bathroom]];
     [local addStep: @"Kitc: clothes in wash"];
     [local addStep: @"Kitc:Vitimin Tablet"];
-    [local addStep: @"Kitc:Make Tea"];
+ //   [local addStep: @"Kitc:Make Tea"];
     [local addStep: @"Go To Doghouse"];
     [local addStep: @"Setup Doghouse" with:[self setup_doghouse]];
     [local addStep: @"Setup Laptop" with:[self start_laptop]];
     [local addStep: @"Plan Day" with:[self plan_day]];
-    
     [local addStep: @"Move heartrate from phone to dropbox"];
-    [local addStep: @"Open Next Action algorothim"];
+    QuestionNode *start=[[QuestionNode alloc] initLoop: @"Is there a next action to do?" yesChild: [self nextAction]];
+    [local addNode:start];
 //ends here.
     
     return local;
 }
 
 + (WorkNode *) morning_bathroom{
-    DoNode *local=[[DoNode alloc] initWithStep:@"Exercise"];
-    [local addStep: @"Bathroom" ];
-    [local addStep: @"Bath: Shower"];
+    DoNode *local=[[DoNode alloc] initWithStep:@"Bathroom"];
+    [local addStep: @"Bath: shower"];
+    [local addStep: @"Bath: deodorant"];
     [local addStep: @"Bath: Dress"];
-    [local addStep: @"Bath: Exfoliate"];
-    [local addStep: @"Bath: Consider face strip"];
-    [local addStep: @"Bath: Shave"];
-    [local addStep: @"Bath: Shave head"];
-    [local addStep: @"Bath: Teeth"];
-    [local addStep: @"Bath: Floss"];
+    [local addStep: @"Bath: exfoliate"];
+    [local addStep: @"Bath: consider face strip"];
+    [local addStep: @"Bath: shave"];
+    [local addStep: @"Bath: shave head"];
+    [local addStep: @"Bath: teeth"];
+    [local addStep: @"Bath: floss"];
     return local;
 }
 
@@ -448,8 +487,6 @@ WorkNode *saveNode; /*this should be a stack*/
 
 + (WorkNode *) night{
     DoNode *local=[[DoNode alloc] initWithStep:@"Bed: Get tomorrow's clothes from bedroom"];
-    
-    [local addStep: @"Bed:Headphones on charge"];
     [local addStep: @"Bed:Other battery on charge"];
     [local addStep: @"FR:Empty Ospray of everything and put in shed bag"];
     [local addStep: @"FR:Glasses in Ospray"];
@@ -469,6 +506,7 @@ WorkNode *saveNode; /*this should be a stack*/
     [local addStep: @"Kitch:otherclothes in washing machine"];
     [local addStep: @"Kitch:Lock Door"];
     [local addStep: @"Kitch:Setup tea and water bottles"];
+    [local addStep: @"Kitch:Headphones on charge"];
     [local addStep: @"Kitch:Sleep mask on head"];
     [local addStep: @"Kitch:What is the next thing in the memory palace?"];
     [local addStep: @"Kitch:Lights out"];
