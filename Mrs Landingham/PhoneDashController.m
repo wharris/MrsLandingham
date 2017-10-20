@@ -49,10 +49,12 @@
     taskValue=[FlowModel getMessage];
     if ([FlowModel canExpand]){
         self.ExpandButton.enabled=YES;
-        self.ExpandButton.backgroundColor = [UIColor greenColor];
+        self.ExpandButton.hidden=NO;
+      //  self.ExpandButton.backgroundColor = [UIColor greenColor];
     }else{
         self.ExpandButton.enabled=NO;
-        self.ExpandButton.backgroundColor = [UIColor redColor];
+         self.ExpandButton.hidden=YES;
+      //  self.ExpandButton.backgroundColor = [UIColor redColor];
     }
 }
 
@@ -119,8 +121,6 @@
     NSLog(@"advance timer");
     NSLog(@"%@", [NSString stringWithFormat:@"counter %d", self.counter]);
     self.counter=self.counter-1;
-    self.counterString.text=[NSString stringWithFormat:@"%d", self.counter];
-   
     [self.taskDisplayButton setTitle:[NSString stringWithFormat:@"%@", taskValue] forState:UIControlStateNormal ];
     NSString * timeString=[NSString stringWithFormat:@"%d", self.counter];
     [self.timeDisplayButton setTitle:timeString forState:UIControlStateNormal ];
