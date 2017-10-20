@@ -14,9 +14,9 @@
 #import "PickerNode.h"
 
 @interface PhoneDashController ()
-@property (weak, nonatomic) IBOutlet UILabel *taskString;
 @property (weak, nonatomic) IBOutlet UILabel *counterString;
 @property (weak, nonatomic) IBOutlet UIButton *ExpandButton;
+@property (weak, nonatomic) IBOutlet UIButton *timeDisplayButton;
 @property (weak, nonatomic) IBOutlet UIButton *taskDisplayButton;
 
 @end
@@ -120,8 +120,10 @@
     NSLog(@"%@", [NSString stringWithFormat:@"counter %d", self.counter]);
     self.counter=self.counter-1;
     self.counterString.text=[NSString stringWithFormat:@"%d", self.counter];
-    self.taskString.text=[NSString stringWithFormat:@"%@", taskValue];
+   
     [self.taskDisplayButton setTitle:[NSString stringWithFormat:@"%@", taskValue] forState:UIControlStateNormal ];
+    NSString * timeString=[NSString stringWithFormat:@"%d", self.counter];
+    [self.timeDisplayButton setTitle:timeString forState:UIControlStateNormal ];
     if (self.counter == 10) { [self playSoundCalled:@"countdown"]; }
     if (self.counter <= 0) { [timer invalidate]; }
     
