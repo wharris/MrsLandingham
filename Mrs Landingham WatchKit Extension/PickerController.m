@@ -51,7 +51,7 @@ FlowModel * model;
 
 - (void) makeItemWith: (NSString *) input startNode: (WorkNode *) startNode {
     WKPickerItem *pickerItem4 = [WKPickerItem alloc];
-    NSLog(input);
+    NSLog(@"%@", input);
     [pickerItem4 setTitle:input];
     [pickerItem4 setAccessoryImage:[WKImage imageWithImageName:@"Smile"]];
     [pickerItems addObject: pickerItem4 ];

@@ -33,17 +33,27 @@
     return self;
 }
 
-
-
 - (void)addStep:(NSString*) step{
     DoNode *node=[[DoNode alloc] initWithStep:step];
-    if(!loop){
-    if(self.child==NULL){
-        [self.elseChild addNode: node];
-    }}
-        
-    [self addNode: node];
+    [self addNode:node];
 }
+
+
+- (void)addNode:(WorkNode *) payload{
+    //What's the behavioru I want here?
+    //If it's a closed loop, it should be closed, and the elsechild is the looping one.
+    //If it's an open loop, then what really should happen is that the branch points to the first sucessor node... (so we don't double up...) So, if it isn't a loop, then the first sucessor node should be the successor to both (which I have below). 
+    if(!loop){
+        if(self.child==NULL){
+            [self.elseChild addNode: payload];
+        }}
+    if(self.child==NULL){
+        self.child= payload;
+    }else{
+    [self.child addNode: payload];
+    }
+}
+
 
 
 
