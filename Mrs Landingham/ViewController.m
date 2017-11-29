@@ -9,6 +9,7 @@
 
 #import "ViewController.h"
 #import "WatchConnectivity/WatchConnectivity.h"
+#import "LogController.h"
 
 @interface ViewController ()
 
@@ -50,6 +51,13 @@ WCSession *session;
     self.display.text=@"played sound";
 }
 
+- (IBAction)printlog:(id)sender {
+    LogController * logger;
+    logger=[[LogController alloc] init];
+    NSLog([logger getLog]);
+    
+    
+}
 
 
 
