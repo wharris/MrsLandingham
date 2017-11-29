@@ -12,6 +12,7 @@
 #import "WorkNode.h"
 #import "QuestionNode.h"
 #import "PickerNode.h"
+#import "LogController.h"
 
 @interface PhoneDashController ()
 @property (weak, nonatomic) IBOutlet UILabel *counterString;
@@ -19,17 +20,27 @@
 @property (weak, nonatomic) IBOutlet UIButton *timeDisplayButton;
 @property (weak, nonatomic) IBOutlet UIButton *taskDisplayButton;
 
+
 @end
+
 
 @implementation PhoneDashController {
     SystemSoundID sound1;
     NSString * taskValue;
     int startValue;
     FlowModel * model;
+    LogController * logger;
 }
 
 - (void) dispatchNode{
+    NSDate *currentDate = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"\n\n###### 20YY-MM-dd HH:mm\n"];
+    NSString *dateString = [dateFormatter stringFromDate:currentDate];
+    NSLog(@"Going to write to file");
+    [logger writeLogWith: dateString];
     WorkNode *currentNode=[FlowModel getNode];
+    [logger writeLogWith: currentNode.message];
     if([currentNode isKindOfClass:[QuestionNode class]])
     {
         [self performSegueWithIdentifier:@"GoToQuestion" sender:self];
@@ -61,6 +72,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+     logger=[[LogController alloc] init];
     [UIApplication sharedApplication].idleTimerDisabled = YES;
     startValue=300;
     taskValue=@"Start";

@@ -25,6 +25,7 @@
     [file seekToEndOfFile];
     [file writeData:[content dataUsingEncoding:NSUTF8StringEncoding]];
     [file closeFile];
+    NSLog(@"Wrote to file");
     
     return;
 }

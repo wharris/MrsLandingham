@@ -207,6 +207,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     menu[@"Phone call" ] = [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham to cover this"] ;
     menu[@"Food" ] = [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham to cover this instance." ];
     menu[@"Heart" ] = [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham to cover this"] ;
+    menu[@"Message" ] = [[DoNode alloc] initWithStep:@"Triage: do, or holding reply and action"] ;
     return menu;
 }
 
@@ -229,6 +230,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     menu[@"Interuption" ] = [self interuption];
     menu[@"Alarm goes off" ] = [self alarm_has_gone_off];
     menu[@"Two tasks in a row" ] = [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham to cover this two in a row."];
+    menu[@"I don't know why I should do this" ] = [[DoNode alloc] initWithStep:@"Remember this was writen by you in a good place."];
     /* These things need answers... */
     return menu;
 }
@@ -413,8 +415,17 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     [local addStep: @"Note now much time for the full list"];
     [local addStep: @"Do any tasks that take less than five minutes (morning power hour!)"];
     [local addStep: @"Check if some tasks have already been done"];
-    [local addStep: @"Rewrite tasks thinking about how public they are"];
+    [local addStep: @"Rewrite tasks thinking about how public they are" with: [self rewrite_for_public]];
   //  [local addStep: @"Go thought all tasks and adjust the deadline for an urgent ones"];
+    return local;
+}
+
+
++ (WorkNode *)rewrite_for_public {
+    /* Plan day goes before normal form because Plan day generates small, urgent actions from the calendar wheres reminders rarely generate calendar entries*/
+    DoNode *local=[[DoNode alloc] initWithStep:@"Each action starts with verb"];
+    [local addStep: @"Sprints have links"];
+    [local addStep: @"Actions start with captial letters"];
     return local;
 }
 
@@ -442,6 +453,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     [yesNode addStep: @"Email/call to confirm"];
     [yesNode addStep: @"Add any tasks about appointment"];//which wil have prioirt 0 and happen first
     [yesNode addStep: @"Set Alarm for travel"];
+    [yesNode addStep: @"Set Alarm for ending the apointment"];
   return yesNode;
 }
 
@@ -451,8 +463,6 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     [start addStep: @"Set Alarm for email"];
     [start addStep: @"Put Food plan in spreadsheet"];
     [start addStep: @"Set Alarm for food"];
-    QuestionNode *q=[[QuestionNode alloc] initBranch: @"Is there a redline?" yesChild: [self red_line]];
-    [start addNode: q];
     [start addStep: @"Look at the sleep records for the last few days to see if any adjustments are needed"];
     return start;
 }
@@ -468,9 +478,10 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     [local addStep: @"Move heartrate from phone to dropbox"];
     [local addStep: @"Go To Doghouse"];
     [local addStep: @"Connect laptop to monitors"];
-    [local addStep: @"Setup for the day" with:[self start_laptop]];
     [local addStep: @"Setup Doghouse" with:[self setup_doghouse]];
-    
+    [local addStep: @"Setup for the day" with:[self start_laptop]];
+    QuestionNode *q=[[QuestionNode alloc] initBranch: @"Is there a redline?" yesChild: [self red_line]];
+    [local addNode: q];
     QuestionNode *start=[[QuestionNode alloc] initLoop: @"Is there a next action to do?" yesChild: [self nextAction]];
     [local addNode:start];
 //ends here.
@@ -495,6 +506,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 
 + (WorkNode *) enterCoffeeShop{
     DoNode *local=[[DoNode alloc] initWithStep:@"Smile"];
+    [local addStep: @"Remember you probably have a loyalty card"];
     [local addStep: @"Order a green tea and a glass of tap water"];//No sugar, only peace
     [local addStep: @"Find seat with plug"];
     [local addStep: @"Spread things around table"];
