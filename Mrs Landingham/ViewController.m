@@ -54,6 +54,7 @@ WCSession *session;
 - (IBAction)printlog:(id)sender {
     LogController * logger;
     logger=[[LogController alloc] init];
+     [UIPasteboard generalPasteboard].string = [logger getLog];
     NSLog([logger getLog]);
     
     

@@ -204,9 +204,9 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 
 + (NSMutableDictionary* )make_interupt_menu {
     NSMutableDictionary *menu= [[NSMutableDictionary alloc] init];
-    menu[@"Phone call" ] = [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham to cover this"] ;
-    menu[@"Food" ] = [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham to cover this instance." ];
-    menu[@"Heart" ] = [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham to cover this"] ;
+    menu[@"Phone call" ] = [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham for phone calls"] ;
+    menu[@"Food" ] = [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham for food interupt." ];
+    menu[@"Heart" ] = [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham for heart interupt"] ;
     menu[@"Message" ] = [[DoNode alloc] initWithStep:@"Triage: do, or holding reply and action"] ;
     return menu;
 }
@@ -452,6 +452,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     [yesNode addStep: @"Think of a way to make it awesome"];
     [yesNode addStep: @"Email/call to confirm"];
     [yesNode addStep: @"Add any tasks about appointment"];//which wil have prioirt 0 and happen first
+    [yesNode addStep: @"Send (or write) adenda"];
     [yesNode addStep: @"Set Alarm for travel"];
     [yesNode addStep: @"Set Alarm for ending the apointment"];
   return yesNode;
@@ -469,8 +470,10 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 
 
 
+
 + (WorkNode *)morning {
-    DoNode *local=[[DoNode alloc] initWithStep:@"Exercise"];
+    DoNode *local=[[DoNode alloc] initWithStep:@"Feel them genius"];
+    [local addStep: @"Cycling" with:[self cycling]];
     [local addStep: @"Morning Bathroom" with:[self morning_bathroom]];
     [local addStep: @"Kitc: clothes in wash"];
     [local addStep: @"Kitc:Vitimin Tablet"];
@@ -503,6 +506,19 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     return local;
 }
 
+
++ (WorkNode *) cycling{
+    DoNode *local=[[DoNode alloc] initWithStep:@"cycling clothes"];
+    [local addStep: @"Get Water bottle"];
+    [local addStep: @"Doghouse"];//No sugar, only peace
+    [local addStep: @"Switch on heater"];
+    [local addStep: @"Streach"];
+    [local addStep: @"Switch on podcast"];
+    [local addStep: @"Set watch to ping on a calorie amount"];
+    [local addStep: @"on Bike: Focus on your intensity"];
+    return local;
+    
+}
 
 + (WorkNode *) enterCoffeeShop{
     DoNode *local=[[DoNode alloc] initWithStep:@"Smile"];

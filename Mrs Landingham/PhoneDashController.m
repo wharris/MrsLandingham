@@ -35,7 +35,8 @@
 - (void) dispatchNode{
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"\n\n###### 20YY-MM-dd HH:mm\n"];
+    // ###### 30/11/17 14:37:
+    [dateFormatter setDateFormat:@"\n\n###### dd/MM/YY HH:mm\n"];
     NSString *dateString = [dateFormatter stringFromDate:currentDate];
     NSLog(@"Going to write to file");
     [logger writeLogWith: dateString];
