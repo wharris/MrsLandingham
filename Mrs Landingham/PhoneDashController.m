@@ -32,16 +32,20 @@
     LogController * logger;
 }
 
-- (void) dispatchNode{
+- (void)log_state:(WorkNode *)currentNode {
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     // ###### 30/11/17 14:37:
     [dateFormatter setDateFormat:@"\n\n###### dd/MM/YY HH:mm\n"];
     NSString *dateString = [dateFormatter stringFromDate:currentDate];
-    NSLog(@"Going to write to file");
     [logger writeLogWith: dateString];
-    WorkNode *currentNode=[FlowModel getNode];
     [logger writeLogWith: currentNode.message];
+}
+
+- (void) dispatchNode{
+    WorkNode *currentNode=[FlowModel getNode];
+    
+    [self log_state:currentNode];
     if([currentNode isKindOfClass:[QuestionNode class]])
     {
         [self performSegueWithIdentifier:@"GoToQuestion" sender:self];
@@ -115,6 +119,7 @@
 - (IBAction)LogButton:(id)sender {
     [self playSoundCalled:@"ring"];
     self.counter=startValue;
+    [self log_state:[FlowModel getNode]];
     
 }
 
