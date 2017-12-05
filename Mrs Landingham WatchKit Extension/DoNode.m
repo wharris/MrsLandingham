@@ -12,22 +12,28 @@
 
 
 
-- (id) initWithStep: (NSString* ) payload {
+- (id) initStep: (NSString* ) payload {
     self.message=payload;
     self.child=NULL;
     return self;
 }
 
 
+- (id) initStep: (NSString* ) payload with: (WorkNode *) function{
+    self.message=payload;
+    self.child=NULL;
+    self.expansion=function;
+    return self;
+}
 
 
     - (void)addStep:(NSString*) step{
-        DoNode *node=[[DoNode alloc] initWithStep:step];
+        DoNode *node=[[DoNode alloc] initStep:step];
         [self addNode: node];
     }
 
 - (void)addStep:(NSString*) step with: (WorkNode *) function{
-    DoNode *node=[[DoNode alloc] initWithStep:step];
+    DoNode *node=[[DoNode alloc] initStep:step];
     node.expansion=function;
     [self addNode: node];
     //hmm, how do we tie this up?

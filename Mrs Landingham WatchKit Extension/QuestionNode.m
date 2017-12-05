@@ -34,7 +34,7 @@
 }
 
 - (void)addStep:(NSString*) step{
-    DoNode *node=[[DoNode alloc] initWithStep:step];
+    DoNode *node=[[DoNode alloc] initStep:step];
     [self addNode:node];
 }
 

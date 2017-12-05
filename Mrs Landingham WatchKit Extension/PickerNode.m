@@ -7,6 +7,7 @@
 //
 
 #import "PickerNode.h"
+#import "WorkNode.h";
 
 @implementation PickerNode
 
@@ -17,7 +18,10 @@
 }
 
 - (void)addNode:(WorkNode*) target  {
-    NSLog(@"Method called in error: PickerNode");
+    for(id key in self.menu) {
+        WorkNode * value = [self.menu objectForKey:key];
+        [value addNode:target];
+    }
 }
 
 

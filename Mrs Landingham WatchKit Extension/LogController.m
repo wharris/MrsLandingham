@@ -15,7 +15,7 @@
      
     
     NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *filePath = [[documentsDirectory stringByAppendingPathComponent:@"whathappenedwhen"] stringByAppendingPathExtension:@"md"];
+    NSString *filePath = [[documentsDirectory stringByAppendingPathComponent:@"delores_log"] stringByAppendingPathExtension:@"md"];
     
     if(![[NSFileManager defaultManager] fileExistsAtPath:filePath])
         [[NSFileManager defaultManager] createFileAtPath:filePath contents:nil attributes:nil];
@@ -32,7 +32,7 @@
 
 - (NSString *) getLog{
     NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *fileName = [documentsDirectory stringByAppendingPathComponent:@"whathappenedwhen.md"];
+    NSString *fileName = [documentsDirectory stringByAppendingPathComponent:@"delores_log"];
     
     //read the whole file as a single string
     return [NSString stringWithContentsOfFile:fileName encoding:NSUTF8StringEncoding error:nil];

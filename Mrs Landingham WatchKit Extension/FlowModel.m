@@ -31,7 +31,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 }
 
 + (void) setup{
-    activeNode=[[DoNode alloc] initWithStep:@"Deep breath"];
+    activeNode=[[DoNode alloc] initStep:@"Deep breath"];
     [activeNode addNode:[[PickerNode alloc] initWithDic: [self make_initial_menu]]];
   //  activeNode=[[PickerNode alloc] initWithDic: [self make_initial_menu]];
     saveNodes=[[NSMutableArray alloc] init];
@@ -122,7 +122,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 
 
 + (WorkNode *)email {
-    DoNode *local=[[DoNode alloc] initWithStep:@"Open the inbox"];
+    DoNode *local=[[DoNode alloc] initStep:@"Open the inbox"];
     /* First pass*/
     [local addStep: @"1st pass: read, archive, transfer or unsubscribe"];
     [local addStep: @"Check that you didn't send anthing in the first pass"];
@@ -138,7 +138,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 
 
 + (WorkNode *)red_line {
-    DoNode *local=[[DoNode alloc] initWithStep:@"Open next Actions"];
+    DoNode *local=[[DoNode alloc] initStep:@"Open next Actions"];
     /* First pass*/
     [local addStep: @"Check the prioirty of all the red tasks"];
     [local addStep: @"Move all the 5/and6 tasks to projects"];
@@ -155,6 +155,13 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     
 }
 
+
++ (WorkNode *) exercise {
+    PickerNode *picker=[[PickerNode alloc] initWithDic: [self make_exercise_menu]];
+    return picker;
+    
+}
+
 + (NSMutableDictionary *)make_na_menu {
     NSLog(@"making the menu");
     NSMutableDictionary *menu= [[NSMutableDictionary alloc] init];
@@ -166,9 +173,9 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     menu[@"Project Review"  ] = [self project_review];
     menu[@"Clean the house"  ] = [self house_cleaning];
     menu[@"Meeting"] = [self meeting];
-    menu[@"Simple Task"]=[[DoNode alloc] initWithStep:@"Do the task"];
-    menu[@"Other"]=[[DoNode alloc] initWithStep:@"Extend Mrs Landingham for this. "];
-    menu[@"0-priority task"]=[[DoNode alloc] initWithStep:@"Rewrite task and sort again"];
+    menu[@"Simple Task"]=[[DoNode alloc] initStep:@"Do the task"];
+    menu[@"Other"]=[[DoNode alloc] initStep:@"Extend Mrs Landingham for this. "];
+    menu[@"0-priority task"]=[[DoNode alloc] initStep:@"Rewrite task and sort again"];
     
     
     return menu;
@@ -204,40 +211,49 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 
 + (NSMutableDictionary* )make_interupt_menu {
     NSMutableDictionary *menu= [[NSMutableDictionary alloc] init];
-    menu[@"Phone call" ] = [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham for phone calls"] ;
-    menu[@"Food" ] = [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham for food interupt." ];
-    menu[@"Heart" ] = [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham for heart interupt"] ;
-    menu[@"Message" ] = [[DoNode alloc] initWithStep:@"Triage: do, or holding reply and action"] ;
+    menu[@"Phone call" ] = [[DoNode alloc] initStep:@"Rewrite Mrs Landingham for phone calls"] ;
+    menu[@"Food" ] = [[DoNode alloc] initStep:@"Rewrite Mrs Landingham for food interupt." ];
+    menu[@"Heart" ] = [[DoNode alloc] initStep:@"Rewrite Mrs Landingham for heart interupt"] ;
+    menu[@"Message" ] = [[DoNode alloc] initStep:@"Triage: do, or holding reply and action"] ;
+    menu[@"Small handy task" ] = [[DoNode alloc] initStep:@"300 seconds on it..."] ;
     return menu;
 }
 
++ (NSMutableDictionary* )make_exercise_menu {
+    NSMutableDictionary *menu= [[NSMutableDictionary alloc] init];
+    menu[@"Cycling" ] = [[DoNode alloc] initStep:@"Cycling" with:[self cycling]];
+    menu[@"Climbing" ] = [[DoNode alloc] initStep:@"Write climbing algorithm." ];
+    menu[@"Push/Pull ups" ] = [[DoNode alloc] initStep:@"Write push/pull-ups algorithm"] ;
+   
+    return menu;
+}
 
 
 + (NSMutableDictionary* )make_problem_menu {
     NSMutableDictionary *menu= [[NSMutableDictionary alloc] init];
     //This is far all the times when I reach a step and feel like doing something else.
-    menu[@"I feel resistence" ] = [[DoNode alloc] initWithStep:@"Write down the smallest physical step on the notes file"] ;
+    menu[@"I feel resistence" ] = [[DoNode alloc] initStep:@"Write down the smallest physical step on the notes file"] ;
     /*This is simply to keep me going and focused on the details */
-    menu[@"Other" ] = [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham to cover this instance." ];
+    menu[@"Other" ] = [[DoNode alloc] initStep:@"Rewrite Mrs Landingham to cover this instance." ];
     /*Needed during the overall process of building and modifying the algorithm */
-    menu[@"Today is different" ] = [[DoNode alloc] initWithStep:@"Post to Social, then act as if done."] ;
+    menu[@"Today is different" ] = [[DoNode alloc] initStep:@"Post to Social, then act as if done."] ;
     /*Sometimes I feel like 'not today', which is fine, as long as I can admit it on social media. */
-    menu[@"Made progress and want to rewrite." ] = [[DoNode alloc] initWithStep:@"Keep working, write the smallest action."];
+    menu[@"Made progress and want to rewrite." ] = [[DoNode alloc] initStep:@"Keep working, write the smallest action."];
     /* Sometimes I think "i've given this a fair whack, let's do something else".  But if we're working in prioity order, I'm working on the most important thing, so I should keep working on that*/
-    menu[@"Cron Needs a resource" ] = [[DoNode alloc] initWithStep:@"Order it online, mark as done"];
+    menu[@"Cron Needs a resource" ] = [[DoNode alloc] initStep:@"Order it online, mark as done"];
     /* For things like floss and other things we're I'm like, oh, I need to buy something before that*/
-    menu[@"This tasks needs email" ] = [[DoNode alloc] initWithStep:@"Write as much of it as you can, and then put an event in the calendar"];
+    menu[@"This tasks needs email" ] = [[DoNode alloc] initStep:@"Write as much of it as you can, and then put an event in the calendar"];
     menu[@"Interuption" ] = [self interuption];
     menu[@"Alarm goes off" ] = [self alarm_has_gone_off];
-    menu[@"Two tasks in a row" ] = [[DoNode alloc] initWithStep:@"Rewrite Mrs Landingham to cover this two in a row."];
-    menu[@"I don't know why I should do this" ] = [[DoNode alloc] initWithStep:@"Remember this was writen by you in a good place."];
+    menu[@"Two tasks in a row" ] = [[DoNode alloc] initStep:@"Rewrite Mrs Landingham to cover this two in a row."];
+    menu[@"I don't know why I should do this" ] = [[DoNode alloc] initStep:@"Remember this was writen by you in a good place."];
     /* These things need answers... */
     return menu;
 }
 
 
 + (WorkNode *) clean_bathroom {
-     DoNode *local=[[DoNode alloc] initWithStep:@"Pee"];
+     DoNode *local=[[DoNode alloc] initStep:@"Pee"];
     [local addStep: @"Put bleach in toilet"];
     [local addStep: @"Replace towels"];
     [local addStep: @"Sink items into bath"];
@@ -248,7 +264,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 }
 
 + (WorkNode *)expansion_test {
-    DoNode *local=[[DoNode alloc] initWithStep:@"Replace bathroom bin"];
+    DoNode *local=[[DoNode alloc] initStep:@"Replace bathroom bin"];
     [local addStep: @"Empty Recycling"];
     [local addStep: @"Empty rubbish bin"];
     [local addStep: @"Do all three bin liners" ];
@@ -270,7 +286,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 
 
 + (WorkNode *)house_cleaning {
-    DoNode *local=[[DoNode alloc] initWithStep:@"Replace bathroom bin"];
+    DoNode *local=[[DoNode alloc] initStep:@"Replace bathroom bin"];
     [local addStep: @"Empty Recycling"];
     [local addStep: @"Empty rubbish bin"];
     [local addStep: @"Do all three bin liners" ];
@@ -345,7 +361,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 
 
 + (WorkNode *)map_project {
-    DoNode *local=[[DoNode alloc] initWithStep:@"Create Issue"];
+    DoNode *local=[[DoNode alloc] initStep:@"Create Issue"];
     [local addStep: @"Write down SMART goal"];
     [local addStep: @"Write down WHY you do it"];
     [local addStep: @"Write down a list of steps to take(not in order)" ];
@@ -356,7 +372,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 }
 
 + (WorkNode *)setup_doghouse {
-    DoNode *local=[[DoNode alloc] initWithStep:@"Get water bottle"];
+    DoNode *local=[[DoNode alloc] initStep:@"Get water bottle"];
     [local addStep: @"Put Phone on charge"];
     [local addStep: @"Tell phone Instramental music" ];
     [local addStep: @"Put everything on one side of the desk and process it" ];
@@ -365,7 +381,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 
 
 + (WorkNode *)project_review {
-    DoNode *local=[[DoNode alloc] initWithStep:@"Check and respond to project notifications."];
+    DoNode *local=[[DoNode alloc] initStep:@"Check and respond to project notifications."];
     [local addStep: @"Open EQT Projects Board"];
     [local addNode:[self project_normal_form]];
     [local addStep: @"Open Personal Projects Board"];
@@ -375,7 +391,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 }
 
 + (WorkNode *)project_normal_form {
-    DoNode *local=[[DoNode alloc] initWithStep:@"Make sure all issues have been imported to the board."];
+    DoNode *local=[[DoNode alloc] initStep:@"Make sure all issues have been imported to the board."];
     [local addStep: @"Removed closed issues"];
     [local addStep: @"Check that every card is assigned"];
     QuestionNode *start=[[QuestionNode alloc] initLoop: @"Are there any unprocessed projects?" yesChild: [self check_project]];
@@ -394,8 +410,8 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 }
 
 + (WorkNode *)work_on_project {
-    DoNode *local=[[DoNode alloc] initWithStep:@"Remap it"];
-    QuestionNode *start=[[QuestionNode alloc] initLoop: @"Is there an obvious next action?" yesChild: [[DoNode alloc] initWithStep:@"Do it"]];
+    DoNode *local=[[DoNode alloc] initStep:@"Remap it"];
+    QuestionNode *start=[[QuestionNode alloc] initLoop: @"Is there an obvious next action?" yesChild: [[DoNode alloc] initStep:@"Do it"]];
     [local addNode:start];
     [local addStep: @"Define a next action."];
     
@@ -404,7 +420,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 
 
 + (WorkNode *) melta_normal_form {
-    DoNode *local=[[DoNode alloc] initWithStep:@"Process reminders"];
+    DoNode *local=[[DoNode alloc] initStep:@"Process reminders"];
     [local addStep: @"Add tasks from phone screenshots."];
     [local addStep: @"Check Voicemail and add any messages to Tasks."];
     [local addStep: @"Check notebook/brainstorms for tasks"];
@@ -423,7 +439,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 
 + (WorkNode *)rewrite_for_public {
     /* Plan day goes before normal form because Plan day generates small, urgent actions from the calendar wheres reminders rarely generate calendar entries*/
-    DoNode *local=[[DoNode alloc] initWithStep:@"Each action starts with verb"];
+    DoNode *local=[[DoNode alloc] initStep:@"Each action starts with verb"];
     [local addStep: @"Sprints have links"];
     [local addStep: @"Actions start with captial letters"];
     return local;
@@ -431,7 +447,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 
 + (WorkNode *)start_laptop {
     /* Plan day goes before normal form because Plan day generates small, urgent actions from the calendar wheres reminders rarely generate calendar entries*/
-    DoNode *local=[[DoNode alloc] initWithStep:@"Open livenotes, make an entry"];
+    DoNode *local=[[DoNode alloc] initStep:@"Open livenotes, make an entry"];
     [local addStep: @"Open Prioirty and Time Chart (for flow)"];
     [local addStep: @"Close other programs (not terminal)"];
     [local addStep: @"Put the thing you are most worried abotu in next actions"];
@@ -441,14 +457,14 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 }
 
 + (WorkNode *)alarm_has_gone_off {
-    DoNode *local=[[DoNode alloc] initWithStep:@"Stand up"];
+    DoNode *local=[[DoNode alloc] initStep:@"Stand up"];
     [local addStep: @"Write the 'context stack' down on a log if you have one"];
     [local addStep: @"Do the thing"];
     return local;
 }
 
 + (DoNode *)process_apointment {
-  DoNode *yesNode=[[DoNode alloc] initWithStep:@"Change to Skype"];
+  DoNode *yesNode=[[DoNode alloc] initStep:@"Change to Skype"];
     [yesNode addStep: @"Think of a way to make it awesome"];
     [yesNode addStep: @"Email/call to confirm"];
     [yesNode addStep: @"Add any tasks about appointment"];//which wil have prioirt 0 and happen first
@@ -472,8 +488,8 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 
 
 + (WorkNode *)morning {
-    DoNode *local=[[DoNode alloc] initWithStep:@"Feel them genius"];
-    [local addStep: @"Cycling" with:[self cycling]];
+    DoNode *local=[[DoNode alloc] initStep:@"Feel them genius"];
+    [local addStep: @"Exercise" with:[self exercise]];
     [local addStep: @"Morning Bathroom" with:[self morning_bathroom]];
     [local addStep: @"Kitc: clothes in wash"];
     [local addStep: @"Kitc:Vitimin Tablet"];
@@ -493,7 +509,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 }
 
 + (WorkNode *) morning_bathroom{
-    DoNode *local=[[DoNode alloc] initWithStep:@"Bathroom"];
+    DoNode *local=[[DoNode alloc] initStep:@"Bathroom"];
     [local addStep: @"Bath: shower"];
     [local addStep: @"Bath: deodorant"];
     [local addStep: @"Bath: Dress"];
@@ -508,7 +524,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 
 
 + (WorkNode *) cycling{
-    DoNode *local=[[DoNode alloc] initWithStep:@"cycling clothes"];
+    DoNode *local=[[DoNode alloc] initStep:@"cycling clothes"];
     [local addStep: @"Get Water bottle"];
     [local addStep: @"Doghouse"];//No sugar, only peace
     [local addStep: @"Switch on heater"];
@@ -521,7 +537,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 }
 
 + (WorkNode *) enterCoffeeShop{
-    DoNode *local=[[DoNode alloc] initWithStep:@"Smile"];
+    DoNode *local=[[DoNode alloc] initStep:@"Smile"];
     [local addStep: @"Remember you probably have a loyalty card"];
     [local addStep: @"Order a green tea and a glass of tap water"];//No sugar, only peace
     [local addStep: @"Find seat with plug"];
@@ -535,7 +551,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 }
 
 + (WorkNode *) night{
-    DoNode *local=[[DoNode alloc] initWithStep:@"Bed: Get tomorrow's clothes from bedroom"];
+    DoNode *local=[[DoNode alloc] initStep:@"Bed: Get tomorrow's clothes from bedroom"];
     [local addStep: @"Bed:Other battery on charge"];
     [local addStep: @"FR:Empty Ospray of everything and put in shed bag"];
     [local addStep: @"FR:Glasses in Ospray"];
@@ -565,7 +581,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 }
 
 + (WorkNode *) meeting{
-    DoNode *local=[[DoNode alloc] initWithStep:@"Find out other people's ending time"];
+    DoNode *local=[[DoNode alloc] initStep:@"Find out other people's ending time"];
     [local addStep: @"Quietly set alarm for ending time"];
     [local addStep: @"I don't know if there is an adenda, I have some things to add"];
     [local addStep: @"Move on when there is a next action only"];

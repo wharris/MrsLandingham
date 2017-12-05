@@ -15,8 +15,8 @@
 - (void)addStep:(NSString*) step;
 - (void)addStep:(NSString*) step with: (WorkNode *) function;
 
-- (id) initWithStep: (NSString* ) payload;
-
+- (id) initStep: (NSString* ) payload;
+- (id) initStep: (NSString* ) payload with: (WorkNode *) function;
 
 
 @end

@@ -15,3 +15,6 @@
 
 - (id) initWithDic: (NSMutableDictionary* ) input;
 @end
+
+
+//for each element of input. Run Add on it.  Hmmm.
