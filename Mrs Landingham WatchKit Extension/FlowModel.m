@@ -121,6 +121,18 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 }
 
 
+
+
++ (WorkNode *)badfoodchoices {
+    DoNode *local=[[DoNode alloc] initStep:@"Stop chewing"];
+   /*  Leave house and go and buy fruit.  Fruit is fine.  Also buy nuts of a type you haven't had in a while.
+    Drink a full liter of water.
+    Prepare the food for the next meal now.
+    */
+    return local;
+}
+
+
 + (WorkNode *)email {
     DoNode *local=[[DoNode alloc] initStep:@"Open the inbox"];
     /* First pass*/
@@ -198,7 +210,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     menu[@"Meeting"  ] = [self meeting];
     menu[@"Next actions"  ] = [self nextAction];
     menu[@"Alarm goes off" ] = [self alarm_has_gone_off];
-    menu[@"Start Laptop" ] = [self start_laptop];
+    menu[@"Start Laptop" ] = [self setup_digital_workspace];
     return menu;
 }
 
@@ -216,6 +228,8 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     menu[@"Heart" ] = [[DoNode alloc] initStep:@"Rewrite Mrs Landingham for heart interupt"] ;
     menu[@"Message" ] = [[DoNode alloc] initStep:@"Triage: do, or holding reply and action"] ;
     menu[@"Small handy task" ] = [[DoNode alloc] initStep:@"300 seconds on it..."] ;
+    menu[@"DELORES workflow is incomplete" ] = [[DoNode alloc] initStep:@"300 seconds editing xcode if laptop, screenshot otherwise" with:[self scarface_rewrite] ] ;
+     menu[@"I have a task to record" ] = [[DoNode alloc] initStep:@"Melta if possible, otherwise reminders, otherwise voicmail"] ;
     return menu;
 }
 
@@ -371,11 +385,12 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     return local;
 }
 
-+ (WorkNode *)setup_doghouse {
++ (WorkNode *)setup_workspace {
     DoNode *local=[[DoNode alloc] initStep:@"Get water bottle"];
     [local addStep: @"Put Phone on charge"];
+    [local addStep: @"Pen and something to brainstorm on nearby"];
     [local addStep: @"Tell phone Instramental music" ];
-    [local addStep: @"Put everything on one side of the desk and process it" ];
+    [local addStep: @"Glasses" ];
     return local;
 }
 
@@ -445,12 +460,11 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     return local;
 }
 
-+ (WorkNode *)start_laptop {
++ (WorkNode *)setup_digital_workspace {
     /* Plan day goes before normal form because Plan day generates small, urgent actions from the calendar wheres reminders rarely generate calendar entries*/
     DoNode *local=[[DoNode alloc] initStep:@"Open livenotes, make an entry"];
     [local addStep: @"Open Prioirty and Time Chart (for flow)"];
     [local addStep: @"Close other programs (not terminal)"];
-    [local addStep: @"Put the thing you are most worried abotu in next actions"];
     [local addStep: @"Plan Day" with:[self plan_day]];
     [local addNode:[self melta_normal_form]];
     return local;
@@ -474,14 +488,26 @@ NSMutableArray *saveNodes; /*this should be a stack*/
   return yesNode;
 }
 
++ (DoNode *)scarface_rewrite {
+    DoNode *yesNode=[[DoNode alloc] initStep:@"Open Xcode"];
+    [yesNode addStep: @"Itterate screenshots until finnished"];
+    return yesNode;
+}
+
 + (WorkNode *)plan_day {
+    DoNode *local=[[DoNode alloc] initStep:@"Open Calendar."];
+    [local addStep: @"Block out time for any events you'd like to do"];
+    [local addStep: @"Block out time for any events that you know are happening"];
     QuestionNode *start=[[QuestionNode alloc] initLoop: @"Are there any unprocessed apointments (72 hours)?" yesChild: [self process_apointment]];
-    [start addStep: @"Set Alarm for exercise"];
-    [start addStep: @"Set Alarm for email"];
-    [start addStep: @"Put Food plan in spreadsheet"];
-    [start addStep: @"Set Alarm for food"];
-    [start addStep: @"Look at the sleep records for the last few days to see if any adjustments are needed"];
-    return start;
+    [local addNode:start];
+    [local addStep: @"Set Alarm for exercise"];
+    [local addStep: @"Set Alarm for email"];
+    [local addStep: @"Put Food plan in spreadsheet"];
+    [local addStep: @"Set Alarm for food"];
+    [local addStep: @"Add any blocked off time you like to calendar and set alarms"];
+    
+    [local addStep: @"Look at the sleep records for the last few days to see if any adjustments are needed"];
+    return local;
 }
 
 
@@ -496,9 +522,8 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     [local addStep: @"Kitc:Make Tea"];
     [local addStep: @"Move heartrate from phone to dropbox"];
     [local addStep: @"Go To Doghouse"];
-    [local addStep: @"Connect laptop to monitors"];
-    [local addStep: @"Setup Doghouse" with:[self setup_doghouse]];
-    [local addStep: @"Setup for the day" with:[self start_laptop]];
+    [local addStep: @"Setup Physical Workspace" with:[self setup_workspace]];
+    [local addStep: @"Setup Digital Workspace" with:[self setup_digital_workspace]];
     QuestionNode *q=[[QuestionNode alloc] initBranch: @"Is there a redline?" yesChild: [self red_line]];
     [local addNode: q];
     QuestionNode *start=[[QuestionNode alloc] initLoop: @"Is there a next action to do?" yesChild: [self nextAction]];
@@ -526,12 +551,13 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 + (WorkNode *) cycling{
     DoNode *local=[[DoNode alloc] initStep:@"cycling clothes"];
     [local addStep: @"Get Water bottle"];
-    [local addStep: @"Doghouse"];//No sugar, only peace
-    [local addStep: @"Switch on heater"];
+    [local addStep: @"Garage"];//No sugar, only peace
     [local addStep: @"Streach"];
     [local addStep: @"Switch on podcast"];
-    [local addStep: @"Set watch to ping on a calorie amount"];
+    [local addStep: @"Check best time for 300 calories"];
+    [local addStep: @"Set watch to ping on 300 calores amount"];
     [local addStep: @"on Bike: Focus on your intensity"];
+    [local addStep: @"Drink a full pint of water"];
     return local;
     
 }

@@ -31,11 +31,18 @@
 }
 
 - (NSString *) getLog{
+    NSError * error;
     NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *fileName = [documentsDirectory stringByAppendingPathComponent:@"delores_log"];
+    NSString *fileName = [documentsDirectory stringByAppendingPathComponent:@"delores_log.md"];
     
     //read the whole file as a single string
-    return [NSString stringWithContentsOfFile:fileName encoding:NSUTF8StringEncoding error:nil];
+    NSString * temp =[NSString stringWithContentsOfFile:fileName encoding:NSUTF8StringEncoding error:&error];
+    if (temp==nil)
+    {
+        NSLog([error localizedFailureReason]);
+        return @"Fail";
+    }
+    return temp;
     
 }
 

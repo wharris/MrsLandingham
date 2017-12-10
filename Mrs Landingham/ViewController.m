@@ -51,11 +51,17 @@ WCSession *session;
     self.display.text=@"played sound";
 }
 
+
+
 - (IBAction)printlog:(id)sender {
     LogController * logger;
     logger=[[LogController alloc] init];
-     [UIPasteboard generalPasteboard].string = [logger getLog];
-    NSLog([logger getLog]);
+    NSString * temp =@"hello";
+    temp=[logger getLog];
+    [UIPasteboard generalPasteboard].string = temp;
+    
+   // NSLog([logger getLog ]);
+  //  NSLog(extracted(logger));
     
     
 }
