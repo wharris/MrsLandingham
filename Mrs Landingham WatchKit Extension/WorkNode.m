@@ -27,5 +27,9 @@
     
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat: @"Do:%@\n%@", self.message, self.child];
+}
+
 
 @end

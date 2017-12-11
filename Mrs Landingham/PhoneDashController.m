@@ -107,6 +107,7 @@
     [self playSoundCalled:@"ring"];
     [FlowModel done];
     [self dispatchNode];
+    [FlowModel spider];
 }
 
 - (IBAction)ExpandButton:(id)sender {
@@ -135,8 +136,8 @@
 
 - (void)advanceTimer:(NSTimer *)timer
 {
-    NSLog(@"advance timer");
-    NSLog(@"%@", [NSString stringWithFormat:@"counter %d", self.counter]);
+ //   NSLog(@"advance timer");
+ //   NSLog(@"%@", [NSString stringWithFormat:@"counter %d", self.counter]);
     self.counter=self.counter-1;
     if (self.counter >=0 ){
         [self.taskDisplayButton setTitle:[NSString stringWithFormat:@"%@", taskValue] forState:UIControlStateNormal ];

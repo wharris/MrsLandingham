@@ -20,6 +20,7 @@
 + (void) problem;
 + (void) expand;
 + (void) picked: (WorkNode *) input;
++ (void) spider;
 + (BOOL) canExpand;
 + (NSString *) getMessage;
 + (WorkNode *) getNode;

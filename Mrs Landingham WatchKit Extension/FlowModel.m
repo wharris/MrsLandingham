@@ -1,4 +1,4 @@
-//
+    //
 //  FlowModel.m
 //  Mrs Landingham
 //
@@ -33,7 +33,6 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 + (void) setup{
     activeNode=[[DoNode alloc] initStep:@"Deep breath"];
     [activeNode addNode:[[PickerNode alloc] initWithDic: [self make_initial_menu]]];
-  //  activeNode=[[PickerNode alloc] initWithDic: [self make_initial_menu]];
     saveNodes=[[NSMutableArray alloc] init];
     
 }
@@ -109,6 +108,12 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     [self save];
     PickerNode *picker=[[PickerNode alloc] initWithDic: [self make_problem_menu]];
     activeNode=picker;
+}
+
+
+
++ (void) spider{
+    NSLog(@"%@", activeNode);
 }
 
 
@@ -619,10 +624,5 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     return local;
     
 }
-
-
-
-
-
 
 @end

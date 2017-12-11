@@ -15,6 +15,7 @@
 - (id) initStep: (NSString* ) payload {
     self.message=payload;
     self.child=NULL;
+    self.expansion=NULL;
     return self;
 }
 
@@ -49,6 +50,15 @@
         [self.child addNode:target];
     }
     
+}
+
+
+- (NSString *)description {
+    if(self.expansion==NULL){
+        return [NSString stringWithFormat: @"%@\n%@", self.message, self.child];
+    }else{
+        return [NSString stringWithFormat: @"GOTO:%@\n%@\n\n%@(){\n%@\n}\n", self.message, self.child,self.message,self.expansion];
+    }
 }
 
 

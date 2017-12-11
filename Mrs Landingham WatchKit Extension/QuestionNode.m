@@ -12,6 +12,7 @@
 
 @implementation QuestionNode{
     BOOL loop;
+    BOOL described;
 }
 
 
@@ -21,6 +22,7 @@
     self.elseChild= yesChild;
     self.result=-1;
     loop=FALSE;
+    described=FALSE;
     return self;
 }
 
@@ -52,6 +54,18 @@
     }else{
     [self.child addNode: payload];
     }
+}
+
+
+- (NSString *)description {
+    if (described==FALSE){
+        described=TRUE;
+        if (loop){
+        return [NSString stringWithFormat: @"while(%@)\n{\n%@\n}\nelse{\n%@\n}", self.message, self.elseChild, self.child];
+    }
+    return [NSString stringWithFormat: @"if(%@)\n{\n%@\n}\nelse{\n%@\n}", self.message, self.elseChild, self.child];
+    }
+    return @"";
 }
 
 
