@@ -514,7 +514,8 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 
 
 + (WorkNode *)morning {
-    DoNode *local=[[DoNode alloc] initStep:@"Feel them genius"];
+    DoNode *local=[[DoNode alloc] initStep:@"Feel the genius"];
+    [local addStep: @"Weight self using app"];
     [local addStep: @"Exercise" with:[self exercise]];
     [local addStep: @"Morning Bathroom" with:[self morning_bathroom]];
     [local addStep: @"Kitc: clothes in wash"];

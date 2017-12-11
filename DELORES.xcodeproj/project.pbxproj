@@ -16,6 +16,21 @@
 		703C56571F6A800F00B517CA /* countdown.wav in Resources */ = {isa = PBXBuildFile; fileRef = 703C56551F6A800F00B517CA /* countdown.wav */; };
 		705966961F631116008BAD8D /* ring.wav in Resources */ = {isa = PBXBuildFile; fileRef = 705966951F631116008BAD8D /* ring.wav */; };
 		70650B931F4E043800AFEC26 /* LogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70650B921F4E043800AFEC26 /* LogController.m */; };
+		7082141C1FDF2B79000E186B /* air.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7082141B1FDF2B78000E186B /* air.wav */; };
+		7082141D1FDF2B79000E186B /* air.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7082141B1FDF2B78000E186B /* air.wav */; };
+		7082141E1FDF2B79000E186B /* air.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7082141B1FDF2B78000E186B /* air.wav */; };
+		7082141F1FDF2B79000E186B /* air.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7082141B1FDF2B78000E186B /* air.wav */; };
+		708214201FDF2B79000E186B /* air.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7082141B1FDF2B78000E186B /* air.wav */; };
+		708214221FDF2B84000E186B /* longbeeb.wav in Resources */ = {isa = PBXBuildFile; fileRef = 708214211FDF2B84000E186B /* longbeeb.wav */; };
+		708214231FDF2B84000E186B /* longbeeb.wav in Resources */ = {isa = PBXBuildFile; fileRef = 708214211FDF2B84000E186B /* longbeeb.wav */; };
+		708214241FDF2B84000E186B /* longbeeb.wav in Resources */ = {isa = PBXBuildFile; fileRef = 708214211FDF2B84000E186B /* longbeeb.wav */; };
+		708214251FDF2B84000E186B /* longbeeb.wav in Resources */ = {isa = PBXBuildFile; fileRef = 708214211FDF2B84000E186B /* longbeeb.wav */; };
+		708214261FDF2B84000E186B /* longbeeb.wav in Resources */ = {isa = PBXBuildFile; fileRef = 708214211FDF2B84000E186B /* longbeeb.wav */; };
+		708214281FDF2B8D000E186B /* endstage.wav in Resources */ = {isa = PBXBuildFile; fileRef = 708214271FDF2B8D000E186B /* endstage.wav */; };
+		708214291FDF2B8D000E186B /* endstage.wav in Resources */ = {isa = PBXBuildFile; fileRef = 708214271FDF2B8D000E186B /* endstage.wav */; };
+		7082142A1FDF2B8D000E186B /* endstage.wav in Resources */ = {isa = PBXBuildFile; fileRef = 708214271FDF2B8D000E186B /* endstage.wav */; };
+		7082142B1FDF2B8D000E186B /* endstage.wav in Resources */ = {isa = PBXBuildFile; fileRef = 708214271FDF2B8D000E186B /* endstage.wav */; };
+		7082142C1FDF2B8D000E186B /* endstage.wav in Resources */ = {isa = PBXBuildFile; fileRef = 708214271FDF2B8D000E186B /* endstage.wav */; };
 		709BDDAC1F4636750016CAFB /* WorkNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 709BDDAB1F4636750016CAFB /* WorkNode.m */; };
 		709BDDAF1F4639C10016CAFB /* DoNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 709BDDAE1F4639C10016CAFB /* DoNode.m */; };
 		709BDDB21F4641A90016CAFB /* QuestionNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 709BDDB11F4641A90016CAFB /* QuestionNode.m */; };
@@ -115,6 +130,9 @@
 		705966951F631116008BAD8D /* ring.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = ring.wav; path = "Mrs Landingham WatchKit Extension/ring.wav"; sourceTree = SOURCE_ROOT; };
 		70650B911F4E043800AFEC26 /* LogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogController.h; sourceTree = "<group>"; };
 		70650B921F4E043800AFEC26 /* LogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogController.m; sourceTree = "<group>"; };
+		7082141B1FDF2B78000E186B /* air.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = air.wav; sourceTree = "<group>"; };
+		708214211FDF2B84000E186B /* longbeeb.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = longbeeb.wav; sourceTree = "<group>"; };
+		708214271FDF2B8D000E186B /* endstage.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = endstage.wav; sourceTree = "<group>"; };
 		709BDDAA1F4636750016CAFB /* WorkNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkNode.h; sourceTree = "<group>"; };
 		709BDDAB1F4636750016CAFB /* WorkNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkNode.m; sourceTree = "<group>"; };
 		709BDDAD1F4639C10016CAFB /* DoNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoNode.h; sourceTree = "<group>"; };
@@ -230,6 +248,9 @@
 				70B3D5221F7BC3CC0020D5C2 /* PickerViewController.h */,
 				703C56551F6A800F00B517CA /* countdown.wav */,
 				705966951F631116008BAD8D /* ring.wav */,
+				708214271FDF2B8D000E186B /* endstage.wav */,
+				708214211FDF2B84000E186B /* longbeeb.wav */,
+				7082141B1FDF2B78000E186B /* air.wav */,
 				70A321741F43207100989D7E /* AppDelegate.h */,
 				70A321751F43207100989D7E /* AppDelegate.m */,
 				70A321771F43207100989D7E /* ViewController.h */,
@@ -485,6 +506,9 @@
 				703C563D1F693CDE00B517CA /* ring.wav in Resources */,
 				70A321811F43207200989D7E /* LaunchScreen.storyboard in Resources */,
 				70A3217E1F43207100989D7E /* Assets.xcassets in Resources */,
+				708214281FDF2B8D000E186B /* endstage.wav in Resources */,
+				7082141C1FDF2B79000E186B /* air.wav in Resources */,
+				708214221FDF2B84000E186B /* longbeeb.wav in Resources */,
 				70A3217C1F43207100989D7E /* Main.storyboard in Resources */,
 				703C56561F6A800F00B517CA /* countdown.wav in Resources */,
 			);
@@ -495,6 +519,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				703C563E1F693CDF00B517CA /* ring.wav in Resources */,
+				7082141D1FDF2B79000E186B /* air.wav in Resources */,
+				708214231FDF2B84000E186B /* longbeeb.wav in Resources */,
+				708214291FDF2B8D000E186B /* endstage.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +530,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				703C563F1F693CE000B517CA /* ring.wav in Resources */,
+				7082141E1FDF2B79000E186B /* air.wav in Resources */,
+				708214241FDF2B84000E186B /* longbeeb.wav in Resources */,
+				7082142A1FDF2B8D000E186B /* endstage.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,8 +541,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				703C56401F693CE100B517CA /* ring.wav in Resources */,
+				7082142B1FDF2B8D000E186B /* endstage.wav in Resources */,
 				70A321A41F43207200989D7E /* Assets.xcassets in Resources */,
 				70A321A21F43207200989D7E /* Interface.storyboard in Resources */,
+				7082141F1FDF2B79000E186B /* air.wav in Resources */,
+				708214251FDF2B84000E186B /* longbeeb.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,8 +554,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				705966961F631116008BAD8D /* ring.wav in Resources */,
+				7082142C1FDF2B8D000E186B /* endstage.wav in Resources */,
 				703C56571F6A800F00B517CA /* countdown.wav in Resources */,
 				70A321BB1F43207200989D7E /* Assets.xcassets in Resources */,
+				708214201FDF2B79000E186B /* air.wav in Resources */,
+				708214261FDF2B84000E186B /* longbeeb.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

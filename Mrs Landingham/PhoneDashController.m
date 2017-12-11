@@ -32,6 +32,7 @@
     LogController * logger;
 }
 
+//TODO: This should be within the logger (so the watch can use it and we can abstract it out...
 - (void)log_state:(WorkNode *)currentNode {
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -66,11 +67,9 @@
     if ([FlowModel canExpand]){
         self.ExpandButton.enabled=YES;
         self.ExpandButton.hidden=NO;
-      //  self.ExpandButton.backgroundColor = [UIColor greenColor];
     }else{
         self.ExpandButton.enabled=NO;
          self.ExpandButton.hidden=YES;
-      //  self.ExpandButton.backgroundColor = [UIColor redColor];
     }
 }
 
@@ -117,7 +116,7 @@
 
 
 - (IBAction)LogButton:(id)sender {
-    [self playSoundCalled:@"ring"];
+    [self playSoundCalled:@"air"];
     self.counter=startValue;
     [self log_state:[FlowModel getNode]];
     
@@ -139,11 +138,14 @@
     NSLog(@"advance timer");
     NSLog(@"%@", [NSString stringWithFormat:@"counter %d", self.counter]);
     self.counter=self.counter-1;
-    [self.taskDisplayButton setTitle:[NSString stringWithFormat:@"%@", taskValue] forState:UIControlStateNormal ];
-    NSString * timeString=[NSString stringWithFormat:@"%d", self.counter];
-    [self.timeDisplayButton setTitle:timeString forState:UIControlStateNormal ];
+    if (self.counter >=0 ){
+        [self.taskDisplayButton setTitle:[NSString stringWithFormat:@"%@", taskValue] forState:UIControlStateNormal ];
+        NSString * timeString=[NSString stringWithFormat:@"%d", self.counter];
+        [self.timeDisplayButton setTitle:timeString forState:UIControlStateNormal ];
+    }
+     if (self.counter == 60) { [self playSoundCalled:@"longbeeb"]; }
     if (self.counter == 10) { [self playSoundCalled:@"countdown"]; }
-    if (self.counter <= 0) { [timer invalidate]; }
+    //if (self.counter <= 0) { [timer invalidate]; }
     
 }
 
