@@ -22,7 +22,6 @@ NSString *counterValue;
 
 WCSession *session;
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     if ([WCSession isSupported]) {
@@ -52,17 +51,12 @@ WCSession *session;
 }
 
 
-
 - (IBAction)printlog:(id)sender {
     LogController * logger;
     logger=[[LogController alloc] init];
     NSString * temp =@"hello";
     temp=[logger getLog];
     [UIPasteboard generalPasteboard].string = temp;
-    
-   // NSLog([logger getLog ]);
-  //  NSLog(extracted(logger));
-    
     
 }
 

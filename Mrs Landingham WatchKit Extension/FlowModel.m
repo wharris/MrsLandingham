@@ -230,7 +230,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     NSMutableDictionary *menu= [[NSMutableDictionary alloc] init];
     menu[@"Phone call" ] = [[DoNode alloc] initStep:@"Rewrite Mrs Landingham for phone calls"] ;
     menu[@"Food" ] = [[DoNode alloc] initStep:@"Rewrite Mrs Landingham for food interupt." ];
-    menu[@"Heart" ] = [[DoNode alloc] initStep:@"Rewrite Mrs Landingham for heart interupt"] ;
+    menu[@"Heart" ] = [[DoNode alloc] initStep:@"Listern to hear and do what she says"] ;
     menu[@"Message" ] = [[DoNode alloc] initStep:@"Triage: do, or holding reply and action"] ;
     menu[@"Small handy task" ] = [[DoNode alloc] initStep:@"300 seconds on it..."] ;
     menu[@"DELORES workflow is incomplete" ] = [[DoNode alloc] initStep:@"300 seconds editing xcode if laptop, screenshot otherwise" with:[self scarface_rewrite] ] ;
@@ -266,6 +266,8 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     menu[@"Alarm goes off" ] = [self alarm_has_gone_off];
     menu[@"Two tasks in a row" ] = [[DoNode alloc] initStep:@"Rewrite Mrs Landingham to cover this two in a row."];
     menu[@"I don't know why I should do this" ] = [[DoNode alloc] initStep:@"Remember this was writen by you in a good place."];
+    menu[@"Waiting for a resource" ] = [[DoNode alloc] initStep:@"Tidy things up while you wait"];
+    
     /* These things need answers... */
     return menu;
 }
@@ -413,7 +415,6 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 + (WorkNode *)project_normal_form {
     DoNode *local=[[DoNode alloc] initStep:@"Make sure all issues have been imported to the board."];
     [local addStep: @"Removed closed issues"];
-    [local addStep: @"Check that every card is assigned"];
     QuestionNode *start=[[QuestionNode alloc] initLoop: @"Are there any unprocessed projects?" yesChild: [self check_project]];
     [local addNode:start];
     [local addStep:@"All done. Take a breath"];
@@ -424,14 +425,14 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 + (WorkNode *)check_project {
     QuestionNode *start=[[QuestionNode alloc] initBranch: @"Does it need mapping?" yesChild: [self map_project]];
     [start addStep: @"Check it has the right priority"];
-    [start addStep: @"Check it has a next action"];
+    [start addStep: @"Check it has a next action in github"];
     [start addStep: @"Check there is a next action in melta"];
     return start;
 }
 
 + (WorkNode *)work_on_project {
     DoNode *local=[[DoNode alloc] initStep:@"Remap it"];
-    QuestionNode *start=[[QuestionNode alloc] initLoop: @"Is there an obvious next action?" yesChild: [[DoNode alloc] initStep:@"Do it"]];
+    QuestionNode *start=[[QuestionNode alloc] initLoop: @"Is there an obvious next action?" yesChild: [[DoNode alloc] initStep:@"Do the next action on the list"]];
     [local addNode:start];
     [local addStep: @"Define a next action."];
     

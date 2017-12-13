@@ -61,7 +61,7 @@
     if (described==FALSE){
         described=TRUE;
         if (loop){
-        return [NSString stringWithFormat: @"while(%@)\n{\n%@\n}\nelse{\n%@\n}", self.message, self.elseChild, self.child];
+        return [NSString stringWithFormat: @"while(%@)\n{\n%@\n}\n%@\n", self.message, self.elseChild, self.child];
     }
     return [NSString stringWithFormat: @"if(%@)\n{\n%@\n}\nelse{\n%@\n}", self.message, self.elseChild, self.child];
     }

@@ -43,7 +43,16 @@
         return @"Fail";
     }
     return temp;
-    
+}
+
+- (void)log_state:(NSString *)message {
+    NSDate *currentDate = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    // ###### 30/11/17 14:37:
+    [dateFormatter setDateFormat:@"\n\n###### dd/MM/YY HH:mm\n"];
+    NSString *dateString = [dateFormatter stringFromDate:currentDate];
+    [self writeLogWith: dateString];
+    [self writeLogWith: message];
 }
 
 

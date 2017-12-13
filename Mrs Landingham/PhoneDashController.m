@@ -33,20 +33,11 @@
 }
 
 //TODO: This should be within the logger (so the watch can use it and we can abstract it out...
-- (void)log_state:(WorkNode *)currentNode {
-    NSDate *currentDate = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    // ###### 30/11/17 14:37:
-    [dateFormatter setDateFormat:@"\n\n###### dd/MM/YY HH:mm\n"];
-    NSString *dateString = [dateFormatter stringFromDate:currentDate];
-    [logger writeLogWith: dateString];
-    [logger writeLogWith: currentNode.message];
-}
+
 
 - (void) dispatchNode{
     WorkNode *currentNode=[FlowModel getNode];
-    
-    [self log_state:currentNode];
+    [logger log_state:currentNode.message];
     if([currentNode isKindOfClass:[QuestionNode class]])
     {
         [self performSegueWithIdentifier:@"GoToQuestion" sender:self];
@@ -119,7 +110,7 @@
 - (IBAction)LogButton:(id)sender {
     [self playSoundCalled:@"air"];
     self.counter=startValue;
-    [self log_state:[FlowModel getNode]];
+    [logger log_state:[FlowModel getNode].message];
     
 }
 
@@ -133,20 +124,16 @@
 }
 
 
-
 - (void)advanceTimer:(NSTimer *)timer
 {
- //   NSLog(@"advance timer");
- //   NSLog(@"%@", [NSString stringWithFormat:@"counter %d", self.counter]);
     self.counter=self.counter-1;
     if (self.counter >=0 ){
         [self.taskDisplayButton setTitle:[NSString stringWithFormat:@"%@", taskValue] forState:UIControlStateNormal ];
         NSString * timeString=[NSString stringWithFormat:@"%d", self.counter];
         [self.timeDisplayButton setTitle:timeString forState:UIControlStateNormal ];
     }
-     if (self.counter == 60) { [self playSoundCalled:@"longbeeb"]; }
+    if (self.counter == 60) { [self playSoundCalled:@"longbeeb"]; }
     if (self.counter == 10) { [self playSoundCalled:@"countdown"]; }
-    //if (self.counter <= 0) { [timer invalidate]; }
     
 }
 

@@ -12,6 +12,7 @@
 
 - (void) writeLogWith: (NSString *) content;
 - (NSString *) getLog;
+- (void)log_state:(NSString *)message;
 
 
 @end
