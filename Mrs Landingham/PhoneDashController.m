@@ -53,9 +53,9 @@
 }
 
 - (void) activateDoNode{
-    [self sendAlert];
     self.counter = startValue;
     taskValue=[FlowModel getMessage];
+    [self sendAlertWith:taskValue];
     if ([FlowModel canExpand]){
         self.ExpandButton.enabled=YES;
         self.ExpandButton.hidden=NO;
@@ -67,17 +67,17 @@
 }
 
 
-- (void) sendAlert{
+- (void) sendAlertWith: (NSString* ) message {
     NSLog(@"Scheduling alert");
     UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
-    content.title = [NSString localizedUserNotificationStringForKey:@"Hello!" arguments:nil];
-    content.body = [NSString localizedUserNotificationStringForKey:@"Hello_message_body"
+    content.title = [NSString localizedUserNotificationStringForKey:@"Actions!" arguments:nil];
+    content.body = [NSString localizedUserNotificationStringForKey:message
                                                          arguments:nil];
     content.sound = [UNNotificationSound defaultSound];
     
     // Deliver the notification in five seconds.
     UNTimeIntervalNotificationTrigger* trigger = [UNTimeIntervalNotificationTrigger
-                                                  triggerWithTimeInterval:5 repeats:NO];
+                                                  triggerWithTimeInterval:startValue repeats:NO];
     UNNotificationRequest* request = [UNNotificationRequest requestWithIdentifier:@"FiveSecond"
                                                                           content:content trigger:trigger];
     
