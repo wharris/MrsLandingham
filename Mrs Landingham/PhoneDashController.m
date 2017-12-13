@@ -13,6 +13,7 @@
 #import "QuestionNode.h"
 #import "PickerNode.h"
 #import "LogController.h"
+@import UserNotifications;
 
 @interface PhoneDashController ()
 @property (weak, nonatomic) IBOutlet UILabel *counterString;
@@ -52,7 +53,7 @@
 }
 
 - (void) activateDoNode{
-    
+    [self sendAlert];
     self.counter = startValue;
     taskValue=[FlowModel getMessage];
     if ([FlowModel canExpand]){
@@ -62,8 +63,35 @@
         self.ExpandButton.enabled=NO;
          self.ExpandButton.hidden=YES;
     }
+    
 }
 
+
+- (void) sendAlert{
+    NSLog(@"Scheduling alert");
+    UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
+    content.title = [NSString localizedUserNotificationStringForKey:@"Hello!" arguments:nil];
+    content.body = [NSString localizedUserNotificationStringForKey:@"Hello_message_body"
+                                                         arguments:nil];
+    content.sound = [UNNotificationSound defaultSound];
+    
+    // Deliver the notification in five seconds.
+    UNTimeIntervalNotificationTrigger* trigger = [UNTimeIntervalNotificationTrigger
+                                                  triggerWithTimeInterval:5 repeats:NO];
+    UNNotificationRequest* request = [UNNotificationRequest requestWithIdentifier:@"FiveSecond"
+                                                                          content:content trigger:trigger];
+    
+    // Schedule the notification.
+    // Schedule the notification. (from https://useyourloaf.com/blog/local-notifications-with-ios-10/)
+    UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
+    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        if (error != nil) {
+            NSLog(@"Something went wrong: %@",error);
+        }
+    }];
+    
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -76,6 +104,16 @@
                                    selector:@selector(advanceTimer:)
                                    userInfo:nil
                                     repeats:YES];
+    
+    //for notifications:
+    UNAuthorizationOptions options = UNAuthorizationOptionAlert + UNAuthorizationOptionSound;
+    UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
+    [center requestAuthorizationWithOptions:options
+                          completionHandler:^(BOOL granted, NSError * _Nullable error) {
+                              if (!granted) {
+                                  NSLog(@"Something went wrong");
+                              }
+                          }];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -98,7 +136,7 @@
     [self playSoundCalled:@"ring"];
     [FlowModel done];
     [self dispatchNode];
-    [FlowModel spider];
+  //  [FlowModel spider];
 }
 
 - (IBAction)ExpandButton:(id)sender {
