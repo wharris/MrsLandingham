@@ -8,14 +8,28 @@
 
 #import "LogController.h"
 
-@implementation LogController
+// well this needs to be a proper object in any case.
+
+
+@implementation LogController{
+    NSString *documentsDirectory;
+    NSString *filePath;
+    
+}
+
+
+- (LogController *) init
+{
+    self = [super init];
+    documentsDirectory = [NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    filePath = [[documentsDirectory stringByAppendingPathComponent:@"delores_log"] stringByAppendingPathExtension:@"md"];
+    return self;
+}
+
+
 //Everything here is from: https://stackoverflow.com/questions/11057510/creating-a-log-file-in-an-ios-app
 
 - (void) writeLogWith: (NSString *) content {
-     
-    
-    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *filePath = [[documentsDirectory stringByAppendingPathComponent:@"delores_log"] stringByAppendingPathExtension:@"md"];
     
     if(![[NSFileManager defaultManager] fileExistsAtPath:filePath])
         [[NSFileManager defaultManager] createFileAtPath:filePath contents:nil attributes:nil];
@@ -32,11 +46,8 @@
 
 - (NSString *) getLog{
     NSError * error;
-    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *fileName = [documentsDirectory stringByAppendingPathComponent:@"delores_log.md"];
-    
     //read the whole file as a single string
-    NSString * temp =[NSString stringWithContentsOfFile:fileName encoding:NSUTF8StringEncoding error:&error];
+    NSString * temp =[NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
     if (temp==nil)
     {
         NSLog([error localizedFailureReason]);
