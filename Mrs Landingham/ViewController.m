@@ -12,16 +12,20 @@
 #import "LogController.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *ancButton;
 
 @end
 
-@implementation ViewController
+@implementation ViewController{
 
 
 NSString *counterValue;
 
 WCSession *session;
 NSString *logString;
+    UIDocumentInteractionController *docController;
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,6 +53,17 @@ NSString *logString;
 }
 
 - (IBAction)clipboardcopying:(id)sender {
+    //I don't think this is ever called....
+    NSLog(@"here");
+    LogController * logger = [LogController init];
+    NSString * filePath = [logger get_filePath];
+    docController = [UIDocumentInteractionController
+                     interactionControllerWithURL:[NSURL fileURLWithPath:filePath]];
+    docController.delegate = self;
+    docController.UTI = @"com.adobe.pdf";
+    [docController presentOpenInMenuFromBarButtonItem:_ancButton
+                                             animated:YES];
+    NSLog(@"did the thing");
     [UIPasteboard generalPasteboard].string = logString;
     self.display.text=@"played sound";
 }
@@ -59,6 +74,18 @@ NSString *logString;
     logger=[[LogController alloc] init];
     NSString * temp =@"hello";
     temp=[logger getLog];
+    
+    //try the open file
+    NSString * filePath = [logger get_filePath];
+    docController = [UIDocumentInteractionController
+                     interactionControllerWithURL:[NSURL fileURLWithPath:filePath]];
+    docController.delegate = self;
+    docController.UTI = @"com.adobe.pdf";
+    [docController presentOpenInMenuFromRect:self.view.frame inView:self.view animated:true];
+    //[docController presentOpenInMenuFromBarButtonItem:_ancButton animated:YES];
+    NSLog(@"did the thing");
+    //end try.
+    
     [UIPasteboard generalPasteboard].string = temp;
     
 }

@@ -17,7 +17,6 @@
     
 }
 
-
 - (LogController *) init
 {
     self = [super init];
@@ -27,20 +26,16 @@
 }
 
 
-//Everything here is from: https://stackoverflow.com/questions/11057510/creating-a-log-file-in-an-ios-app
-
+//This is from: https://stackoverflow.com/questions/11057510/creating-a-log-file-in-an-ios-app
 - (void) writeLogWith: (NSString *) content {
     
     if(![[NSFileManager defaultManager] fileExistsAtPath:filePath])
         [[NSFileManager defaultManager] createFileAtPath:filePath contents:nil attributes:nil];
     
-    //append text to file (you'll probably want to add a newline every write)
     NSFileHandle *file = [NSFileHandle fileHandleForUpdatingAtPath:filePath];
     [file seekToEndOfFile];
     [file writeData:[content dataUsingEncoding:NSUTF8StringEncoding]];
     [file closeFile];
-    NSLog(@"Wrote to file");
-    
     return;
 }
 
@@ -59,12 +54,16 @@
 - (void)log_state:(NSString *)message {
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    // ###### 30/11/17 14:37:
     [dateFormatter setDateFormat:@"\n\n###### dd/MM/YY HH:mm\n"];
     NSString *dateString = [dateFormatter stringFromDate:currentDate];
     [self writeLogWith: dateString];
     [self writeLogWith: message];
 }
+
+- (NSString * ) get_filePath{
+    return filePath;
+}
+
 
 
 @end

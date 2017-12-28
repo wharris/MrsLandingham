@@ -13,6 +13,6 @@
 - (void) writeLogWith: (NSString *) content;
 - (NSString *) getLog;
 - (void)log_state:(NSString *)message;
-
+- (NSString * ) get_filePath;
 
 @end
