@@ -21,6 +21,7 @@
 NSString *counterValue;
 
 WCSession *session;
+NSString *logString;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,12 +42,14 @@ WCSession *session;
     NSLog(@"Getting");
 
     counterValue = [message objectForKey:@"counterValue"];
+    logString = [message objectForKey:@"log"];
+    
     self.display.text
     =counterValue;
 }
 
 - (IBAction)clipboardcopying:(id)sender {
-    [UIPasteboard generalPasteboard].string = counterValue;
+    [UIPasteboard generalPasteboard].string = logString;
     self.display.text=@"played sound";
 }
 

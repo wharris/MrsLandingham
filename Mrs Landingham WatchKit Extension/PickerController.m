@@ -35,7 +35,7 @@ FlowModel * model;
     model=[[FlowModel alloc] init];
     NSMutableDictionary *menu=[FlowModel make_initial_menu];
     if (context!=nil){
-       menu= [FlowModel make_problem_menu];
+       menu= [FlowModel make_exception_menu];
     }
    for(id key in menu) {
     id value = [menu objectForKey:key];

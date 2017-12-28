@@ -28,15 +28,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fE5-SE-Usy">
-                                <rect key="frame" x="104" y="164" width="166" height="121"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.70411674222797926" green="0.70411674222797926" blue="0.70411674222797926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Copy log to clipboard"/>
-                                <connections>
-                                    <action selector="clipboardcopying:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hbg-SC-Kco"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFz-PQ-FM9">
                                 <rect key="frame" x="117" y="304" width="141" height="121"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -58,12 +49,21 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="22g-44-IHH">
-                                <rect key="frame" x="266" y="318" width="109" height="62"/>
+                                <rect key="frame" x="192" y="150" width="116" height="121"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.33015123793385304" blue="0.34836582293654217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Print log"/>
+                                <state key="normal" title="Copy Phone log"/>
                                 <connections>
                                     <action selector="printlog:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qnc-EI-MS8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fE5-SE-Usy">
+                                <rect key="frame" x="51" y="150" width="122" height="121"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.70411674222797926" green="0.70411674222797926" blue="0.70411674222797926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Copy Watch logs"/>
+                                <connections>
+                                    <action selector="clipboardcopying:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hbg-SC-Kco"/>
                                 </connections>
                             </button>
                         </subviews>

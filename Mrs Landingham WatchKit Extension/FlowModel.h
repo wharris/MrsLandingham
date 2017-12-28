@@ -24,7 +24,7 @@
 + (BOOL) canExpand;
 + (NSString *) getMessage;
 + (WorkNode *) getNode;
-+ (NSMutableDictionary *)make_problem_menu;
++ (NSMutableDictionary *)make_exception_menu;
 + (NSMutableDictionary *)make_initial_menu;
 
 @end

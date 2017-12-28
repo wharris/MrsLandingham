@@ -147,6 +147,7 @@
 
 - (IBAction)LogButton:(id)sender {
     [self playSoundCalled:@"air"];
+    [self sendAlertWith:taskValue];
     self.counter=startValue;
     [logger log_state:[FlowModel getNode].message];
     
