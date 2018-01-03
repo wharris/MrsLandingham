@@ -52,6 +52,7 @@
 		70A321B91F43207200989D7E /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A321B81F43207200989D7E /* NotificationController.m */; };
 		70A321BB1F43207200989D7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70A321BA1F43207200989D7E /* Assets.xcassets */; };
 		70A39A4A1F52A8FB00AB1AED /* FlowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A39A491F52A8FB00AB1AED /* FlowModel.m */; };
+		70A448161FFC1C83005275E6 /* FlowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A39A491F52A8FB00AB1AED /* FlowModel.m */; };
 		70B3D5211F7BB9EC0020D5C2 /* QuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B3D5201F7BB9EC0020D5C2 /* QuestionViewController.m */; };
 		70B3D5241F7BC3CC0020D5C2 /* PickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B3D5231F7BC3CC0020D5C2 /* PickerViewController.m */; };
 		70B3D5271F7BC4EB0020D5C2 /* PickerNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B3D5261F7BC4EB0020D5C2 /* PickerNode.m */; };
@@ -589,6 +590,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70A448161FFC1C83005275E6 /* FlowModel.m in Sources */,
 				70CF63F71FBB1E8300F167F6 /* LogController.m in Sources */,
 				70A3218C1F43207200989D7E /* Mrs_LandinghamTests.m in Sources */,
 			);

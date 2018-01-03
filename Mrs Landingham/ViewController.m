@@ -52,23 +52,6 @@ NSString *logString;
     =counterValue;
 }
 
-- (IBAction)clipboardcopying:(id)sender {
-    //I don't think this is ever called....
-    NSLog(@"here");
-    LogController * logger = [LogController init];
-    NSString * filePath = [logger get_filePath];
-    docController = [UIDocumentInteractionController
-                     interactionControllerWithURL:[NSURL fileURLWithPath:filePath]];
-    docController.delegate = self;
-    docController.UTI = @"com.adobe.pdf";
-    [docController presentOpenInMenuFromBarButtonItem:_ancButton
-                                             animated:YES];
-    NSLog(@"did the thing");
-    [UIPasteboard generalPasteboard].string = logString;
-    self.display.text=@"played sound";
-}
-
-
 - (IBAction)printlog:(id)sender {
     LogController * logger;
     logger=[[LogController alloc] init];

@@ -15,7 +15,6 @@
 
 
 - (void) activate{
-    
 }
 
 - (void)addNode:(WorkNode*) target  {

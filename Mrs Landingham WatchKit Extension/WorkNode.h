@@ -12,7 +12,7 @@
 
 @property NSString *message;
 @property WorkNode *child;
-
+@property int timeallowed;
 
 - (void)addNode:(WorkNode*) target;
 

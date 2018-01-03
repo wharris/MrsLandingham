@@ -20,6 +20,13 @@
 WorkNode *activeNode;
 NSMutableArray *saveNodes; /*this should be a stack*/
 
++ (int) getTime{
+    if (activeNode.timeallowed != NULL)
+        return activeNode.timeallowed;
+    return 200;
+}
+
+
 + (id) coreBrain {
     //from http://www.galloway.me.uk/tutorials/singleton-classes/
     static FlowModel *sharedFlowModel = nil;
@@ -33,7 +40,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 }
 
 + (void) setup{
-    activeNode=[[DoNode alloc] initStep:@"Deep breath"];
+    activeNode=[[DoNode alloc] initStep:@"Deep breath" withTime: 5];
     [activeNode addNode:[[PickerNode alloc] initWithDic: [self make_initial_menu]]];
     saveNodes=[[NSMutableArray alloc] init];
     
@@ -483,11 +490,19 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 
 + (WorkNode *)setup_digital_workspace {
     /* Plan day goes before normal form because Plan day generates small, urgent actions from the calendar wheres reminders rarely generate calendar entries*/
-    DoNode *local=[[DoNode alloc] initStep:@"Open livenotes, make an entry"];
+    DoNode *local=[[DoNode alloc] initStep:@"Open a journal page, plan your dayl" with: [self journaling]];
     [local addStep: @"Close other programs (not terminal)"];
     [local addStep: @"Plan Day" with:[self plan_day]];
     [local addStep: @"Gather and sort action points" with:[self melta_normal_form]];
     [local addStep: @"Update Charts" with:[self update_charts]];
+    return local;
+}
+
+
++ (WorkNode *)journaling {
+    DoNode *local=[[DoNode alloc] initStep:@"What are you grateful for"];
+    [local addStep: @"have you planned fun things?"];
+    [local addStep: @"what made you smile yesterday?"];
     return local;
 }
 
@@ -543,13 +558,14 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 
 
 + (WorkNode *)morning {
-    DoNode *local=[[DoNode alloc] initStep:@"Feel the genius"];
-    [local addStep: @"Weight self using app"];
+    DoNode *local=[[DoNode alloc] initStep:@"Feel the genius" withTime: 30];
+    [local addStep: @"Weight self using app" withTime: 60];
     [local addStep: @"Exercise" with:[self home_workout]];
-    [local addStep: @"Charge watch"];
+    [local addStep: @"Charge watch" withTime: 20];
     [local addStep: @"Morning Bathroom" with:[self morning_bathroom]];
-    [local addStep: @"clothes in wash bag"];
-    [local addStep: @"Go to office"];
+    [local addStep: @"clothes in wash bag" withTime: 10];
+    [local addStep: @"Go to office" withTime: 20];
+    [local addStep: @"Meditation" withTime: 90];
     [local addStep: @"Setup Physical Workspace" with:[self setup_workspace]];
     [local addStep: @"Setup Digital Workspace" with:[self setup_digital_workspace]];
     QuestionNode *q=[[QuestionNode alloc] initBranch: @"Is there a redline?" yesChild: [self red_line]];
@@ -562,30 +578,32 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 }
 
 + (WorkNode *) morning_bathroom{
-    DoNode *local=[[DoNode alloc] initStep:@"Shower (including face)"];
-    [local addStep: @"Deodorant"];
-    [local addStep: @"Dress"];
-    [local addStep: @"consider face strip"];
-    [local addStep: @"shave"];
-    [local addStep: @"shave head"];
-    [local addStep: @"teeth"];
-    [local addStep: @"floss"];
-    [local addStep: @"Vitimin Tablet"];
+    DoNode *local=[[DoNode alloc] initStep:@"Pause, remember to thank each element" withTime: 10];
+    [local addStep: @"Shower (including face)" withTime: 400];
+    [local addStep: @"Deodorant" withTime: 20];
+    [local addStep: @"Dress" withTime: 50];
+    [local addStep: @"consider face strip" withTime: 300];
+    [local addStep: @"shave" withTime: 250];
+    [local addStep: @"shave head" withTime: 250];
+    [local addStep: @"teeth" withTime: 150];
+    [local addStep: @"floss" withTime: 300];
+    [local addStep: @"Vitimin Tablet" withTime: 15];
     return local;
 }
 
 
 + (WorkNode *) home_workout{
-    DoNode *local=[[DoNode alloc] initStep:@"clothes"];
-    [local addStep: @"Get keys"];
-    [local addStep: @"Get Water bottle"];
-    [local addStep: @"Check for washing to dry"];
-    [local addStep: @"Take rubbish/recycling out"];
-    [local addStep: @"Garage"];
+    DoNode *local=[[DoNode alloc] initStep:@"clothes" withTime: 60];
+    [local addStep: @"Get keys" withTime: 30];
+    [local addStep: @"Get Water bottle" withTime: 30];
+    [local addStep: @"Check for washing to dry" withTime: 60];
+    [local addStep: @"Unload dishwasher" withTime: 200];
+    [local addStep: @"Take rubbish/recycling out" withTime: 120];
+    [local addStep: @"Garage" withTime: 15];
     [local addStep: @"Streach"];
-    [local addStep: @"Switch on podcast"];
-    [local addStep: @"on Bike/run/walk: Focus on your intensity"];
-    [local addStep: @"empty dryer to take back"];
+    [local addStep: @"on Bike/run/walk: Focus on your intensity" withTime: 2000];
+    [local addStep: @"Thank bike/trainer" withTime: 10];
+    [local addStep: @"empty dryer to take back" withTime: 60];
     [local addStep: @"Drink a full pint of water"];
   
     return local;
@@ -607,32 +625,29 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 }
 
 + (WorkNode *) night{
-    DoNode *local=[[DoNode alloc] initStep:@"put water in bedroom"];
-    [local addStep:@"Bed: Get tomorrow's clothes from bedroom"];
-    [local addStep:@"FR: Warm pyjamas"];
-    [local addStep:@"FR:Empty Ospray of everything and put in crate"];
-    [local addStep: @"FR:Glasses in bag"];
-    [local addStep: @"FR:Keys in bag"];
-    [local addStep: @"FR:Wallet has two bank cards"];
-    [local addStep: @"FR:Laptop on charge"];
-    [local addStep: @"FR:Phone on charge"];
-    [local addStep: @"Kitch:Food in bag"];
-    [local addStep: @"FR:Pens and notebook in bag"];
-    [local addStep: @"FR: Spare battery"];
-    [local addStep: @"FR:MacBook charger"];
-    [local addStep: @"FR:folding plug"];
-    [local addStep: @"FR:Seal bag"];
+    DoNode *local=[[DoNode alloc] initStep:@"put water in bedroom" withTime: 60];
+    [local addStep:@"Bed: Get tomorrow's clothes from bedroom" withTime: 30];
+    [local addStep:@"Remember - thank each item as you put it away" withTime: 10];
+    [local addStep: @"FR:Glasses in bag" withTime: 20];
+    [local addStep: @"FR:Keys in bag" withTime: 60];//60 because we may have to find them
+    [local addStep: @"FR:Wallet has two bank cards" withTime: 30];
+    [local addStep: @"FR:Laptop on charge" withTime: 20];
+    [local addStep: @"FR:Phone on charge" withTime: 20];
+    [local addStep: @"Kitch:Food in bag" withTime: 60];
+    [local addStep: @"FR:Pens and notebook in bag" withTime: 30];
+    [local addStep: @"FR: Spare battery" withTime: 10];
+    [local addStep: @"FR:MacBook charger" withTime: 10];
+    [local addStep: @"FR:folding plug" withTime: 10];
     [local addStep: @"down:clothes in washing machine"];
     [local addStep: @"down:switch dishwasher on"];
-    [local addStep: @"down:Lock Door"];
-    [local addStep: @"down:Setup tea and water bottles"];
-    [local addStep: @"down:Workout jumper on aga"];
-    [local addStep: @"down:Lights out"];
-    [local addStep: @"Bath: Teeth"];
-    [local addStep: @"Bath:Leave good clothes in bathroom"];
-    [local addStep: @"office:Headphones on charge"];
-    [local addStep: @"office:Set up things for wake time photoc"];
-    [local addStep: @"office:watch on charge"];
+    [local addStep: @"down:Lock Door" withTime: 20];
+    [local addStep: @"down:Setup tea and water bottles" withTime: 60];
+    [local addStep: @"down:Workout jumper on aga" withTime: 60];
+    [local addStep: @"down:Lights out" withTime: 20];
+    [local addStep: @"Bath: Teeth" withTime: 150];
+    [local addStep: @"Bath:Leave good clothes in bathroom" withTime: 60];
+    [local addStep: @"office:Headphones on charge" withTime: 30];
+    [local addStep: @"bed:watch on charge"];
     return local;
     
 }

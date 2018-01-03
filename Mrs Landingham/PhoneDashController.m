@@ -53,7 +53,7 @@
 }
 
 - (void) activateDoNode{
-    self.counter = startValue;
+    self.counter = [FlowModel getTime];
     taskValue=[FlowModel getMessage];
     [self sendAlertWith:taskValue];
     if ([FlowModel canExpand]){
@@ -148,7 +148,7 @@
 - (IBAction)LogButton:(id)sender {
     [self playSoundCalled:@"air"];
     [self sendAlertWith:taskValue];
-    self.counter=startValue;
+    self.counter=[FlowModel getTime];
     [logger log_state:[FlowModel getNode].message];
     
 }

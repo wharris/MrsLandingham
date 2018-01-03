@@ -22,6 +22,7 @@
 + (void) picked: (WorkNode *) input;
 + (void) spider;
 + (BOOL) canExpand;
++ (int) getTime;
 + (NSString *) getMessage;
 + (WorkNode *) getNode;
 + (NSMutableDictionary *)make_exception_menu;
