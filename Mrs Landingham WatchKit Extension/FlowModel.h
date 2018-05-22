@@ -18,6 +18,7 @@
 + (void) yes;
 + (void) no;
 + (void) problem;
++ (void) outoftime;
 + (void) expand;
 + (void) picked: (WorkNode *) input;
 + (void) spider;

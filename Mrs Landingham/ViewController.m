@@ -65,15 +65,9 @@ NSString *logString;
     docController.delegate = self;
     docController.UTI = @"com.adobe.pdf";
     [docController presentOpenInMenuFromRect:self.view.frame inView:self.view animated:true];
-    //[docController presentOpenInMenuFromBarButtonItem:_ancButton animated:YES];
     NSLog(@"did the thing");
     //end try.
-    
     [UIPasteboard generalPasteboard].string = temp;
-    
 }
-
-
-
 
 @end

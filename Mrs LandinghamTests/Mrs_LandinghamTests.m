@@ -25,6 +25,10 @@
     [super tearDown];
 }
 
+- (void) testFlowModelCreated {
+    FlowModel * model=[FlowModel coreBrain];
+    XCTAssertTrue(FALSE);
+    
 }
 
 @end

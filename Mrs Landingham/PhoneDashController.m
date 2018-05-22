@@ -173,6 +173,8 @@
     }
     if (self.counter == 60) { [self playSoundCalled:@"longbeeb"]; }
     if (self.counter == 10) { [self playSoundCalled:@"countdown"]; }
+    if (self.counter == 0) { [FlowModel outoftime];[self dispatchNode]; }
+    // if (self.counter == 1) { [logger log_state:@"Deadline passed!"]; }
     
 }
 
