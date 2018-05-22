@@ -141,6 +141,13 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     return activeNode.message;
 }
 
+
++ (NSString *) getPreview{
+    
+    
+    return activeNode.child.message;
+}
+
 + (WorkNode *) getNode{
     return activeNode;
 }
@@ -207,7 +214,6 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     menu[@"Plan Day"  ] = [self plan_day];
     menu[@"Email"  ] = [self email];
     menu[@"Red Line"  ] = [self red_line];
-    menu[@"Map Project"  ] = [self map_project];
     menu[@"Project sprint"  ] = [self project_sprint];
     menu[@"Project Review"  ] = [self project_review];
     menu[@"Clean the house"  ] = [self house_cleaning];
@@ -485,11 +491,11 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 
 
 + (WorkNode *)project_review {
-    DoNode *local=[[DoNode alloc] initStep:@"Check and respond to project notifications."];
+    DoNode *local=[[DoNode alloc] initStep:@"Process project notifications."];
     [local addStep: @"Open EQT Projects Board"];
-    [local addNode:[self project_normal_form]];
+  //  [local addNode:[self project_normal_form]];
     [local addStep: @"Open Personal Projects Board"];
-    [local addNode:[self project_normal_form]];
+  //  [local addNode:[self project_normal_form]];
     return local;
     
 }
@@ -506,9 +512,9 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 
 + (WorkNode *)check_project {
     QuestionNode *start=[[QuestionNode alloc] initBranch: @"Does it need mapping?" yesChild: [self map_project]];
-    [start addStep: @"Check it has the right priority"];
-    [start addStep: @"Check it has a next action in github"];
-    [start addStep: @"Check there is a next action in melta"];
+    [start addStep: @"Confirm it has the right priority"];
+    [start addStep: @"Confirm it has a next action in github"];
+    [start addStep: @"Confirm there is a next action in melta"];
     return start;
 }
 
@@ -531,11 +537,12 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 
 
 + (WorkNode *) melta_normal_form {
-    DoNode *local=[[DoNode alloc] initStep:@"Check notebook/brainstorms for tasks"];
-    [local addStep: @"Check Voicemail and add any messages to Tasks."];
-    [local addStep: @"Process photo photos." with:[self process_photos]];
-    [local addStep: @"Check reminder list"];
-    [local addStep: @"Check Shared reminder list"];
+    DoNode *local=[[DoNode alloc] initStep:@"Process notebook/brainstorms for tasks"];
+    [local addStep: @"Process Voicemail and add any messages to Tasks."];
+    //Taken out photos because we're removing screenshots for now.
+   // [local addStep: @"Process photo photos." with:[self process_photos]];
+    [local addStep: @"Process Apple Reminders: two minutes on each." withTime:120];
+    [local addStep: @"Process Shared reminder list"];
     [local addStep: @"Sort the next actions file alphabetically, this will put the least defined tasks at the top."];
     [local addStep: @"Fill in the priority, and time (mark off done tasks)"];
     [local addStep: @"Messsage Kat a list of the ones relevent to her"];
@@ -641,6 +648,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     [local addStep: @"Drink water" withTime: 60];
     [local addStep: @"Remember that the most interesting podcast were ones you didn't feel like listening to" withTime: 60];
     [local addStep: @"Give a podcast five minutes." withTime: 60];
+    [local addStep: @"Get bag to move items around the house" withTime: 60];
     [local addStep: @"Put running kit on" withTime: 60];
     [local addStep: @"Morning House in order" with:[self morning_house]];
     //[local addStep: @"Open a journal page, plan your dayl" with: [self journaling]];
@@ -651,7 +659,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     [local addStep: @"Exercise" with:[self home_workout]];
     [local addStep: @"Charge watch" withTime: 20];
     [local addStep: @"Morning Bathroom" with:[self morning_bathroom]];
-    [local addStep: @"Clothes in wash bag" withTime: 10];
+    
     [local addStep: @"Go to office" withTime: 20];
     [local addStep: @"Setup Physical Workspace" with:[self setup_workspace]];
     [local addStep: @"Start of day laptop work" with:[self setup_digital_workspace]];
@@ -672,7 +680,8 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     [local addStep: @"shave head" withTime: 250];
     [local addStep: @"teeth" withTime: 150];
     [local addStep: @"floss" withTime: 300];
-    [local addStep: @"Vitimin Tablet" withTime: 15];
+    [local addStep: @"Vitimin Tablet" withTime: 30];
+    [local addStep: @"Clothes in wash bag" withTime: 10];
     return local;
 }
 
@@ -681,7 +690,6 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     DoNode *local=[[DoNode alloc] initStep:@"clothes" withTime: 60];
     [local addStep: @"Get keys" withTime: 30];
     [local addStep: @"Get Water bottle" withTime: 30];
-    [local addStep: @"Garage" withTime: 30];
     [local addStep: @"Streach"];
     [local addStep: @"on Bike/run/walk: Focus on your intensity" withTime: 2000];
     [local addStep: @"Thank equipment" withTime: 10];
@@ -700,7 +708,12 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     [local addStep: @"Unload dishwasher" withTime: 250];
     [local addStep: @"Put full rubbish/recycling bags by door" withTime: 120];
     [local addStep: @"Make tea/breakfast tray for Kat" withTime: 200];
+    [local addStep: @"Look in fridge and think of meals to suggest to kat" withTime: 200];
+    [local addStep: @"Take try to Kat" withTime: 200];
+    [local addStep: @"Write meals on the meal plan"];
     [local addStep: @"Do washing up"];
+    [local addStep: @"Check water in basil"];
+    [local addStep: @"Wipe down surfaces and put more in cupboards"];
     return local;
     
 }
@@ -720,7 +733,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 }
 
 + (WorkNode *) night{
-    DoNode *local=[[DoNode alloc] initStep:@"Put water in bedroom" withTime: 60];
+    DoNode *local=[[DoNode alloc] initStep:@"Put water in bathroom" withTime: 60];
     [local addStep:@"Get tomorrow's clothes from bedroom" withTime: 30];
     [local addStep:@"Remember - thank each item as you put it away" withTime: 10];
     [local addStep: @"Glasses in bag" withTime: 20];

@@ -320,6 +320,18 @@
                                     <action selector="ProblemButton:" destination="eZt-p9-tbL" eventType="touchUpInside" id="suD-zL-i4c"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="zpN-z4-C9B">
+                                <rect key="frame" x="108" y="195" width="177" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.35417836899999999" green="0.72355395560000002" blue="0.9863066077" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="The next bit">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="DoneButton:" destination="eZt-p9-tbL" eventType="touchUpInside" id="Pgc-aH-NXs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.35355518299711874" green="0.72546405665446922" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -327,6 +339,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="ExpandButton" destination="TnT-a6-zda" id="nTk-WY-5xy"/>
+                        <outlet property="previewButton" destination="zpN-z4-C9B" id="Z0H-qj-6ZZ"/>
                         <outlet property="taskDisplayButton" destination="6HP-DT-o2j" id="JNF-fH-AvB"/>
                         <outlet property="timeDisplayButton" destination="fg1-3V-LUh" id="mcx-bH-dbh"/>
                         <segue destination="wf9-h2-SyD" kind="show" identifier="GoToQuestion" animates="NO" id="MVH-w0-e4F"/>

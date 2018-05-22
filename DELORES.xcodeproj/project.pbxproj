@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7018804720B43B43008DC08A /* CRIMFBB_.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 7018804620B43B42008DC08A /* CRIMFBB_.TTF */; };
 		703C563D1F693CDE00B517CA /* ring.wav in Resources */ = {isa = PBXBuildFile; fileRef = 705966951F631116008BAD8D /* ring.wav */; };
 		703C563E1F693CDF00B517CA /* ring.wav in Resources */ = {isa = PBXBuildFile; fileRef = 705966951F631116008BAD8D /* ring.wav */; };
 		703C563F1F693CE000B517CA /* ring.wav in Resources */ = {isa = PBXBuildFile; fileRef = 705966951F631116008BAD8D /* ring.wav */; };
@@ -125,6 +126,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7018804620B43B42008DC08A /* CRIMFBB_.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = CRIMFBB_.TTF; sourceTree = "<group>"; };
 		703C56521F694A4F00B517CA /* DashController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashController.h; sourceTree = "<group>"; };
 		703C56531F694A4F00B517CA /* DashController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashController.m; sourceTree = "<group>"; };
 		703C56551F6A800F00B517CA /* countdown.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = countdown.wav; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 		70A321701F43207100989D7E /* Mrs Landingham */ = {
 			isa = PBXGroup;
 			children = (
+				7018804620B43B42008DC08A /* CRIMFBB_.TTF */,
 				70B3D5231F7BC3CC0020D5C2 /* PickerViewController.m */,
 				70B3D5221F7BC3CC0020D5C2 /* PickerViewController.h */,
 				703C56551F6A800F00B517CA /* countdown.wav */,
@@ -507,6 +510,7 @@
 				703C563D1F693CDE00B517CA /* ring.wav in Resources */,
 				70A321811F43207200989D7E /* LaunchScreen.storyboard in Resources */,
 				70A3217E1F43207100989D7E /* Assets.xcassets in Resources */,
+				7018804720B43B43008DC08A /* CRIMFBB_.TTF in Resources */,
 				708214281FDF2B8D000E186B /* endstage.wav in Resources */,
 				7082141C1FDF2B79000E186B /* air.wav in Resources */,
 				708214221FDF2B84000E186B /* longbeeb.wav in Resources */,

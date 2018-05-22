@@ -48,6 +48,7 @@
     - (void)addStep:(NSString*) step{
         DoNode *node=[[DoNode alloc] initStep:step];
         [self addNode: node];
+        
     }
 - (void)addStep:(NSString*) step withTime: (int) deadline{
     DoNode *node=[[DoNode alloc] initStep:step withTime:deadline];

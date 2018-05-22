@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *ExpandButton;
 @property (weak, nonatomic) IBOutlet UIButton *timeDisplayButton;
 @property (weak, nonatomic) IBOutlet UIButton *taskDisplayButton;
+@property (weak, nonatomic) IBOutlet UIButton *previewButton;
 
 
 @end
@@ -55,7 +56,7 @@
 - (void) activateDoNode{
     self.counter = [FlowModel getTime];
     taskValue=[FlowModel getMessage];
-    [self sendAlertWith:taskValue];
+    //taking off in case that is what's causing the swlosown. [self sendAlertWith:taskValue];
     if ([FlowModel canExpand]){
         self.ExpandButton.enabled=YES;
         self.ExpandButton.hidden=NO;
@@ -68,17 +69,16 @@
 
 
 - (void) sendAlertWith: (NSString* ) message {
+    //Sends an alert to the user when they are on a differnt screen.
     NSLog(@"Scheduling alert");
     UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
     content.title = [NSString localizedUserNotificationStringForKey:@"Actions!" arguments:nil];
     content.body = [NSString localizedUserNotificationStringForKey:message
                                                          arguments:nil];
     content.sound = [UNNotificationSound defaultSound];
-    
-    // Deliver the notification in five seconds.
     UNTimeIntervalNotificationTrigger* trigger = [UNTimeIntervalNotificationTrigger
                                                   triggerWithTimeInterval:startValue repeats:NO];
-    UNNotificationRequest* request = [UNNotificationRequest requestWithIdentifier:@"FiveSecond"
+    UNNotificationRequest* request = [UNNotificationRequest requestWithIdentifier:@"DELORES action"
                                                                           content:content trigger:trigger];
     
     // Schedule the notification.
@@ -168,6 +168,7 @@
     self.counter=self.counter-1;
     if (self.counter >=0 ){
         [self.taskDisplayButton setTitle:[NSString stringWithFormat:@"%@", taskValue] forState:UIControlStateNormal ];
+         [self.previewButton setTitle:[NSString stringWithFormat:@"%@", [FlowModel getPreview]] forState:UIControlStateNormal ];
         NSString * timeString=[NSString stringWithFormat:@"%d", self.counter];
         [self.timeDisplayButton setTitle:timeString forState:UIControlStateNormal ];
     }

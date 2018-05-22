@@ -25,6 +25,7 @@
 + (BOOL) canExpand;
 + (int) getTime;
 + (NSString *) getMessage;
++ (NSString *) getPreview;
 + (WorkNode *) getNode;
 + (NSMutableDictionary *)make_exception_menu;
 + (NSMutableDictionary *)make_initial_menu;
