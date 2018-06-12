@@ -8,6 +8,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="CRIMFBB_.TTF">
+            <string>CrimeFighterBBBold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -296,40 +301,40 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="6HP-DT-o2j">
-                                <rect key="frame" x="0.0" y="64" width="375" height="123"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="zpN-z4-C9B">
+                                <rect key="frame" x="108" y="195" width="177" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.35417836904525757" green="0.72355395555496216" blue="0.98630660772323608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
-                                <state key="normal" title="Get Started on  the day that you will have ">
+                                <color key="backgroundColor" red="0.35417836899999999" green="0.72355395560000002" blue="0.9863066077" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <state key="normal" title="The future">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="DoneButton:" destination="eZt-p9-tbL" eventType="touchUpInside" id="PhI-Dd-lzM"/>
+                                    <action selector="DoneButton:" destination="eZt-p9-tbL" eventType="touchUpInside" id="Pgc-aH-NXs"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mYV-rx-1GW">
-                                <rect key="frame" x="242" y="549" width="133" height="118"/>
+                                <rect key="frame" x="225" y="505" width="150" height="118"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.23836917459928519" green="0.98132258653640747" blue="0.88897474421745015" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <state key="normal" title="Exception">
+                                <fontDescription key="fontDescription" name="CrimeFighterBBBold" family="CrimeFighter BB" pointSize="70"/>
+                                <state key="normal" title="! ">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
                                     <action selector="ProblemButton:" destination="eZt-p9-tbL" eventType="touchUpInside" id="suD-zL-i4c"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="zpN-z4-C9B">
-                                <rect key="frame" x="108" y="195" width="177" height="58"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="6HP-DT-o2j">
+                                <rect key="frame" x="65" y="73" width="256" height="123"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.35417836899999999" green="0.72355395560000002" blue="0.9863066077" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="The next bit">
+                                <color key="backgroundColor" red="0.35417836904525757" green="0.72355395555496216" blue="0.98630660772323608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="CrimeFighterBBBold" family="CrimeFighter BB" pointSize="17"/>
+                                <state key="normal" title="Get Started on the day that you will have ">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="DoneButton:" destination="eZt-p9-tbL" eventType="touchUpInside" id="Pgc-aH-NXs"/>
+                                    <action selector="DoneButton:" destination="eZt-p9-tbL" eventType="touchUpInside" id="PhI-Dd-lzM"/>
                                 </connections>
                             </button>
                         </subviews>

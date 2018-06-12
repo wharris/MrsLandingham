@@ -99,6 +99,8 @@
     [UIApplication sharedApplication].idleTimerDisabled = YES;
     startValue=300;
     taskValue=@"Start";
+    _taskDisplayButton.layer.cornerRadius = 10;
+    _taskDisplayButton.clipsToBounds = true;
     model=[FlowModel coreBrain];
     [NSTimer scheduledTimerWithTimeInterval:1 target:self
                                    selector:@selector(advanceTimer:)

@@ -295,6 +295,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     NSMutableDictionary *menu= [[NSMutableDictionary alloc] init];
     //This is far all the times when I reach a step and feel like doing something else.
     menu[@"I feel resistence" ] = [[DoNode alloc] initStep:@"Write down the smallest physical step on the notes file"] ;
+    menu[@"I'm in the wrong mental place" ] = [[DoNode alloc] initStep:@"Brainstorm - what am I afraid of?"] ;
     /*This is simply to keep me going and focused on the details */
     menu[@"Today is different" ] = [[DoNode alloc] initStep:@"Post to Social, then act as if done."] ;
     /*Sometimes I feel like 'not today', which is fine, as long as I can admit it on social media. */
@@ -310,6 +311,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     menu[@"Accidently went past" ] = [[DoNode alloc] initStep:@"Do the action that was there."];
     
     menu[@"I don't know why I should do this" ] = [[DoNode alloc] initStep:@"Remember this was writen by you in a good place."];
+     menu[@"Already done pre-delores." ] = [[DoNode alloc] initStep:@"Then it's done."];
     menu[@"Waiting for a resource" ] = [[DoNode alloc] initStep:@"Tidy things up while you wait"];
     menu[@"Small handy task" ] = [[DoNode alloc] initStep:@"300 seconds on it..."] ;
     menu[@"Other: DELORES is incomplete" ] = [[DoNode alloc] initStep:@"Do it, then 300 seconds editing xcode if laptop, screenshot otherwise" with:[self scarface_rewrite] withTime:300 ] ;
@@ -520,8 +522,8 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 
 + (WorkNode *)project_sprint {
     //what do we really want/
+    //TODO - make a code version of this with bugs and commits and Stack overflow. 
     DoNode *local=[[DoNode alloc] initStep:@"Open issue"];
-    [local addStep: @"Set timer for stop - give enought time for SE question writing."];
     [local addStep: @"(Re)map if necessary." with:[self map_project]];
     //Work on the first step.
     DoNode *bulletpoint=[[DoNode alloc] initStep:@"Work on the first incomplete step"];
@@ -558,7 +560,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 + (WorkNode *)rewrite_for_public {
     /* Plan day goes before normal form because Plan day generates small, urgent actions from the calendar wheres reminders rarely generate calendar entries*/
     DoNode *local=[[DoNode alloc] initStep:@"Each action starts with verb"];
-    [local addStep: @"Sprints have links"];
+    [local addStep: @"Tasks longer than an hour have an link to a log file  "];
     [local addStep: @"Actions start with captial letters"];
     return local;
 }
@@ -568,6 +570,10 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     DoNode *local=[[DoNode alloc] initStep:@"Close programs you aren't going to use"];
     [local addStep: @"Remove safari from phone"];
     [local addStep: @"Switch on chrome redirector"];
+    [local addStep: @"Invert colours"];
+    [local addStep: @"Look at the sleep records for the last few days to see if any adjustments are needed"];
+    [local addStep: @"Open Grommit file"];
+    [local addStep: @"Sync up charts"];
     [local addStep: @"Gather and sort action points" with:[self melta_normal_form]];
     [local addStep: @"Update Charts"];
     return local;
@@ -634,8 +640,8 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     [local addStep: @"Set Alarm for email"];
     [local addStep: @"Plan food" with:[self planfood]];//On the one hand, food planing needs to be done early, and helps if in ktichen, but also needs calendar.  I'm moving calendar to pre-run.
     [local addStep: @"Set Alarm for food"];
-    [local addStep: @"Look at the sleep records for the last few days to see if any adjustments are needed"];
-     [local addStep: @"Check what time you need to be up tomorrow, alarm if below average"];
+    [local addStep: @"Extract heartrate file from watch"];
+    [local addStep: @"Check what time you need to be up tomorrow, alarm if below average"];
     return local;
 }
 
@@ -648,7 +654,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     [local addStep: @"Drink water" withTime: 60];
     [local addStep: @"Remember that the most interesting podcast were ones you didn't feel like listening to" withTime: 60];
     [local addStep: @"Give a podcast five minutes." withTime: 60];
-    [local addStep: @"Get bag to move items around the house" withTime: 60];
+  //  [local addStep: @"Get bag to move items around the house" withTime: 60];
     [local addStep: @"Put running kit on" withTime: 60];
     [local addStep: @"Morning House in order" with:[self morning_house]];
     //[local addStep: @"Open a journal page, plan your dayl" with: [self journaling]];
@@ -701,17 +707,21 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 
 
 + (WorkNode *) morning_house{
-    DoNode *local=[[DoNode alloc] initStep:@"Put Kettle on for Kat tea" withTime: 60];
-    [local addStep: @"gather laundry from baskets" withTime: 50];
-    [local addStep: @"Put wash on/move washing to dryer" withTime: 60];
+    //normally you would start this upstairs, so we start with the upstairs part
+    //it's generally a good idea to ensure that you are
+    DoNode *local=[[DoNode alloc] initStep:@"gather laundry from baskets" withTime: 60];
+    [local addStep: @"put kettle on for Kat tea" withTime: 300];
+    [local addStep: @"Put wash on/move washing to dryer" withTime: 180];
     [local addStep: @"Set alarm for wash finishing" withTime: 60];
     [local addStep: @"Unload dishwasher" withTime: 250];
     [local addStep: @"Put full rubbish/recycling bags by door" withTime: 120];
     [local addStep: @"Make tea/breakfast tray for Kat" withTime: 200];
     [local addStep: @"Look in fridge and think of meals to suggest to kat" withTime: 200];
-    [local addStep: @"Take try to Kat" withTime: 200];
+    [local addStep: @"Take tray to Kat and do morning kat" withTime: 300];
+    [local addStep: @"Take Upsee downstairs and sort it" withTime: 300];
     [local addStep: @"Write meals on the meal plan"];
-    [local addStep: @"Do washing up"];
+    [local addStep: @"Do meal prep"];
+    [local addStep: @"Do washing up and put away."];
     [local addStep: @"Check water in basil"];
     [local addStep: @"Wipe down surfaces and put more in cupboards"];
     return local;
@@ -733,26 +743,26 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 }
 
 + (WorkNode *) night{
-    DoNode *local=[[DoNode alloc] initStep:@"Put water in bathroom" withTime: 60];
-    [local addStep:@"Get tomorrow's clothes from bedroom" withTime: 30];
+    DoNode *local=[[DoNode alloc] initStep:@"Get tomorrow's clothes from bedroom" withTime: 60];
     [local addStep:@"Remember - thank each item as you put it away" withTime: 10];
-    [local addStep: @"Glasses in bag" withTime: 20];
-    [local addStep: @"eys in bag" withTime: 60];//60 because we may have to find them
-    [local addStep: @"allet has two bank cards" withTime: 30];
-    [local addStep: @"aptop on charge" withTime: 20];
+    [local addStep: @"Glasses on desk" withTime: 20];
+    [local addStep: @"keys in key box" withTime: 60];//60 because we may have to find them
+    [local addStep: @"wallet has two bank cards" withTime: 30];
+    [local addStep: @"laptop on charge" withTime: 20];
     [local addStep: @"Phone on charge" withTime: 20];
+    [local addStep: @"Baby monitor on charge" withTime: 20];
     [local addStep: @"Sling is on the hook:" withTime: 60];
-    [local addStep: @"Pens and notebook in bag" withTime: 30];
-    [local addStep: @"Spare battery in bag" withTime: 10];
-    [local addStep: @"MacBook charger in bag" withTime: 10];
-    [local addStep: @"Folding plug in bag" withTime: 10];
+   // [local addStep: @"Pens and notebook in bag" withTime: 30];
+   // [local addStep: @"Spare battery in bag" withTime: 10];
+   // [local addStep: @"MacBook charger in bag" withTime: 10];
+   // [local addStep: @"Folding plug in bag" withTime: 10];
     [local addStep: @"Clothes in washing machine"];
     [local addStep: @"Switch dishwasher on"];
     [local addStep: @"Lock back door" withTime: 20];
     [local addStep: @"Check french door" withTime: 20];
     [local addStep: @"down:Setup tea and water bottles" withTime: 60];
     [local addStep: @"Lights out" withTime: 20];
-    [local addStep: @"Teeth" withTime: 150];
+    [local addStep: @"BrushTeeth" withTime: 150];
     [local addStep: @"Leave good clothes in bathroom" withTime: 60];
     [local addStep: @"Headphones on charge" withTime: 30];
     [local addStep: @"Watch on charge"];
