@@ -27,7 +27,9 @@
 
 - (void) testFlowModelCreated {
     FlowModel * model=[FlowModel coreBrain];
-    XCTAssertTrue(FALSE);
+    NSString * result = [FlowModel getMessage];
+    //compare with @"Smile"
+    XCTAssertTrue([result caseInsensitiveCompare:@"Smile"] == NSOrderedSame);
     
 }
 

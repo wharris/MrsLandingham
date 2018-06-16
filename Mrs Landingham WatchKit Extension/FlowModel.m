@@ -217,6 +217,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     menu[@"Project sprint"  ] = [self project_sprint];
     menu[@"Project Review"  ] = [self project_review];
     menu[@"Clean the house"  ] = [self house_cleaning];
+    menu[@"Full day process"  ] = [self dailyprocesses];
     menu[@"Meeting"] = [self meeting];
     menu[@"Exercise alarm"] = [self exercise_menu];
     menu[@"Simple Task"]=[[DoNode alloc] initStep:@"Do the task"];
@@ -242,7 +243,8 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     //should only be thinks that aren't in 'next actions' sometimes.
     NSLog(@"making the menu");
     NSMutableDictionary *menu= [[NSMutableDictionary alloc] init];
-    menu[@"Full Day" ] = [self morning];
+   // menu[@"Overhead+day" ] = [self dailyprocesses];
+    menu[@"Morning" ] = [self morning];
     menu[@"Night" ] = [self night] ;
     menu[@"Coffee Shop" ] = [self enterCoffeeShop];
     menu[@"Email"  ] = [self email];
@@ -284,6 +286,18 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 }
 
 
++ (DoNode *)morning {
+    DoNode *local= [[DoNode alloc] initStep:@"Go to office."];
+    [local addStep: @"Establishing shot for comic..."];
+    [local addStep: @"Open grommit file."];
+    [local addStep: @"Fast calendar check (possibly set a leaving alarm)."];
+    [local addStep: @"Set alarm for daily process."];
+    QuestionNode *start=[[QuestionNode alloc] initLoop: @"Is there a next action to do?" yesChild: [self nextAction]];
+    [local addNode:start];
+    return local;
+}
+
+
 + (DoNode *)eating {
     DoNode *local= [[DoNode alloc] initStep:@"Small, slow, bites and leave some"];
     
@@ -295,6 +309,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     NSMutableDictionary *menu= [[NSMutableDictionary alloc] init];
     //This is far all the times when I reach a step and feel like doing something else.
     menu[@"I feel resistence" ] = [[DoNode alloc] initStep:@"Write down the smallest physical step on the notes file"] ;
+    menu[@"This is going a bit fast for me" ] = [[DoNode alloc] initStep:@"5 minutes meditation" withTime:500] ;
     menu[@"I'm in the wrong mental place" ] = [[DoNode alloc] initStep:@"Brainstorm - what am I afraid of?"] ;
     /*This is simply to keep me going and focused on the details */
     menu[@"Today is different" ] = [[DoNode alloc] initStep:@"Post to Social, then act as if done."] ;
@@ -335,7 +350,9 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 
 + (WorkNode *) heart_interupt {
     DoNode *local=[[DoNode alloc] initStep:@"Listen"];
-    [local addStep: @"Find the heart list"];
+    [local addStep: @"Screenshot this."];
+    [local addStep: @"Okay, right now I'm doing X, which Y needs, but I can stop."];
+    [local addStep: @"So I don't interupt myself later, is now a good time to talk about Z"];
   
     return local;
 }
@@ -648,19 +665,15 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 
 
 
-+ (WorkNode *)morning {
++ (WorkNode *)dailyprocesses {
     DoNode *local=[[DoNode alloc] initStep:@"Feel the genius" withTime: 30];
     [local addStep: @"Weight self using app" withTime: 60];
     [local addStep: @"Drink water" withTime: 60];
-    [local addStep: @"Remember that the most interesting podcast were ones you didn't feel like listening to" withTime: 60];
-    [local addStep: @"Give a podcast five minutes." withTime: 60];
-  //  [local addStep: @"Get bag to move items around the house" withTime: 60];
+    //[local addStep: @"Remember that the most interesting podcast were ones you didn't feel like listening to" withTime: 60];
+   // [local addStep: @"Give a podcast five minutes." withTime: 60];
     [local addStep: @"Put running kit on" withTime: 60];
     [local addStep: @"Morning House in order" with:[self morning_house]];
-    //[local addStep: @"Open a journal page, plan your dayl" with: [self journaling]];
-    // [local addStep: @"Read a couple of pages of mindfullness book" withTime: 900];//so that meditation is much easier.
-    // [local addStep: @"Meditation" withTime: 900];
-    [local addStep: @"Make comic" withTime: 900];
+   // [local addStep: @"Make comic" withTime: 900];
     [local addStep: @"Plan Day" with:[self plan_day]];
     [local addStep: @"Exercise" with:[self home_workout]];
     [local addStep: @"Charge watch" withTime: 20];
@@ -669,8 +682,8 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     [local addStep: @"Go to office" withTime: 20];
     [local addStep: @"Setup Physical Workspace" with:[self setup_workspace]];
     [local addStep: @"Start of day laptop work" with:[self setup_digital_workspace]];
-    QuestionNode *start=[[QuestionNode alloc] initLoop: @"Is there a next action to do?" yesChild: [self nextAction]];
-    [local addNode:start];
+   // QuestionNode *start=[[QuestionNode alloc] initLoop: @"Is there a next action to do?" yesChild: [self nextAction]];
+   // [local addNode:start];
 //ends here.
     
     return local;
@@ -714,6 +727,7 @@ NSMutableArray *saveNodes; /*this should be a stack*/
     [local addStep: @"Put wash on/move washing to dryer" withTime: 180];
     [local addStep: @"Set alarm for wash finishing" withTime: 60];
     [local addStep: @"Unload dishwasher" withTime: 250];
+    [local addStep:@"Warm plates"];
     [local addStep: @"Put full rubbish/recycling bags by door" withTime: 120];
     [local addStep: @"Make tea/breakfast tray for Kat" withTime: 200];
     [local addStep: @"Look in fridge and think of meals to suggest to kat" withTime: 200];
@@ -831,12 +845,10 @@ NSMutableArray *saveNodes; /*this should be a stack*/
 + (WorkNode *) planfood{
     DoNode *local=[[DoNode alloc] initStep:@"Open Meal plan."];
     [local addStep:@"Fill in yesterday's calories."];
-    [local addStep:@"Check Fridge and freezer"];
     [local addStep:@"add an extra snack"];
     [local addStep:@"remind Kat of the food plans"];
-    [local addStep:@"Get out the tools and ingredients we need"];
     [local addStep:@"Set alarm for shop if needed"];
-    [local addStep:@"Warm plates"];
+
     
     return local;
 
