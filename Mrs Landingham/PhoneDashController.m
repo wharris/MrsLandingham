@@ -15,6 +15,9 @@
 #import "LogController.h"
 @import UserNotifications;
 
+#import <AVFoundation/AVFoundation.h>
+#import <QuartzCore/QuartzCore.h>
+
 @interface PhoneDashController ()
 @property (weak, nonatomic) IBOutlet UILabel *counterString;
 @property (weak, nonatomic) IBOutlet UIButton *ExpandButton;
@@ -38,7 +41,7 @@
 
 
 - (void) dispatchNode{
-    WorkNode *currentNode=[FlowModel getNode];
+    WorkNode *currentNode=[model getNode];
     [logger log_state:currentNode.message];
     if([currentNode isKindOfClass:[QuestionNode class]])
     {
@@ -54,16 +57,19 @@
 }
 
 - (void) activateDoNode{
-    self.counter = [FlowModel getTime];
-    taskValue=[FlowModel getMessage];
+    self.counter = [model getTime];
+    taskValue=[model getMessage];
     //taking off in case that is what's causing the swlosown. [self sendAlertWith:taskValue];
-    if ([FlowModel canExpand]){
+    if ([model canExpand]){
         self.ExpandButton.enabled=YES;
         self.ExpandButton.hidden=NO;
     }else{
         self.ExpandButton.enabled=NO;
          self.ExpandButton.hidden=YES;
     }
+    AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:@"hello"];
+    AVSpeechSynthesizer *syn = [[AVSpeechSynthesizer alloc] init];
+    [syn speakUtterance:utterance];
     
 }
 
@@ -130,19 +136,19 @@
 }
 
 - (IBAction)ProblemButton:(id)sender {
-    [FlowModel problem];
+    [model problem];
     [self dispatchNode];
 }
 
 - (IBAction)DoneButton:(id)sender {
     [self playSoundCalled:@"ring"];
-    [FlowModel done];
+    [model done];
     [self dispatchNode];
-  //  [FlowModel spider];
+  //  [model spider];
 }
 
 - (IBAction)ExpandButton:(id)sender {
-    [FlowModel expand];
+    [model expand];
     [self dispatchNode];
 }
 
@@ -150,8 +156,8 @@
 - (IBAction)LogButton:(id)sender {
     [self playSoundCalled:@"air"];
     [self sendAlertWith:taskValue];
-    self.counter=[FlowModel getTime];
-    [logger log_state:[FlowModel getNode].message];
+    self.counter=[model getTime];
+    [logger log_state:[model getNode].message];
     
 }
 
@@ -170,13 +176,13 @@
     self.counter=self.counter-1;
     if (self.counter >=0 ){
         [self.taskDisplayButton setTitle:[NSString stringWithFormat:@"%@", taskValue] forState:UIControlStateNormal ];
-         [self.previewButton setTitle:[NSString stringWithFormat:@"%@", [FlowModel getPreview]] forState:UIControlStateNormal ];
+         [self.previewButton setTitle:[NSString stringWithFormat:@"%@", [model getPreview]] forState:UIControlStateNormal ];
         NSString * timeString=[NSString stringWithFormat:@"%d", self.counter];
         [self.timeDisplayButton setTitle:timeString forState:UIControlStateNormal ];
     }
     if (self.counter == 60) { [self playSoundCalled:@"longbeeb"]; }
     if (self.counter == 10) { [self playSoundCalled:@"countdown"]; }
-    if (self.counter == 0) { [FlowModel outoftime];[self dispatchNode]; }
+    if (self.counter == 0) { [model outoftime];[self dispatchNode]; }
     // if (self.counter == 1) { [logger log_state:@"Deadline passed!"]; }
     
 }

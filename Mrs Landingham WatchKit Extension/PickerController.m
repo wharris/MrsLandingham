@@ -33,9 +33,9 @@ FlowModel * model;
     // Configure interface objects here.
     
     model=[[FlowModel alloc] init];
-    NSMutableDictionary *menu=[FlowModel make_initial_menu];
+    NSMutableDictionary *menu=[model make_initial_menu];
     if (context!=nil){
-       menu= [FlowModel make_exception_menu];
+       menu= [model make_exception_menu];
     }
    for(id key in menu) {
     id value = [menu objectForKey:key];

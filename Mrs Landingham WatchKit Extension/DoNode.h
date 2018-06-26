@@ -15,13 +15,11 @@
 - (void)addStep:(NSString*) step;
 - (void)addStep:(NSString*) step withTime: (int) deadline;
 - (void)addStep:(NSString*) step with: (WorkNode *) function;
-- (void)addStep:(NSString*) step withTime: (int) deadline;
 - (void)addStep:(NSString*) step with: (WorkNode *) function withTime: (int) deadline;
 
 - (id) initStep: (NSString* ) payload;
 - (id) initStep: (NSString* ) payload withTime: (int) deadline;
 - (id) initStep: (NSString* ) payload with: (WorkNode *) function;
 - (id) initStep: (NSString* ) payload with: (WorkNode *) function withTime: (int) deadline;
-- (id) initStep: (NSString* ) payload withTime: (int) deadline;
 
 @end

@@ -22,7 +22,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     model=[FlowModel coreBrain];
-    self.message.text=[FlowModel getMessage];
+    self.message.text=[model getMessage];
 
 }
 
@@ -33,14 +33,14 @@
 
 - (IBAction)YesButton:(id)sender {
     self.message.text=@"Yes";
-    [FlowModel yes];
+    [model yes];
     [self viewWillAppear:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)NoButton:(id)sender {
     self.message.text=@"No";
-    [FlowModel no];
+    [model no];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

@@ -32,7 +32,7 @@
     pickerItems=[[NSMutableArray alloc] init];
     workNodeItems=[[NSMutableArray alloc] init];
     PickerNode *focusNode=[[PickerNode alloc] init];
-    focusNode=[FlowModel getNode];
+    focusNode=[model getNode];
     NSMutableDictionary *menu=focusNode.menu;
     for(id key in menu) {
         id value = [menu objectForKey:key];
@@ -78,7 +78,7 @@ numberOfRowsInComponent:(NSInteger)component {
 }
 
 - (IBAction)doneButton:(id)sender {
-    [FlowModel picked:workNodeItems[pickerValue]];
+    [model picked:workNodeItems[pickerValue]];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

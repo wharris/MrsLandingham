@@ -9,25 +9,28 @@
 #import <Foundation/Foundation.h>
 #import "WorkNode.h"
 
-@interface FlowModel : NSObject
+@interface FlowModel : NSObject{
+    WorkNode *activeNode;
+    NSMutableArray *saveNodes; /*this should be a stack*/
+}
 
 
 
 + (id)coreBrain;
-+ (void) done;
-+ (void) yes;
-+ (void) no;
-+ (void) problem;
-+ (void) outoftime;
-+ (void) expand;
-+ (void) picked: (WorkNode *) input;
-+ (void) spider;
-+ (BOOL) canExpand;
-+ (int) getTime;
-+ (NSString *) getMessage;
-+ (NSString *) getPreview;
-+ (WorkNode *) getNode;
-+ (NSMutableDictionary *)make_exception_menu;
-+ (NSMutableDictionary *)make_initial_menu;
+- (void) done;
+- (void) yes;
+- (void) no;
+- (void) problem;
+- (void) outoftime;
+- (void) expand;
+- (void) picked: (WorkNode *) input;
+- (void) spider;
+- (BOOL) canExpand;
+- (int) getTime;
+- (NSString *) getMessage;
+- (NSString *) getPreview;
+- (WorkNode *) getNode;
+- (NSMutableDictionary *)make_exception_menu;
+- (NSMutableDictionary *)make_initial_menu;
 
 @end
