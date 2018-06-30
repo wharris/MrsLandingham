@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0830"
-   version = "2.0">
+   LastUpgradeVersion = "0900"
+   version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -17,7 +17,7 @@
                BlueprintIdentifier = "70A3219A1F43207200989D7E"
                BuildableName = "Mrs Landingham WatchKit App.app"
                BlueprintName = "Mrs Landingham WatchKit App"
-               ReferencedContainer = "container:Mrs Landingham.xcodeproj">
+               ReferencedContainer = "container:DELORES.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -31,7 +31,7 @@
                BlueprintIdentifier = "70A3216D1F43207100989D7E"
                BuildableName = "Mrs Landingham.app"
                BlueprintName = "Mrs Landingham"
-               ReferencedContainer = "container:Mrs Landingham.xcodeproj">
+               ReferencedContainer = "container:DELORES.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -40,6 +40,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -49,7 +50,7 @@
             BlueprintIdentifier = "70A3219A1F43207200989D7E"
             BuildableName = "Mrs Landingham WatchKit App.app"
             BlueprintName = "Mrs Landingham WatchKit App"
-            ReferencedContainer = "container:Mrs Landingham.xcodeproj">
+            ReferencedContainer = "container:DELORES.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -59,14 +60,13 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES"
-      launchAutomaticallySubstyle = "8"
-      notificationPayloadFile = "Mrs Landingham WatchKit Extension/PushNotificationPayload.apns">
+      allowLocationSimulation = "YES">
       <RemoteRunnable
          runnableDebuggingMode = "2"
          BundleIdentifier = "com.apple.Carousel"
@@ -76,7 +76,7 @@
             BlueprintIdentifier = "70A3219A1F43207200989D7E"
             BuildableName = "Mrs Landingham WatchKit App.app"
             BlueprintName = "Mrs Landingham WatchKit App"
-            ReferencedContainer = "container:Mrs Landingham.xcodeproj">
+            ReferencedContainer = "container:DELORES.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
       <MacroExpansion>
@@ -85,7 +85,7 @@
             BlueprintIdentifier = "70A3219A1F43207200989D7E"
             BuildableName = "Mrs Landingham WatchKit App.app"
             BlueprintName = "Mrs Landingham WatchKit App"
-            ReferencedContainer = "container:Mrs Landingham.xcodeproj">
+            ReferencedContainer = "container:DELORES.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -96,9 +96,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      debugDocumentVersioning = "YES"
-      launchAutomaticallySubstyle = "8"
-      notificationPayloadFile = "Mrs Landingham WatchKit Extension/PushNotificationPayload.apns">
+      debugDocumentVersioning = "YES">
       <RemoteRunnable
          runnableDebuggingMode = "2"
          BundleIdentifier = "com.apple.Carousel"
@@ -108,7 +106,7 @@
             BlueprintIdentifier = "70A3219A1F43207200989D7E"
             BuildableName = "Mrs Landingham WatchKit App.app"
             BlueprintName = "Mrs Landingham WatchKit App"
-            ReferencedContainer = "container:Mrs Landingham.xcodeproj">
+            ReferencedContainer = "container:DELORES.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
       <MacroExpansion>
@@ -117,7 +115,7 @@
             BlueprintIdentifier = "70A3219A1F43207200989D7E"
             BuildableName = "Mrs Landingham WatchKit App.app"
             BlueprintName = "Mrs Landingham WatchKit App"
-            ReferencedContainer = "container:Mrs Landingham.xcodeproj">
+            ReferencedContainer = "container:DELORES.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

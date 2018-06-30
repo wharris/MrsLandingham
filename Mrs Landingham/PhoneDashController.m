@@ -67,7 +67,7 @@
         self.ExpandButton.enabled=NO;
          self.ExpandButton.hidden=YES;
     }
-    AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:@"hello"];
+    AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:taskValue];
     AVSpeechSynthesizer *syn = [[AVSpeechSynthesizer alloc] init];
     [syn speakUtterance:utterance];
     
@@ -179,6 +179,12 @@
          [self.previewButton setTitle:[NSString stringWithFormat:@"%@", [model getPreview]] forState:UIControlStateNormal ];
         NSString * timeString=[NSString stringWithFormat:@"%d", self.counter];
         [self.timeDisplayButton setTitle:timeString forState:UIControlStateNormal ];
+    }
+    if (self.counter % 30 ==10)
+    {
+    AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:taskValue];
+    AVSpeechSynthesizer *syn = [[AVSpeechSynthesizer alloc] init];
+    [syn speakUtterance:utterance];
     }
     if (self.counter == 60) { [self playSoundCalled:@"longbeeb"]; }
     if (self.counter == 10) { [self playSoundCalled:@"countdown"]; }
